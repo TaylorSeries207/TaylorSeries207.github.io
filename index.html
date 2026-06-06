@@ -107,11 +107,11 @@
             border: 1px solid #eef2f5;
         }
 
-        /* Student Grid */
+        /* ✨ 优化后的 Student Grid 布局，完美支持未来学生人数增加 */
         .student-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
             margin-top: 15px;
         }
 
@@ -226,7 +226,6 @@
         .floating-cat:hover {
             transform: scale(1.1);
         }
-
     </style>
 </head>
 <body>
@@ -292,7 +291,7 @@
         let hideTimer;
 
         catBtn.addEventListener('click', () => {
-            // 1. 动效：点击时让小猫有个激烈的缩放弹跳反馈，非常魔性
+            // 1. 动效：点击时让小猫有个激烈的缩放弹跳反馈
             catBtn.style.transform = 'scale(0.8) translateY(10px)';
             
             setTimeout(() => {
@@ -303,10 +302,10 @@
                 catBtn.style.transform = '';
             }, 150);
 
-            // 2. 气泡控制：立刻弹出 "wasssup!"
+            // 2. 气泡控制：立刻弹出
             bubble.classList.add('show');
 
-            // 3. 连续点击优化：如果疯狂连续点击，先清除之前的定时器，重新计算1.5秒后再隐藏
+            // 3. 连续点击优化
             clearTimeout(hideTimer);
             
             hideTimer = setTimeout(() => {
