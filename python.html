@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Curriculum | Michael's Coding Academy</title>
+    <style>
+        :root {
+            --primary-color: #7A003C; /* McMaster Maroon */
+            --secondary-color: #FDBF57;
+            --text-dark: #2b2b2b;
+            --bg-light: #f9fafd;
+            --card-bg: #ffffff;
+            --code-bg: #1e1e1e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* Top Header Sticky Bar */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #4a0024);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+
+        /* Main Container with Sidebar Grid */
+        .tutorial-container {
+            max-width: 1280px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: sticky;
+            top: 95px;
+            height: calc(100vh - 125px);
+            overflow-y: auto;
+            background: var(--card-bg);
+            padding: 20px 15px;
+            border-radius: 12px;
+            border: 1px solid #eef2f5;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .level-group {
+            margin-bottom: 22px;
+        }
+
+        .level-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: block;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            line-height: 1.3;
+        }
+
+        .sidebar a:hover {
+            background-color: #fffdf7;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding-left: 14px;
+        }
+
+        /* Main Content Area */
+        .content {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #eef2f5;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 110px; /* Header offset */
+        }
+
+        .level-header {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        section h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-top: 35px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        p {
+            color: #444;
+            font-size: 0.98rem;
+        }
+
+        /* Code Block Styling */
+        pre {
+            background-color: var(--code-bg);
+            color: #f8f8f2;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: "Fira Code", Consolas, Monaco, "Courier New", monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 15px 0;
+        }
+
+        code {
+            font-family: "Fira Code", Consolas, Monaco, "Courier New", monospace;
+            background-color: #f0f2f5;
+            color: #c7254e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Tip Box */
+        .tip-box {
+            background-color: #fffdf7;
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        /* Scrollbar custom style */
+        .sidebar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #e0e0e0;
+            border-radius: 4px;
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 900px) {
+            .tutorial-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>🐍 Python Curriculum & CCC Prep</h1>
+        <a href="index.html" class="back-btn">&larr; Back to Home</a>
+    </header>
+
+    <!-- Main Container -->
+    <div class="tutorial-container">
+        
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            
+            <!-- LEVEL 1 -->
+            <div class="level-group">
+                <div class="level-title">Level 1: Foundations</div>
+                <ul>
+                    <li><a href="#l1-m1">Module 1: Print</a></li>
+                    <li><a href="#l1-m2">Module 2: Simple Math</a></li>
+                    <li><a href="#l1-m3">Module 3: Advanced Math</a></li>
+                    <li><a href="#l1-m4">Module 4: String</a></li>
+                    <li><a href="#l1-m5">Module 5: Input and If</a></li>
+                    <li><a href="#l1-m6">Module 6: List</a></li>
+                    <li><a href="#l1-m7">Module 7: Debug Practice</a></li>
+                    <li><a href="#l1-m8">Module 8: L1 Test</a></li>
+                </ul>
+            </div>
+
+            <!-- LEVEL 2 -->
+            <div class="level-group">
+                <div class="level-title">Level 2: Control & Loops</div>
+                <ul>
+                    <li><a href="#l2-m1">Module 1: Elif Statement</a></li>
+                    <li><a href="#l2-m2">Module 2: CCC J1 Practice</a></li>
+                    <li><a href="#l2-m3">Module 3: While Loop</a></li>
+                    <li><a href="#l2-m4">Module 4: For Loop</a></li>
+                    <li><a href="#l2-m5">Module 5: CCC J2 Simple Loop</a></li>
+                    <li><a href="#l2-m6">Module 6: Hashset</a></li>
+                    <li><a href="#l2-m7">Module 7: CCC J2 Complex J2s</a></li>
+                    <li><a href="#l2-m8">Module 8: L2 Test</a></li>
+                </ul>
+            </div>
+
+            <!-- LEVEL 3 -->
+            <div class="level-group">
+                <div class="level-title">Level 3: Data & Algorithms</div>
+                <ul>
+                    <li><a href="#l3-m1">Module 1: Nested For Loop</a></li>
+                    <li><a href="#l3-m2">Module 2: CCC J3 Practices</a></li>
+                    <li><a href="#l3-m3">Module 3: Hashmap / Dictionary</a></li>
+                    <li><a href="#l3-m4">Module 4: 2D Array</a></li>
+                    <li><a href="#l3-m5">Module 5: Prefix Sum & Difference Array</a></li>
+                    <li><a href="#l3-m6">Module 6: Dynamic Programming</a></li>
+                    <li><a href="#l3-m7">Module 7: BFS</a></li>
+                    <li><a href="#l3-m8">Module 8: DFS</a></li>
+                </ul>
+            </div>
+
+            <!-- LEVEL 4 -->
+            <div class="level-group">
+                <div class="level-title">Level 4: Competition</div>
+                <ul>
+                    <li><a href="#l4-m1">CCC Practical Questions</a></li>
+                </ul>
+            </div>
+
+        </nav>
+
+        <!-- Main Tutorial Content -->
+        <main class="content">
+
+            <!-- ================= LEVEL 1 ================= -->
+            <h2 class="level-header">Python Level 1: Foundations</h2>
+
+            <section id="l1-m1">
+                <h3>Module 1: Print</h3>
+                <p>Welcome to Python! The <code>print()</code> function is used to output text or data to the screen.</p>
+                <pre><code>print("Hello, World!")
+print("Welcome to Michael's Coding Class!")</code></pre>
+            </section>
+
+            <section id="l1-m2">
+                <h3>Module 2: Simple Math</h3>
+                <p>Python supports standard arithmetic operations: addition (<code>+</code>), subtraction (<code>-</code>), multiplication (<code>*</code>), and division (<code>/</code>).</p>
+                <pre><code>a = 10
+b = 3
+print(a + b)  # Output: 13
+print(a * b)  # Output: 30</code></pre>
+            </section>
+
+            <section id="l1-m3">
+                <h3>Module 3: Advanced Math</h3>
+                <p>Learn integer division (<code>//</code>), modulus/remainder (<code>%</code>), and exponentiation (<code>**</code>).</p>
+                <pre><code>print(10 // 3) # Floor Division -> 3
+print(10 % 3)  # Modulus (Remainder) -> 1
+print(2 ** 4)  # Exponent -> 16</code></pre>
+            </section>
+
+            <section id="l1-m4">
+                <h3>Module 4: String</h3>
+                <p>Strings store text. You can concatenate strings and use formatted strings (f-strings).</p>
+                <pre><code>name = "Michael"
+print(f"Hello, {name}!")</code></pre>
+            </section>
+
+            <section id="l1-m5">
+                <h3>Module 5: Input and If</h3>
+                <p>Use <code>input()</code> to read user data and <code>if</code> statements to make decisions.</p>
+                <pre><code>age = int(input("Enter your age: "))
+if age >= 18:
+    print("Eligible")</code></pre>
+            </section>
+
+            <section id="l1-m6">
+                <h3>Module 6: List</h3>
+                <p>Lists allow storing multiple ordered items in a single variable.</p>
+                <pre><code>scores = [90, 85, 95]
+scores.append(100)
+print(scores[0]) # 90</code></pre>
+            </section>
+
+            <section id="l1-m7">
+                <h3>Module 7: Debug Practice</h3>
+                <p>Learn common bugs like <code>SyntaxError</code>, <code>TypeError</code>, and logical errors.</p>
+            </section>
+
+            <section id="l1-m8">
+                <h3>Module 8: L1 Test</h3>
+                <p>Level 1 comprehensive test & practice problem sets.</p>
+            </section>
+
+
+            <!-- ================= LEVEL 2 ================= -->
+            <h2 class="level-header" style="margin-top: 80px;">Python Level 2: Control & Loops</h2>
+
+            <section id="l2-m1">
+                <h3>Module 1: Elif Statement</h3>
+                <p>Handling multiple conditions cleanly using <code>if</code>, <code>elif</code>, and <code>else</code>.</p>
+            </section>
+
+            <section id="l2-m2">
+                <h3>Module 2: CCC J1 Practice</h3>
+                <p>Solving real Canadian Computing Competition (CCC) Junior 1 problems.</p>
+            </section>
+
+            <section id="l2-m3">
+                <h3>Module 3: While Loop</h3>
+                <p>Repeat code blocks as long as a condition evaluates to <code>True</code>.</p>
+            </section>
+
+            <section id="l2-m4">
+                <h3>Module 4: For Loop</h3>
+                <p>Iterating over ranges, lists, and strings efficiently.</p>
+            </section>
+
+            <section id="l2-m5">
+                <h3>Module 5: CCC J2 Simple Loop</h3>
+                <p>Applying loops to solve CCC Junior 2 competition problems.</p>
+            </section>
+
+            <section id="l2-m6">
+                <h3>Module 6: Hashset</h3>
+                <p>Using <code>set()</code> for O(1) fast lookups and removing duplicates.</p>
+            </section>
+
+            <section id="l2-m7">
+                <h3>Module 7: CCC J2 Complex J2s</h3>
+                <p>Advanced simulation and string manipulation problems from past CCC J2 contests.</p>
+            </section>
+
+            <section id="l2-m8">
+                <h3>Module 8: L2 Test</h3>
+                <p>Level 2 assessment test covering control flow and set operations.</p>
+            </section>
+
+
+            <!-- ================= LEVEL 3 ================= -->
+            <h2 class="level-header" style="margin-top: 80px;">Python Level 3: Data & Algorithms</h2>
+
+            <section id="l3-m1">
+                <h3>Module 1: Nested For Loop</h3>
+                <p>Multi-dimensional iteration and pattern printing techniques.</p>
+            </section>
+
+            <section id="l3-m2">
+                <h3>Module 2: CCC J3 Practices</h3>
+                <p>Tackling CCC Junior 3 problems requiring robust logical structuring.</p>
+            </section>
+
+            <section id="l3-m3">
+                <h3>Module 3: Hashmap / Dictionary</h3>
+                <p>Key-value mappings, frequency counts, and avoiding <code>KeyError</code> using <code>.get()</code>.</p>
+                <div class="tip-box">
+                    💡 <b>Key Tip:</b> Always handle missing keys safely to prevent runtime crashes during CCC evaluations!
+                </div>
+            </section>
+
+            <section id="l3-m4">
+                <h3>Module 4: 2D Array</h3>
+                <p>Representing grids and matrices in Python using nested lists.</p>
+            </section>
+
+            <section id="l3-m5">
+                <h3>Module 5: Prefix Sum and Difference Array</h3>
+                <p>Essential techniques for fast range sum queries in $O(1)$ time complexity.</p>
+            </section>
+
+            <section id="l3-m6">
+                <h3>Module 6: Dynamic Programming</h3>
+                <p>Breaking down complex optimization problems into simpler overlapping subproblems.</p>
+            </section>
+
+            <section id="l3-m7">
+                <h3>Module 7: BFS (Breadth-First Search)</h3>
+                <p>Graph traversal algorithm using queues for finding shortest paths in unweighted graphs.</p>
+            </section>
+
+            <section id="l3-m8">
+                <h3>Module 8: DFS (Depth-First Search)</h3>
+                <p>Exploring graph paths deeply using recursion or stack structures.</p>
+            </section>
+
+
+            <!-- ================= LEVEL 4 ================= -->
+            <h2 class="level-header" style="margin-top: 80px;">Python Level 4: Competition</h2>
+
+            <section id="l4-m1">
+                <h3>CCC Practical Questions</h3>
+                <p>Real test archives, past CCC Senior & Junior problems, time complexity optimizations, and mock contest strategies.</p>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
