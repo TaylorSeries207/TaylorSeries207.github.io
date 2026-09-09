@@ -221,21 +221,21 @@
             font-size: 1.05rem;
         }
 
-        /* Table Styling for Prices */
-        .menu-table {
+        /* Tables */
+        .menu-table, .index-table {
             width: 100%;
             border-collapse: collapse;
             margin: 15px 0;
             font-size: 0.95rem;
         }
 
-        .menu-table th, .menu-table td {
+        .menu-table th, .menu-table td, .index-table th, .index-table td {
             border: 1px solid #e2e8f0;
             padding: 10px 15px;
             text-align: center;
         }
 
-        .menu-table th {
+        .menu-table th, .index-table th {
             background-color: #f8fafc;
             color: var(--primary-color);
             font-weight: 600;
@@ -513,8 +513,122 @@ r_zero_one = random.random()</code></pre>
                 </div>
             </section>
 
+            <!-- Module 4 -->
+            <section id="l1-m4">
+                <h3>Module 4: String Operations</h3>
+                <p><b>Concept:</b> Strings are sequences of characters used to store textual data. Key properties to remember:</p>
+                <ul>
+                    <li>Strings must always be enclosed in quotes (single <code>'...'</code> or double <code>"..."</code>).</li>
+                    <li>Numbers wrapped in quotes are treated as text: compare <code>print(3 + 4)</code> &rarr; <code>7</code> vs. <code>print("3+4")</code> &rarr; <code>3+4</code>.</li>
+                </ul>
+
+                <h4>Basic Operations: Length, Concatenation, and Multiplication</h4>
+                <pre><code>s = "HelloWorld!"
+
+print(s)        # Prints the string
+print(len(s))   # Output: 11 (counts characters, spaces, and punctuation)
+
+# String Concatenation (Addition)
+addition = s + " Good morning"
+print(addition) # Output: HelloWorld! Good morning
+
+# String Multiplication
+multi = s * 3
+print(multi)    # Output: HelloWorld!HelloWorld!HelloWorld!</code></pre>
+
+                <div class="tip-box">
+                    ⚠️ <b>Rule:</b> You <b>cannot</b> subtract (<code>-</code>) or divide (<code>/</code>) strings in Python!
+                </div>
+
+                <h4>String Indexing & Slicing</h4>
+                <p>Every character in a string has a zero-based index position:</p>
+
+                <table class="index-table">
+                    <thead>
+                        <tr>
+                            <th>Character</th>
+                            <td>M</td><td>I</td><td>C</td><td>H</td><td>A</td><td>E</td><td>L</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Forward Index</th>
+                            <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+                        </tr>
+                        <tr>
+                            <th>Reverse Index</th>
+                            <td>-7</td><td>-6</td><td>-5</td><td>-4</td><td>-3</td><td>-2</td><td>-1</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <pre><code>s = "HelloWorld!"
+
+print(s[0])     # 'H' (First element)
+print(s[-1])    # '!' (Last element)
+
+# Slicing: s[start:end] - Upper bound is EXCLUDED!
+print(s[0:3])   # 'Hel' (Indices 0, 1, 2)
+print(s[1:])    # 'elloWorld!' (From index 1 to the end)
+print(s[:5])    # 'Hello' (From index 0 to 4)</code></pre>
+
+                <div class="tip-box">
+                    🔒 <b>String Immutability:</b> Strings in Python cannot be changed by direct index assignment!
+                    <pre><code>wrong = "hamgurger"
+wrong[3] = "b"  # ❌ TypeError! Strings are immutable.
+
+# Correct way to reassemble a string:
+fixed = wrong[0:3] + "b" + wrong[4:]
+print(fixed)    # Output: hamburger</code></pre>
+                </div>
+
+                <h4>Useful String Methods</h4>
+                <pre><code>s = "HelloWorld!"
+
+print(s.index("W"))   # 5 (Returns the index of the FIRST occurrence of "W")
+print(s.count("o"))   # 2 (Counts total occurrences of "o")
+
+print(s.upper())      # "HELLOWORLD!"
+print(s.lower())      # "helloworld!"
+
+# Boolean Check Functions (Return True or False)
+print(s.isalpha())    # False (because '!' is not a letter)
+print(s.isupper())    # False
+print(s.islower())    # False
+print(s.isdigit())    # False
+print(s.isalnum())    # False (because '!' is special character)</code></pre>
+
+                <h4>F-String (Formatted String Literals)</h4>
+                <p>F-strings provide a clean, modern way to embed variables directly inside strings without messy comma separation or type casting. Simply prefix the string with an <code>f</code> and put variables inside curly braces <code>{}</code>:</p>
+
+                <pre><code>temp = 28.5
+wea = "Sunny"
+
+# Clean formatting using f-string
+print(f"Today's temperature is {temp}°C, and it's a {wea} day!")
+# Output: Today's temperature is 28.5°C, and it's a Sunny day!</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 4: Paragraph Inspector & Modifier</h4>
+                    <p>Search up your favorite topic on Google, copy a paragraph (at least 150 characters), and store it in a variable named <code>para</code>.</p>
+                    
+                    <p><i>Example:</i> <code>para = "Good morning, my name is Johnny and I like playing Badminton."</code></p>
+
+                    <p><b>Complete the following tasks using Python string operations:</b></p>
+                    <ol>
+                        <li>Print out the total length of the paragraph.</li>
+                        <li>Print out the first 100 characters using string slicing.</li>
+                        <li>Check if those first 100 characters consist of <b>alphabetical letters only</b> (<code>.isalpha()</code>).</li>
+                        <li>Print out the last 100 characters.</li>
+                        <li>Check if those last 100 characters contain only <b>alphanumeric characters</b> (<code>.isalnum()</code>).</li>
+                        <li>Find and print the index of the first occurrence of your favorite keyword in the paragraph.</li>
+                        <li>Replace the first occurrence of your favorite word with its <b>UPPERCASE</b> version, and print the reassembled paragraph.</li>
+                        <li>Use the <code>random</code> library to pick a random integer $i$ (where $0 \le i < \text{len(para)}$) and print out the character at index $i$.</li>
+                    </ol>
+                </div>
+            </section>
+
             <!-- Placeholder sections for upcoming modules -->
-            <section id="l1-m4"><h3>Module 4: String Operations</h3><p>Coming up next...</p></section>
             <section id="l1-m5"><h3>Module 5: Input and If</h3><p>Coming up next...</p></section>
             <section id="l1-m6"><h3>Module 6: List</h3><p>Coming up next...</p></section>
             <section id="l1-m7"><h3>Module 7: Debug Practice</h3><p>Coming up next...</p></section>
