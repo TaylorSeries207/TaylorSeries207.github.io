@@ -197,7 +197,7 @@
             padding: 0;
         }
 
-        /* Tip Box */
+        /* Tip & Challenge Boxes */
         .tip-box {
             background-color: #fffdf7;
             border-left: 4px solid var(--secondary-color);
@@ -207,7 +207,41 @@
             font-size: 0.95rem;
         }
 
-        /* Scrollbar custom style */
+        .challenge-box {
+            background-color: #fcf8f9;
+            border-left: 4px solid var(--primary-color);
+            padding: 18px 22px;
+            border-radius: 0 8px 8px 0;
+            margin: 25px 0;
+        }
+
+        .challenge-box h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.05rem;
+        }
+
+        /* Table Styling for Prices */
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        .menu-table th, .menu-table td {
+            border: 1px solid #e2e8f0;
+            padding: 10px 15px;
+            text-align: center;
+        }
+
+        .menu-table th {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Custom Scrollbar */
         .sidebar::-webkit-scrollbar {
             width: 5px;
         }
@@ -246,10 +280,10 @@
             <div class="level-group">
                 <div class="level-title">Level 1: Foundations</div>
                 <ul>
-                    <li><a href="#l1-m1">Module 1: Print</a></li>
-                    <li><a href="#l1-m2">Module 2: Simple Math</a></li>
-                    <li><a href="#l1-m3">Module 3: Advanced Math</a></li>
-                    <li><a href="#l1-m4">Module 4: String</a></li>
+                    <li><a href="#l1-m1">Module 1: Print Function</a></li>
+                    <li><a href="#l1-m2">Module 2: Variables & Basic Math</a></li>
+                    <li><a href="#l1-m3">Module 3: Advanced Math & Random</a></li>
+                    <li><a href="#l1-m4">Module 4: String Operations</a></li>
                     <li><a href="#l1-m5">Module 5: Input and If</a></li>
                     <li><a href="#l1-m6">Module 6: List</a></li>
                     <li><a href="#l1-m7">Module 7: Debug Practice</a></li>
@@ -303,162 +337,188 @@
             <!-- ================= LEVEL 1 ================= -->
             <h2 class="level-header">Python Level 1: Foundations</h2>
 
+            <!-- Module 1 -->
             <section id="l1-m1">
-                <h3>Module 1: Print</h3>
-                <p>Welcome to Python! The <code>print()</code> function is used to output text or data to the screen.</p>
-                <pre><code>print("Hello, World!")
+                <h3>Module 1: Print Function</h3>
+                <p><b>Concept:</b> The <code>print()</code> function is used to output text or data directly to the screen console.</p>
+                
+                <pre><code>print("Hello World")
 print("Welcome to Michael's Coding Class!")</code></pre>
-            </section>
 
-            <section id="l1-m2">
-                <h3>Module 2: Simple Math</h3>
-                <p>Python supports standard arithmetic operations: addition (<code>+</code>), subtraction (<code>-</code>), multiplication (<code>*</code>), and division (<code>/</code>).</p>
-                <pre><code>a = 10
-b = 3
-print(a + b)  # Output: 13
-print(a * b)  # Output: 30</code></pre>
-            </section>
-
-            <section id="l1-m3">
-                <h3>Module 3: Advanced Math</h3>
-                <p>Learn integer division (<code>//</code>), modulus/remainder (<code>%</code>), and exponentiation (<code>**</code>).</p>
-                <pre><code>print(10 // 3) # Floor Division -> 3
-print(10 % 3)  # Modulus (Remainder) -> 1
-print(2 ** 4)  # Exponent -> 16</code></pre>
-            </section>
-
-            <section id="l1-m4">
-                <h3>Module 4: String</h3>
-                <p>Strings store text. You can concatenate strings and use formatted strings (f-strings).</p>
-                <pre><code>name = "Michael"
-print(f"Hello, {name}!")</code></pre>
-            </section>
-
-            <section id="l1-m5">
-                <h3>Module 5: Input and If</h3>
-                <p>Use <code>input()</code> to read user data and <code>if</code> statements to make decisions.</p>
-                <pre><code>age = int(input("Enter your age: "))
-if age >= 18:
-    print("Eligible")</code></pre>
-            </section>
-
-            <section id="l1-m6">
-                <h3>Module 6: List</h3>
-                <p>Lists allow storing multiple ordered items in a single variable.</p>
-                <pre><code>scores = [90, 85, 95]
-scores.append(100)
-print(scores[0]) # 90</code></pre>
-            </section>
-
-            <section id="l1-m7">
-                <h3>Module 7: Debug Practice</h3>
-                <p>Learn common bugs like <code>SyntaxError</code>, <code>TypeError</code>, and logical errors.</p>
-            </section>
-
-            <section id="l1-m8">
-                <h3>Module 8: L1 Test</h3>
-                <p>Level 1 comprehensive test & practice problem sets.</p>
-            </section>
-
-
-            <!-- ================= LEVEL 2 ================= -->
-            <h2 class="level-header" style="margin-top: 80px;">Python Level 2: Control & Loops</h2>
-
-            <section id="l2-m1">
-                <h3>Module 1: Elif Statement</h3>
-                <p>Handling multiple conditions cleanly using <code>if</code>, <code>elif</code>, and <code>else</code>.</p>
-            </section>
-
-            <section id="l2-m2">
-                <h3>Module 2: CCC J1 Practice</h3>
-                <p>Solving real Canadian Computing Competition (CCC) Junior 1 problems.</p>
-            </section>
-
-            <section id="l2-m3">
-                <h3>Module 3: While Loop</h3>
-                <p>Repeat code blocks as long as a condition evaluates to <code>True</code>.</p>
-            </section>
-
-            <section id="l2-m4">
-                <h3>Module 4: For Loop</h3>
-                <p>Iterating over ranges, lists, and strings efficiently.</p>
-            </section>
-
-            <section id="l2-m5">
-                <h3>Module 5: CCC J2 Simple Loop</h3>
-                <p>Applying loops to solve CCC Junior 2 competition problems.</p>
-            </section>
-
-            <section id="l2-m6">
-                <h3>Module 6: Hashset</h3>
-                <p>Using <code>set()</code> for O(1) fast lookups and removing duplicates.</p>
-            </section>
-
-            <section id="l2-m7">
-                <h3>Module 7: CCC J2 Complex J2s</h3>
-                <p>Advanced simulation and string manipulation problems from past CCC J2 contests.</p>
-            </section>
-
-            <section id="l2-m8">
-                <h3>Module 8: L2 Test</h3>
-                <p>Level 2 assessment test covering control flow and set operations.</p>
-            </section>
-
-
-            <!-- ================= LEVEL 3 ================= -->
-            <h2 class="level-header" style="margin-top: 80px;">Python Level 3: Data & Algorithms</h2>
-
-            <section id="l3-m1">
-                <h3>Module 1: Nested For Loop</h3>
-                <p>Multi-dimensional iteration and pattern printing techniques.</p>
-            </section>
-
-            <section id="l3-m2">
-                <h3>Module 2: CCC J3 Practices</h3>
-                <p>Tackling CCC Junior 3 problems requiring robust logical structuring.</p>
-            </section>
-
-            <section id="l3-m3">
-                <h3>Module 3: Hashmap / Dictionary</h3>
-                <p>Key-value mappings, frequency counts, and avoiding <code>KeyError</code> using <code>.get()</code>.</p>
                 <div class="tip-box">
-                    💡 <b>Key Tip:</b> Always handle missing keys safely to prevent runtime crashes during CCC evaluations!
+                    📌 <b>Important Notice:</b> Your code's execution result will <b>not</b> be visible on the screen unless you explicitly print it out. Don't forget this when testing your logic!
+                </div>
+
+                <h4>Understanding Escape Characters (\n) & Line Ends</h4>
+                <p>By default, <code>print()</code> automatically ends with a newline character (<code>\n</code>), which explains why consecutive print statements appear on new lines. You can also manually insert <code>\n</code> inside a string:</p>
+                
+                <pre><code>print("Hello World \nHello World")</code></pre>
+
+                <p>We can override the default newline ending by explicitly specifying the <code>end</code> parameter:</p>
+
+                <pre><code>print("Hello World", end=" ")
+print("Next Line")</code></pre>
+
+                <p><i>Try running this in your IDE to see how the two sentences join onto the same line, then demonstrate it to your instructor!</i></p>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 1: One-Line Print Challenge & DMOJ Intro</h4>
+                    <p><b>Task:</b> Print out the following 3 lines using <b>only ONE</b> single <code>print()</code> statement:</p>
+                    <pre><code>Hello!
+My name is Johnny!
+I am learning Python!</code></pre>
+
+                    <p><b>Get Familiar with DMOJ:</b> Throughout our course, we will frequently submit solutions to <a href="https://dmoj.ca" target="_blank">DMOJ.ca</a> (Canadian Online Judge). Log in and submit your solution for your very first problem here:</p>
+                    <p>👉 <a href="https://dmoj.ca/problem/helloworld" target="_blank">https://dmoj.ca/problem/helloworld</a></p>
                 </div>
             </section>
 
-            <section id="l3-m4">
-                <h3>Module 4: 2D Array</h3>
-                <p>Representing grids and matrices in Python using nested lists.</p>
+            <!-- Module 2 -->
+            <section id="l1-m2">
+                <h3>Module 2: Variables & Basic Math</h3>
+                <p><b>Concept:</b> Python supports standard arithmetic calculations using <code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code> corresponding to Addition, Subtraction, Multiplication, and Division.</p>
+                
+                <p>A <b>Variable</b> is a fundamental concept used to store data values in memory. The primary numeric variable types are:</p>
+                <ul>
+                    <li><code>int</code> (Integer): Whole numbers without decimal points (e.g., <code>1</code>, <code>42</code>, <code>-10</code>).</li>
+                    <li><code>float</code> (Floating-point): Numbers with decimal points (e.g., <code>9.8</code>, <code>3.14</code>).</li>
+                </ul>
+
+                <pre><code>a = 1
+b = 2
+print(a + b)  # Output: 3</code></pre>
+
+                <p>Here, <code>1</code> is stored in variable <code>a</code> and <code>2</code> is stored in <code>b</code>. If we change the values assigned to <code>a</code> and <code>b</code>, the printed result will update automatically—highlighting why variables are indispensable in programming!</p>
+
+                <h4>Example: Real-World Word Problem</h4>
+                <p><i>A class has 33 students in total. If 12 of them are girls, how many boys are there?</i></p>
+
+                <pre><code>cla = 33      # Avoid using 'class' as a variable name since it is a reserved Python keyword
+girls = 12
+boys = cla - girls  # Use variables instead of hardcoded numbers like 33 - 12
+print("There are", boys, "boys")  # Separate strings and variables with commas</code></pre>
+
+                <div class="tip-box">
+                    💡 <b>Type Rules & Conversions:</b>
+                    <ul>
+                        <li><code>int + int</code> &rarr; <code>int</code></li>
+                        <li><code>int - int</code> &rarr; <code>int</code></li>
+                        <li><code>int * int</code> &rarr; <code>int</code></li>
+                        <li><code>int / int</code> &rarr; <b><code>float</code></b> (Division always returns a float!)</li>
+                        <li>Any operation involving a <code>float</code> yields a <code>float</code>.</li>
+                    </ul>
+                    You can inspect a variable's data type anytime using <code>type(f)</code>.
+                </div>
+
+                <h4>Rounding Numbers</h4>
+                <p>To round a float to the nearest integer or specific decimal places, use the built-in <code>round()</code> function:</p>
+
+                <pre><code>number = 9.2141241
+
+rounded_num = round(number)
+print(rounded_num)     # Output: 9
+
+rounded_num2 = round(number, 2)
+print(rounded_num2)    # Output: 9.21</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 2: Bubble Tea Store Register</h4>
+                    <p>You are running a bubble tea store with the following price menu:</p>
+                    
+                    <table class="menu-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Small (S)</th>
+                                <th>Medium (M)</th>
+                                <th>Large (L)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>Fruit Tea</b></td>
+                                <td>$7.49</td>
+                                <td>$8.99</td>
+                                <td>$9.99</td>
+                            </tr>
+                            <tr>
+                                <td><b>Milk Tea</b></td>
+                                <td>$6.59</td>
+                                <td>$8.79</td>
+                                <td>$9.99</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><b>Tasks:</b></p>
+                    <ol>
+                        <li>A customer orders: <b>2 Medium Fruit Teas</b>, <b>1 Large Fruit Tea</b>, and <b>1 Small Milk Tea</b>. Calculate the final bill after adding <b>13% HST tax</b> (multiply total by <code>1.13</code>). Round the final bill to 2 decimal places.</li>
+                        <li>If the customer pays with a <b>$100 cash bill</b>, calculate their change.</li>
+                    </ol>
+                </div>
             </section>
 
-            <section id="l3-m5">
-                <h3>Module 5: Prefix Sum and Difference Array</h3>
-                <p>Essential techniques for fast range sum queries in $O(1)$ time complexity.</p>
+            <!-- Module 3 -->
+            <section id="l1-m3">
+                <h3>Module 3: Advanced Math & Random Library</h3>
+                <p><b>Concept:</b> In this module, we introduce advanced arithmetic operators: Floor Division (<code>//</code>), Modulus (<code>%</code>), and Exponentiation (<code>**</code>).</p>
+
+                <ul>
+                    <li><b>Floor Division (<code>//</code>):</b> Discards the fractional remainder and returns only the integer quotient. E.g., <code>print(8 // 3)</code> &rarr; <code>2</code>.</li>
+                    <li><b>Modulus (<code>%</code>):</b> Returns the remainder after division. E.g., <code>print(8 % 5)</code> &rarr; <code>3</code>.</li>
+                    <li><b>Exponentiation (<code>**</code>):</b> Raises a base to a power. E.g., <code>print(2 ** 3)</code> &rarr; <code>8</code>.</li>
+                </ul>
+
+                <h4>Min & Max Functions</h4>
+                <p>The <code>min()</code> and <code>max()</code> functions find the smallest and largest values among passed arguments or collections:</p>
+
+                <pre><code>print(min(2, 1, 2, 3, 5))   # Output: 1
+
+biggest = max(1, 2, 3, 4, 5)
+print(biggest)              # Output: 5</code></pre>
+
+                <h4>Extension: The <code>random</code> Library</h4>
+                <p>Python provides a built-in module called <code>random</code> to generate pseudo-random numbers.</p>
+
+                <pre><code>import random  # Step 1: Import the module before using it
+
+# Generate a random integer between 1 and 100 (inclusive)
+r_int = random.randint(1, 100)
+
+# Generate a random float between 1.0 and 100.0
+r_float = random.uniform(1, 100)
+
+# Generate a random float between 0.0 and 1.0
+r_zero_one = random.random()</code></pre>
+
+                <p><b>Quick Practice:</b> How would you simulate rolling a standard 6-sided dice using <code>random.randint()</code>?</p>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 3: Comprehensive Problem Set</h4>
+
+                    <p><b>a. Three Dice Difference & Order:</b><br>
+                    Simulate rolling three 6-sided dice. Print each value out. Find the maximum and minimum values, calculate the difference between them, and use <code>min()</code>, <code>max()</code>, and basic math to output the 3 values in ascending order.</p>
+
+                    <p><b>b. Long-Distance Race Simulation:</b><br>
+                    Three runners (A, B, and C) compete in a race split into 3 legs:</p>
+                    <ul>
+                        <li><b>Leg 1:</b> Everyone runs exactly <code>300m</code>.</li>
+                        <li><b>Leg 2:</b> Everyone runs a random integer distance between <code>250m</code> and <code>350m</code>.</li>
+                        <li><b>Leg 3:</b> Everyone runs a random float distance between <code>200m</code> and <code>300m</code>.</li>
+                    </ul>
+                    <p><i>Requirements:</i> Print total distances for A, B, and C in complete formatted sentences. Identify the longest total distance. If the total race took 5 minutes (300 seconds), calculate their average speed ($m/s$). If the longest runner ran around a circular track of that circumference, calculate the track's area ($A = \pi r^2$, where $r = \text{circumference} / 2\pi$).</p>
+
+                    <p><b>c. Supermarket Receipt & Change Calculation:</b><br>
+                    Define prices for 3 supermarket items using random integers between $1 and $3 (e.g., <code>egg = random.randint(1, 3)</code>). Calculate the total price, 13% HST tax, and grand total. If the customer can only pay using $5 cash bills, calculate how many $5 bills are required (hint: use <code>//</code> and <code>%</code>) and their exact change. Print out a clean, formatted receipt!</p>
+                </div>
             </section>
 
-            <section id="l3-m6">
-                <h3>Module 6: Dynamic Programming</h3>
-                <p>Breaking down complex optimization problems into simpler overlapping subproblems.</p>
-            </section>
-
-            <section id="l3-m7">
-                <h3>Module 7: BFS (Breadth-First Search)</h3>
-                <p>Graph traversal algorithm using queues for finding shortest paths in unweighted graphs.</p>
-            </section>
-
-            <section id="l3-m8">
-                <h3>Module 8: DFS (Depth-First Search)</h3>
-                <p>Exploring graph paths deeply using recursion or stack structures.</p>
-            </section>
-
-
-            <!-- ================= LEVEL 4 ================= -->
-            <h2 class="level-header" style="margin-top: 80px;">Python Level 4: Competition</h2>
-
-            <section id="l4-m1">
-                <h3>CCC Practical Questions</h3>
-                <p>Real test archives, past CCC Senior & Junior problems, time complexity optimizations, and mock contest strategies.</p>
-            </section>
+            <!-- Placeholder sections for upcoming modules -->
+            <section id="l1-m4"><h3>Module 4: String Operations</h3><p>Coming up next...</p></section>
+            <section id="l1-m5"><h3>Module 5: Input and If</h3><p>Coming up next...</p></section>
+            <section id="l1-m6"><h3>Module 6: List</h3><p>Coming up next...</p></section>
+            <section id="l1-m7"><h3>Module 7: Debug Practice</h3><p>Coming up next...</p></section>
+            <section id="l1-m8"><h3>Module 8: L1 Test</h3><p>Coming up next...</p></section>
 
         </main>
     </div>
