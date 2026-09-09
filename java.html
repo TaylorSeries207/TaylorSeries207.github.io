@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Curriculum | Michael's Coding Academy</title>
+    <style>
+        :root {
+            --primary-color: #7A003C; /* McMaster Maroon */
+            --secondary-color: #FDBF57;
+            --text-dark: #2b2b2b;
+            --bg-light: #f9fafd;
+            --card-bg: #ffffff;
+            --code-bg: #1e1e1e;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #4a0024);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+
+        .tutorial-container {
+            max-width: 1280px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 30px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 95px;
+            height: calc(100vh - 125px);
+            overflow-y: auto;
+            background: var(--card-bg);
+            padding: 20px 15px;
+            border-radius: 12px;
+            border: 1px solid #eef2f5;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .level-group { margin-bottom: 22px; }
+
+        .level-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar li { margin-bottom: 4px; }
+
+        .sidebar a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: block;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            line-height: 1.3;
+        }
+
+        .sidebar a:hover {
+            background-color: #fffdf7;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding-left: 14px;
+        }
+
+        .content {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #eef2f5;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 110px;
+        }
+
+        .level-header {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        section h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-top: 35px;
+            margin-bottom: 12px;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: #f8f8f2;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: "Fira Code", Consolas, Monaco, "Courier New", monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 15px 0;
+        }
+
+        code {
+            font-family: "Fira Code", Consolas, Monaco, "Courier New", monospace;
+            background-color: #f0f2f5;
+            color: #c7254e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre code { background-color: transparent; color: inherit; padding: 0; }
+
+        .tip-box {
+            background-color: #fffdf7;
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        .sidebar::-webkit-scrollbar { width: 5px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 4px; }
+
+        @media (max-width: 900px) {
+            .tutorial-container { grid-template-columns: 1fr; }
+            .sidebar { position: static; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>☕ Java Curriculum & CCC Prep</h1>
+        <a href="index.html" class="back-btn">&larr; Back to Home</a>
+    </header>
+
+    <div class="tutorial-container">
+        
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            
+            <div class="level-group">
+                <div class="level-title">Level 1: Foundations</div>
+                <ul>
+                    <li><a href="#j1-m1">Module 1: Main Method & Output</a></li>
+                    <li><a href="#j1-m2">Module 2: Primitive Types & Arithmetic</a></li>
+                    <li><a href="#j1-m3">Module 3: String Operations</a></li>
+                    <li><a href="#j1-m4">Module 4: Scanner Input & If-Else</a></li>
+                    <li><a href="#j1-m5">Module 5: Fixed Arrays (int[])</a></li>
+                    <li><a href="#j1-m6">Module 6: Methods & Scope</a></li>
+                    <li><a href="#j1-m7">Module 7: Debugging & NullPointer</a></li>
+                    <li><a href="#j1-m8">Module 8: L1 Assessment Test</a></li>
+                </ul>
+            </div>
+
+            <div class="level-group">
+                <div class="level-title">Level 2: Control & Collections</div>
+                <ul>
+                    <li><a href="#j2-m1">Module 1: Switch & Ternary Operator</a></li>
+                    <li><a href="#j2-m2">Module 2: CCC J1 Practice</a></li>
+                    <li><a href="#j2-m3">Module 3: While & Do-While Loops</a></li>
+                    <li><a href="#j2-m4">Module 4: For Loop & Enhanced For</a></li>
+                    <li><a href="#j2-m5">Module 5: Dynamic Arrays (ArrayList)</a></li>
+                    <li><a href="#j2-m6">Module 6: HashSet & Unique Sets</a></li>
+                    <li><a href="#j2-m7">Module 7: CCC J2 Problem Solving</a></li>
+                    <li><a href="#j2-m8">Module 8: L2 Assessment Test</a></li>
+                </ul>
+            </div>
+
+            <div class="level-group">
+                <div class="level-title">Level 3: OOP & Algorithms</div>
+                <ul>
+                    <li><a href="#j3-m1">Module 1: Classes & Objects</a></li>
+                    <li><a href="#j3-m2">Module 2: HashMap (Key-Value)</a></li>
+                    <li><a href="#j3-m3">Module 3: 2D Arrays & Grid Traversal</a></li>
+                    <li><a href="#j3-m4">Module 4: Fast I/O (BufferedReader)</a></li>
+                    <li><a href="#j3-m5">Module 5: Prefix Sum Arrays</a></li>
+                    <li><a href="#j3-m6">Module 6: Stack, Queue & PriorityQueue</a></li>
+                    <li><a href="#j3-m7">Module 7: Graph Traversal (BFS)</a></li>
+                    <li><a href="#j3-m8">Module 8: Recursion & DFS</a></li>
+                </ul>
+            </div>
+
+            <div class="level-group">
+                <div class="level-title">Level 4: Competition</div>
+                <ul>
+                    <li><a href="#j4-m1">CCC Practical Questions</a></li>
+                </ul>
+            </div>
+
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+
+            <h2 class="level-header">Java Level 1: Foundations</h2>
+
+            <section id="j1-m1">
+                <h3>Module 1: Main Method & Output</h3>
+                <p>Every standalone Java program requires a <code>main</code> method inside a class structure.</p>
+                <pre><code>public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}</code></pre>
+            </section>
+
+            <section id="j1-m2">
+                <h3>Module 2: Primitive Types & Arithmetic</h3>
+                <p>Learn strongly-typed primitives: <code>int</code>, <code>double</code>, <code>boolean</code>, and <code>char</code>.</p>
+            </section>
+
+            <section id="j1-m3">
+                <h3>Module 3: String Operations</h3>
+                <p>Understanding <code>String</code> immutability, concatenation, and methods like <code>.length()</code> and <code>.substring()</code>.</p>
+            </section>
+
+            <section id="j1-m4">
+                <h3>Module 4: Scanner Input & If-Else</h3>
+                <p>Reading standard input using <code>Scanner</code> and making decisions with conditional branching.</p>
+                <pre><code>import java.util.Scanner;
+
+Scanner sc = new Scanner(System.in);
+int age = sc.nextInt();
+if (age >= 18) {
+    System.out.println("Eligible");
+}</code></pre>
+            </section>
+
+            <section id="j1-m5">
+                <h3>Module 5: Fixed Arrays (int[])</h3>
+                <p>Declaration, initialization, and indexing of fixed-size arrays in Java.</p>
+            </section>
+
+            <section id="j1-m6">
+                <h3>Module 6: Methods & Scope</h3>
+                <p>Creating modular static helper methods with explicit parameter types and return types.</p>
+            </section>
+
+            <section id="j1-m7">
+                <h3>Module 7: Debugging & NullPointer</h3>
+                <p>Common exceptions including <code>NullPointerException</code> and <code>ArrayIndexOutOfBoundsException</code>.</p>
+            </section>
+
+            <section id="j1-m8">
+                <h3>Module 8: L1 Assessment Test</h3>
+                <p>Level 1 foundational problem set.</p>
+            </section>
+
+            <!-- LEVEL 2 -->
+            <h2 class="level-header" style="margin-top: 80px;">Java Level 2: Control & Collections</h2>
+
+            <section id="j2-m1">
+                <h3>Module 1: Switch & Ternary Operator</h3>
+                <p>Multi-way branching with <code>switch</code> and concise conditional assignments.</p>
+            </section>
+
+            <section id="j2-m2">
+                <h3>Module 2: CCC J1 Practice</h3>
+                <p>Solving CCC Junior 1 problems with standard Java I/O.</p>
+            </section>
+
+            <section id="j2-m3">
+                <h3>Module 3: While & Do-While Loops</h3>
+                <p>Iterative logic when loop count is dynamic.</p>
+            </section>
+
+            <section id="j2-m4">
+                <h3>Module 4: For Loop & Enhanced For</h3>
+                <p>Standard counter loops and <code>for (int x : arr)</code> element iteration.</p>
+            </section>
+
+            <section id="j2-m5">
+                <h3>Module 5: Dynamic Arrays (ArrayList)</h3>
+                <p>Using <code>ArrayList&lt;Integer&gt;</code> for dynamically resizable collections.</p>
+                <pre><code>import java.util.ArrayList;
+
+ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+list.add(10);
+list.add(20);
+System.out.println(list.get(0)); // 10</code></pre>
+            </section>
+
+            <section id="j2-m6">
+                <h3>Module 6: HashSet & Unique Sets</h3>
+                <p>Fast $O(1)$ set lookups and deduplication with <code>HashSet</code>.</p>
+            </section>
+
+            <section id="j2-m7">
+                <h3>Module 7: CCC J2 Problem Solving</h3>
+                <p>Targeted solutions for CCC Junior 2 problems using Java collections.</p>
+            </section>
+
+            <section id="j2-m8">
+                <h3>Module 8: L2 Assessment Test</h3>
+                <p>Control structures and ArrayList comprehensive test.</p>
+            </section>
+
+            <!-- LEVEL 3 -->
+            <h2 class="level-header" style="margin-top: 80px;">Java Level 3: OOP & Algorithms</h2>
+
+            <section id="j3-m1">
+                <h3>Module 1: Classes & Objects</h3>
+                <p>Object-oriented concepts, custom state encapsulation, and constructors.</p>
+            </section>
+
+            <section id="j3-m2">
+                <h3>Module 2: HashMap (Key-Value)</h3>
+                <p>Frequency counting and dictionary lookup using <code>HashMap&lt;K, V&gt;</code> and <code>.getOrDefault()</code>.</p>
+                <div class="tip-box">
+                    💡 <b>Java Tip:</b> Use <code>map.getOrDefault(key, defaultValue)</code> to prevent unexpected null value exceptions.
+                </div>
+            </section>
+
+            <section id="j3-m3">
+                <h3>Module 3: 2D Arrays & Grid Traversal</h3>
+                <p>Matrices represented as <code>int[][] grid</code> for board and map simulations.</p>
+            </section>
+
+            <section id="j3-m4">
+                <h3>Module 4: Fast I/O (BufferedReader & StringTokenizer)</h3>
+                <p>Optimizing Java I/O performance to avoid Time Limit Exceeded (TLE) errors in competitions.</p>
+                <pre><code>import java.io.*;
+import java.util.*;
+
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+StringTokenizer st = new StringTokenizer(br.readLine());
+int n = Integer.parseInt(st.nextToken());</code></pre>
+            </section>
+
+            <section id="j3-m5">
+                <h3>Module 5: Prefix Sum Arrays</h3>
+                <p>Range sum query optimization techniques.</p>
+            </section>
+
+            <section id="j3-m6">
+                <h3>Module 6: Stack, Queue & PriorityQueue</h3>
+                <p>Linear data structures and min-heaps for competitive programming.</p>
+            </section>
+
+            <section id="j3-m7">
+                <h3>Module 7: Graph Traversal (BFS)</h3>
+                <p>Breadth-First Search using <code>ArrayDeque&lt;Integer&gt;</code> for shortest paths.</p>
+            </section>
+
+            <section id="j3-m8">
+                <h3>Module 8: Recursion & DFS</h3>
+                <p>Call stack recursion and Depth-First Search implementation.</p>
+            </section>
+
+            <!-- LEVEL 4 -->
+            <h2 class="level-header" style="margin-top: 80px;">Java Level 4: Competition</h2>
+
+            <section id="j4-m1">
+                <h3>CCC Practical Questions</h3>
+                <p>Past CCC contest problem sets, memory optimization strategies, and full solution walkthroughs.</p>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
