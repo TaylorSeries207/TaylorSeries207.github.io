@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Curriculum | Michael's Coding Academy</title>
+    <style>
+        :root {
+            --primary-color: #7A003C; /* McMaster Maroon */
+            --secondary-color: #FDBF57;
+            --text-dark: #2b2b2b;
+            --bg-light: #f9fafd;
+            --card-bg: #ffffff;
+            --code-bg: #1e1e1e;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #4a0024);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+
+        .tutorial-container {
+            max-width: 1280px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 30px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 95px;
+            height: calc(100vh - 125px);
+            overflow-y: auto;
+            background: var(--card-bg);
+            padding: 20px 15px;
+            border-radius: 12px;
+            border: 1px solid #eef2f5;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .level-group { margin-bottom: 22px; }
+
+        .level-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar li { margin-bottom: 4px; }
+
+        .sidebar a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: block;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            line-height: 1.3;
+        }
+
+        .sidebar a:hover {
+            background-color: #fffdf7;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding-left: 14px;
+        }
+
+        .content {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #eef2f5;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 110px;
+        }
+
+        .level-header {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        section h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-top: 35px;
+            margin-bottom: 12px;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: #f8f8f2;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: "Fira Code", Consolas, Monaco, "Courier New", monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 15px 0;
+        }
+
+        code {
+            font-family: "Fira Code", Consolas, Monaco, "Courier New", monospace;
+            background-color: #f0f2f5;
+            color: #c7254e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre code { background-color: transparent; color: inherit; padding: 0; }
+
+        .tip-box {
+            background-color: #fffdf7;
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        .sidebar::-webkit-scrollbar { width: 5px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 4px; }
+
+        @media (max-width: 900px) {
+            .tutorial-container { grid-template-columns: 1fr; }
+            .sidebar { position: static; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>⚡ C++ Curriculum & CCC Prep</h1>
+        <a href="index.html" class="back-btn">&larr; Back to Home</a>
+    </header>
+
+    <div class="tutorial-container">
+        
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            
+            <div class="level-group">
+                <div class="level-title">Level 1: Foundations</div>
+                <ul>
+                    <li><a href="#cpp1-m1">Module 1: Headers & std::cout</a></li>
+                    <li><a href="#cpp1-m2">Module 2: Variables & Arithmetic</a></li>
+                    <li><a href="#cpp1-m3">Module 3: std::string & Char</a></li>
+                    <li><a href="#cpp1-m4">Module 4: std::cin Input & If-Else</a></li>
+                    <li><a href="#cpp1-m5">Module 5: Static Arrays</a></li>
+                    <li><a href="#cpp1-m6">Module 6: Functions & Pass-by-Value</a></li>
+                    <li><a href="#cpp1-m7">Module 7: Compiler Errors & UB</a></li>
+                    <li><a href="#cpp1-m8">Module 8: L1 Assessment Test</a></li>
+                </ul>
+            </div>
+
+            <div class="level-group">
+                <div class="level-title">Level 2: Loops & STL Vectors</div>
+                <ul>
+                    <li><a href="#cpp2-m1">Module 1: Switch & Conditional Logic</a></li>
+                    <li><a href="#cpp2-m2">Module 2: CCC J1 Practice</a></li>
+                    <li><a href="#cpp2-m3">Module 3: While & Do-While Loops</a></li>
+                    <li><a href="#cpp2-m4">Module 4: For Loops & Range-based For</a></li>
+                    <li><a href="#cpp2-m5">Module 5: Dynamic Arrays (std::vector)</a></li>
+                    <li><a href="#cpp2-m6">Module 6: std::unordered_set</a></li>
+                    <li><a href="#cpp2-m7">Module 7: CCC J2 Problem Solving</a></li>
+                    <li><a href="#cpp2-m8">Module 8: L2 Assessment Test</a></li>
+                </ul>
+            </div>
+
+            <div class="level-group">
+                <div class="level-title">Level 3: STL Containers & Algorithms</div>
+                <ul>
+                    <li><a href="#cpp3-m1">Module 1: Pass-by-Reference (&)</a></li>
+                    <li><a href="#cpp3-m2">Module 2: std::unordered_map & Map</a></li>
+                    <li><a href="#cpp3-m3">Module 3: 2D Vectors & Matrices</a></li>
+                    <li><a href="#cpp3-m4">Module 4: Fast I/O Optimization</a></li>
+                    <li><a href="#cpp3-m5">Module 5: Prefix Sum Arrays</a></li>
+                    <li><a href="#cpp3-m6">Module 6: STL Algorithms (std::sort)</a></li>
+                    <li><a href="#cpp3-m7">Module 7: Graph Traversal (BFS)</a></li>
+                    <li><a href="#cpp3-m8">Module 8: Recursion & DFS</a></li>
+                </ul>
+            </div>
+
+            <div class="level-group">
+                <div class="level-title">Level 4: Competition</div>
+                <ul>
+                    <li><a href="#cpp4-m1">CCC Practical Questions</a></li>
+                </ul>
+            </div>
+
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+
+            <h2 class="level-header">C++ Level 1: Foundations</h2>
+
+            <section id="cpp1-m1">
+                <h3>Module 1: Headers & std::cout</h3>
+                <p>C++ programs begin with includes and the <code>main()</code> entry point function.</p>
+                <pre><code>#include &lt;iostream&gt;
+
+int main() {
+    std::cout &lt;&lt; "Hello, World!" &lt;&lt; std::endl;
+    return 0;
+}</code></pre>
+            </section>
+
+            <section id="cpp1-m2">
+                <h3>Module 2: Variables & Arithmetic</h3>
+                <p>Working with statically typed primitives: <code>int</code>, <code>double</code>, <code>long long</code>, and <code>bool</code>.</p>
+            </section>
+
+            <section id="cpp1-m3">
+                <h3>Module 3: std::string & Char</h3>
+                <p>Manipulating string objects, character access, and <code>std::getline</code> usage.</p>
+            </section>
+
+            <section id="cpp1-m4">
+                <h3>Module 4: std::cin Input & If-Else</h3>
+                <p>Reading standard input using <code>std::cin</code> and conditional logic execution.</p>
+                <pre><code>int age;
+std::cin >> age;
+if (age >= 18) {
+    std::cout &lt;&lt; "Eligible" &lt;&lt; std::endl;
+}</code></pre>
+            </section>
+
+            <section id="cpp1-m5">
+                <h3>Module 5: Static Arrays</h3>
+                <p>C-style fixed arrays (<code>int arr[100]</code>) and <code>std::array</code> initialization.</p>
+            </section>
+
+            <section id="cpp1-m6">
+                <h3>Module 6: Functions & Pass-by-Value</h3>
+                <p>Declaring function signatures, return types, and value parameter copy behavior.</p>
+            </section>
+
+            <section id="cpp1-m7">
+                <h3>Module 7: Compiler Errors & UB</h3>
+                <p>Understanding compilation errors, out-of-bounds access, and Undefined Behavior (UB).</p>
+            </section>
+
+            <section id="cpp1-m8">
+                <h3>Module 8: L1 Assessment Test</h3>
+                <p>Level 1 foundational problem set.</p>
+            </section>
+
+            <!-- LEVEL 2 -->
+            <h2 class="level-header" style="margin-top: 80px;">C++ Level 2: Loops & STL Vectors</h2>
+
+            <section id="cpp2-m1">
+                <h3>Module 1: Switch & Conditional Logic</h3>
+                <p>Control flow structures using <code>switch</code> statements and logical operators.</p>
+            </section>
+
+            <section id="cpp2-m2">
+                <h3>Module 2: CCC J1 Practice</h3>
+                <p>Solving CCC Junior 1 problems efficiently in C++.</p>
+            </section>
+
+            <section id="cpp2-m3">
+                <h3>Module 3: While & Do-While Loops</h3>
+                <p>Looping based on dynamic Boolean evaluation conditions.</p>
+            </section>
+
+            <section id="cpp2-m4">
+                <h3>Module 4: For Loops & Range-based For</h3>
+                <p>Standard index loops and modern <code>for (int x : vec)</code> syntax.</p>
+            </section>
+
+            <section id="cpp2-m5">
+                <h3>Module 5: Dynamic Arrays (std::vector)</h3>
+                <p>Resizing sequences dynamically using <code>std::vector&lt;int&gt;</code>.</p>
+                <pre><code>#include &lt;vector&gt;
+#include &lt;iostream&gt;
+
+std::vector&lt;int&gt; vec;
+vec.push_back(10);
+vec.push_back(20);
+std::cout &lt;&lt; vec[0]; // 10</code></pre>
+            </section>
+
+            <section id="cpp2-m6">
+                <h3>Module 6: std::unordered_set</h3>
+                <p>Hash-based set collections for $O(1)$ dynamic insertion and lookup.</p>
+            </section>
+
+            <section id="cpp2-m7">
+                <h3>Module 7: CCC J2 Problem Solving</h3>
+                <p>Applying C++ STL containers to solve CCC Junior 2 tasks.</p>
+            </section>
+
+            <section id="cpp2-m8">
+                <h3>Module 8: L2 Assessment Test</h3>
+                <p>Vectors, sets, and loop control assessment test.</p>
+            </section>
+
+            <!-- LEVEL 3 -->
+            <h2 class="level-header" style="margin-top: 80px;">C++ Level 3: STL Containers & Algorithms</h2>
+
+            <section id="cpp3-m1">
+                <h3>Module 1: Pass-by-Reference (&)</h3>
+                <p>Avoiding performance overhead by passing large containers by reference (<code>const std::vector&lt;int&gt;&amp; v</code>).</p>
+            </section>
+
+            <section id="cpp3-m2">
+                <h3>Module 2: std::unordered_map & Map</h3>
+                <p>Key-value associative containers and frequency counting.</p>
+                <div class="tip-box">
+                    💡 <b>C++ Tip:</b> Use <code>std::unordered_map</code> for $O(1)$ average lookups, or <code>std::map</code> when elements must remain sorted ($O(\log N)$).
+                </div>
+            </section>
+
+            <section id="cpp3-m3">
+                <h3>Module 3: 2D Vectors & Matrices</h3>
+                <p>Grids represented as <code>std::vector&lt;std::vector&lt;int&gt;&gt;</code>.</p>
+            </section>
+
+            <section id="cpp3-m4">
+                <h3>Module 4: Fast I/O Optimization</h3>
+                <p>Disabling stream synchronization for maximum I/O performance in contest systems.</p>
+                <pre><code>#include &lt;iostream&gt;
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    return 0;
+}</code></pre>
+            </section>
+
+            <section id="cpp3-m5">
+                <h3>Module 5: Prefix Sum Arrays</h3>
+                <p>Range sum query optimizations for competitive algorithms.</p>
+            </section>
+
+            <section id="cpp3-m6">
+                <h3>Module 6: STL Algorithms (std::sort)</h3>
+                <p>Sorting, binary search, and custom lambda comparators with <code>&lt;algorithm&gt;</code>.</p>
+            </section>
+
+            <section id="cpp3-m7">
+                <h3>Module 7: Graph Traversal (BFS)</h3>
+                <p>Breadth-First Search implementation using <code>std::queue</code> and adjacency lists.</p>
+            </section>
+
+            <section id="cpp3-m8">
+                <h3>Module 8: Recursion & DFS</h3>
+                <p>Depth-First Search graph traversal and recursion stack management.</p>
+            </section>
+
+            <!-- LEVEL 4 -->
+            <h2 class="level-header" style="margin-top: 80px;">C++ Level 4: Competition</h2>
+
+            <section id="cpp4-m1">
+                <h3>CCC Practical Questions</h3>
+                <p>Senior and Junior CCC problem archives, custom comparators, memory management, and competitive speed tricks.</p>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
