@@ -11,7 +11,6 @@
             --text-dark: #2b2b2b;
             --bg-light: #f9fafd;
             --card-bg: #ffffff;
-            --accent-green: #2e7d32;
         }
 
         body {
@@ -107,39 +106,65 @@
             border: 1px solid #eef2f5;
         }
 
-        /* Course / Tutorial Feature Card */
-        .course-card {
-            border: 2px solid var(--secondary-color);
-            background: linear-gradient(180deg, #ffffff 0%, #fffdf8 100%);
+        /* Courses Grid Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
         }
 
-        .course-badge {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 0.75rem;
-            padding: 3px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
+        .course-card {
+            background: #fffdf8;
+            border: 1.5px solid #f0e6d2;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+            border-color: var(--secondary-color);
+        }
+
+        .course-icon {
+            font-size: 2rem;
             margin-bottom: 10px;
+        }
+
+        .course-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0 0 8px 0;
+        }
+
+        .course-desc {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 15px;
+            flex-grow: 1;
         }
 
         .course-btn {
             display: inline-block;
+            text-align: center;
             background-color: var(--primary-color);
             color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
-            margin-top: 15px;
-            transition: background-color 0.2s ease, transform 0.1s ease;
+            font-size: 0.88rem;
+            transition: background-color 0.2s ease;
         }
 
         .course-btn:hover {
             background-color: #5a002c;
-            transform: translateY(-2px);
         }
 
         /* Student Grid */
@@ -278,13 +303,42 @@
             <p>I have been working as a dedicated coding instructor since <b>September 2023</b>. With over <b>3 years</b> of teaching experience, I focus on inspiring students' algorithmic thinking and unlocking their full programming potential.</p>
         </div>
 
-        <!-- Featured Python Tutorial Card -->
-        <div class="card course-card">
-            <span class="course-badge">Free Resource</span>
-            <h2 class="section-title">📚 Python Tutorial & Curriculum</h2>
-            <p>I have refurbished and curated a comprehensive Python curriculum tailored for beginner to intermediate learners. It covers core concepts, problem-solving strategies, and hands-on coding exercises.</p>
-            <!-- Replace 'tutorial.html' with the actual link or path to your refurbished tutorial -->
-            <a href="tutorial.html" class="course-btn">Explore Python Tutorial &rarr;</a>
+        <!-- Programming Tutorials & Courses Section -->
+        <div class="card">
+            <h2 class="section-title">📚 Programming Tutorials & Curriculum</h2>
+            <p>Explore my tailored curricula designed to help students master core programming concepts, data structures, and competitive problem-solving.</p>
+            
+            <div class="courses-grid">
+                <!-- Python Course -->
+                <div class="course-card">
+                    <div>
+                        <div class="course-icon">🐍</div>
+                        <h3 class="course-title">Python Tutorial</h3>
+                        <p class="course-desc">From basic syntax to algorithms. Ideal for beginners and intermediate competitive programmers.</p>
+                    </div>
+                    <a href="python.html" class="course-btn">View Python &rarr;</a>
+                </div>
+
+                <!-- Java Course -->
+                <div class="course-card">
+                    <div>
+                        <div class="course-icon">☕</div>
+                        <h3 class="course-title">Java Tutorial</h3>
+                        <p class="course-desc">Object-oriented programming, data structures, and foundational computer science principles.</p>
+                    </div>
+                    <a href="java.html" class="course-btn">View Java &rarr;</a>
+                </div>
+
+                <!-- C++ Course -->
+                <div class="course-card">
+                    <div>
+                        <div class="course-icon">⚡</div>
+                        <h3 class="course-title">C++ Tutorial</h3>
+                        <p class="course-desc">High-performance coding, memory management, and advanced algorithms for CCC competitions.</p>
+                    </div>
+                    <a href="cpp.html" class="course-btn">View C++ &rarr;</a>
+                </div>
+            </div>
         </div>
 
         <!-- CCC Honor Roll Section -->
