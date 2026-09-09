@@ -284,7 +284,7 @@
                     <li><a href="#l1-m2">Module 2: Variables & Basic Math</a></li>
                     <li><a href="#l1-m3">Module 3: Advanced Math & Random</a></li>
                     <li><a href="#l1-m4">Module 4: String Operations</a></li>
-                    <li><a href="#l1-m5">Module 5: Input and If</a></li>
+                    <li><a href="#l1-m5">Module 5: Input and If Statements</a></li>
                     <li><a href="#l1-m6">Module 6: List</a></li>
                     <li><a href="#l1-m7">Module 7: Debug Practice</a></li>
                     <li><a href="#l1-m8">Module 8: L1 Test</a></li>
@@ -573,12 +573,13 @@ print(s[1:])    # 'elloWorld!' (From index 1 to the end)
 print(s[:5])    # 'Hello' (From index 0 to 4)</code></pre>
 
                 <div class="tip-box">
-                    🔒 <b>String Immutability:</b> Strings in Python cannot be changed by direct index assignment!
+                    🔒 <b>String Immutability (Important Teaching Concept!):</b><br>
+                    Suppose you accidentally misspelled <i>"hamburger"</i> as <code>wrong = "hamgurger"</code>, and you want to fix the second <code>g</code> at index <code>3</code> to a <code>b</code>:
                     <pre><code>wrong = "hamgurger"
-wrong[3] = "b"  # ❌ TypeError! Strings are immutable.
+wrong[3] = "b"  # ❌ TypeError! Strings in Python are immutable and cannot be reassigned directly.</code></pre>
 
-# Correct way to reassemble a string:
-fixed = wrong[0:3] + "b" + wrong[4:]
+                    <b>How to correctly fix it?</b> Use string slicing to reassemble the string:
+                    <pre><code>fixed = wrong[0:3] + "b" + wrong[4:]
 print(fixed)    # Output: hamburger</code></pre>
                 </div>
 
@@ -596,7 +597,7 @@ print(s.isalpha())    # False (because '!' is not a letter)
 print(s.isupper())    # False
 print(s.islower())    # False
 print(s.isdigit())    # False
-print(s.isalnum())    # False (because '!' is special character)</code></pre>
+print(s.isalnum())    # False (because '!' is a special character)</code></pre>
 
                 <h4>F-String (Formatted String Literals)</h4>
                 <p>F-strings provide a clean, modern way to embed variables directly inside strings without messy comma separation or type casting. Simply prefix the string with an <code>f</code> and put variables inside curly braces <code>{}</code>:</p>
@@ -628,8 +629,111 @@ print(f"Today's temperature is {temp}°C, and it's a {wea} day!")
                 </div>
             </section>
 
+            <!-- Module 5 -->
+            <section id="l1-m5">
+                <h3>Module 5: Input and If Statements</h3>
+                <p><b>Concept:</b> The <code>input()</code> function allows users to interact with your Python program in real time by entering text from the console. Whatever the user types is returned and stored in a variable.</p>
+
+                <h4>Reading Inputs & Data Type Conversions</h4>
+                <div class="tip-box">
+                    🚨 <b>The Big Input Trap:</b> By default, <code>input()</code> ALWAYS returns data as a <b>String</b>! If you want to do mathematical calculations or numerical comparisons, you MUST explicitly convert (cast) it to an <code>int</code> or <code>float</code>.
+                </div>
+
+                <pre><code># 1. String Input (Default behavior)
+s = input("Please enter something: ")
+print(f"You entered string: {s}")
+
+# 2. Integer Input (Cast using int())
+int_s = int(input("Please enter an integer: "))
+print(f"Your integer times 2: {int_s * 2}")
+
+# 3. Float Input (Cast using float())
+float_s = float(input("Please enter a decimal number: "))
+print(f"Your float: {float_s}")</code></pre>
+
+                <p><b>Be careful with input types!</b> If you attempt to convert invalid text to a number (e.g., executing <code>int(input())</code> when the user enters <code>"toxic"</code>), Python will crash with a <code>ValueError</code>. Always read contest problems carefully to know what type of data is being passed in!</p>
+
+                <h4>Conditional Logic: The <code>if</code> Statement & Booleans</h4>
+                <p>An <code>if</code> statement checks whether a condition evaluates to <b>Boolean</b> values: <code>True</code> or <code>False</code>. If the condition is <code>True</code>, the indented code block executes; if <code>False</code>, Python skips it.</p>
+
+                <pre><code>grades = int(input("Enter your grade: "))
+
+# Notice the colon ':' at the end of the line!
+if grades >= 90:
+    print("Good job!")  # Indented 4 spaces</code></pre>
+
+                <h4>Comparison Operators</h4>
+                <p>We use comparison operators to compare values in Boolean expressions:</p>
+                <ul>
+                    <li><code>==</code> (Equal to) &mdash; <i>⚠️ Do NOT confuse with <code>=</code> which is used to assign values!</i></li>
+                    <li><code>!=</code> (Not equal to)</li>
+                    <li><code>&gt;</code> (Greater than), <code>&lt;</code> (Less than)</li>
+                    <li><code>&gt;=</code> (Greater than or equal to), <code>&lt;=</code> (Less than or equal to)</li>
+                </ul>
+
+                <div class="tip-box">
+                    💡 <b>Chained Comparison Trick:</b> Python allows range comparison syntax like <code>90 <= grades <= 100</code> to check if a number falls between two boundaries!
+                </div>
+
+                <h4>The <code>else</code> Clause & Logical Operators (and / or / not)</h4>
+                <p>The <code>else</code> block covers all remaining cases when the <code>if</code> condition evaluates to <code>False</code>.</p>
+
+                <pre><code>age = int(input("Enter your age: "))
+
+if age >= 18:
+    print("Adult ticket: $15")
+else:
+    print("Child ticket: $8")</code></pre>
+
+                <h4>Nested If Structures</h4>
+                <p>You can nest an <code>if</code> statement inside another <code>if</code> statement to check multiple sequential conditions:</p>
+
+                <pre><code>grades = int(input("Enter academic grade: "))
+PE_grades = int(input("Enter PE grade: "))
+
+if grades >= 90:
+    if PE_grades >= 90:
+        print("Perfect! Balanced mind and body.")
+    else:
+        print("Great academics, now go touch some grass!")
+else:
+    print("Keep working hard!")</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 5: Official CCC Practice Questions (Input & Logic)</h4>
+                    <p>Now it's time to put your input and conditional skills to the test on real <b>Canadian Computing Competition (CCC)</b> problems! Log in to DMOJ and solve these classic Junior problems:</p>
+
+                    <ol>
+                        <li>
+                            <b>CCC '24 J1 - Conveyor Belt Sushi:</b> 
+                            <a href="https://dmoj.ca/problem/ccc24j1" target="_blank">https://dmoj.ca/problem/ccc24j1</a><br>
+                            <i>Hint: Calculate total cost based on plate counts ($3, $4, and $5 plates).</i>
+                        </li>
+                        <li>
+                            <b>CCC '13 J1 - Next in Line:</b> 
+                            <a href="https://dmoj.ca/problem/ccc13j1" target="_blank">https://dmoj.ca/problem/ccc13j1</a><br>
+                            <i>Hint: Read two ages and find the age of the oldest child using arithmetic difference.</i>
+                        </li>
+                        <li>
+                            <b>CCC '20 J1 - Dog Treats:</b> 
+                            <a href="https://dmoj.ca/problem/ccc20j1" target="_blank">https://dmoj.ca/problem/ccc20j1</a><br>
+                            <i>Hint: Calculate happiness score $1 \times S + 2 \times M + 3 \times L$ and check if score $\ge 10$.</i>
+                        </li>
+                        <li>
+                            <b>CCC '23 J1 - Deliv-e-droid:</b> 
+                            <a href="https://dmoj.ca/problem/ccc23j1" target="_blank">https://dmoj.ca/problem/ccc23j1</a><br>
+                            <i>Hint: Calculate total score from delivered packages, collisions, and bonus points.</i>
+                        </li>
+                        <li>
+                            <b>CCC '22 J1 - Cupcake Party:</b> 
+                            <a href="https://dmoj.ca/problem/ccc22j1" target="_blank">https://dmoj.ca/problem/ccc22j1</a><br>
+                            <i>Hint: Calculate total cupcakes ($8 \times R + 3 \times S$) and subtract 28 for the remaining amount.</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
             <!-- Placeholder sections for upcoming modules -->
-            <section id="l1-m5"><h3>Module 5: Input and If</h3><p>Coming up next...</p></section>
             <section id="l1-m6"><h3>Module 6: List</h3><p>Coming up next...</p></section>
             <section id="l1-m7"><h3>Module 7: Debug Practice</h3><p>Coming up next...</p></section>
             <section id="l1-m8"><h3>Module 8: L1 Test</h3><p>Coming up next...</p></section>
