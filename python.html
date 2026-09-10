@@ -734,7 +734,117 @@ else:
             </section>
 
             <!-- Placeholder sections for upcoming modules -->
-            <section id="l1-m6"><h3>Module 6: List</h3><p>Coming up next...</p></section>
+            <!-- Module 6 -->
+            <section id="l1-m6">
+                <h3>Module 6: Python Lists (Arrays)</h3>
+                <p><b>Concept:</b> A <b>List</b> is one of Python's most versatile and powerful data structures. It allows you to store an ordered sequence of multiple items—even of different data types—in a single variable.</p>
+
+                <pre><code># Sample list storing mixed data types
+sample_list = [1, "23", 29, [0, 1, 2]]
+print(sample_list)  # Output: [1, '23', 29, [0, 1, 2]]</code></pre>
+
+                <h4>Initializing Lists & Adding Elements</h4>
+                <p>Lists are enclosed in square brackets <code>[]</code>. You can start with an empty list or predefined values:</p>
+
+                <pre><code>l = []            # Initialize an empty list
+l1 = [1, 2, 3]    # Pre-populated list
+
+# .append(x): Adds an element to the VERY BACK (End) of the list
+l.append(1)
+l.append(3)
+l.append(2)
+l.append(4)
+l.append(5)
+print(l)  # Output: [1, 3, 2, 4, 5]</code></pre>
+
+                <h4>Removing & Modifying Elements</h4>
+                <ul>
+                    <li><code>.remove(val)</code>: Removes the <b>first occurrence</b> of a specified value. Throws an error if the value isn't found.</li>
+                    <li><code>.pop(index)</code>: Removes and returns the element at a specific index (defaults to the last item if no index is passed).</li>
+                    <li><code>l[index] = new_val</code>: Replaces the existing element at the given index.</li>
+                </ul>
+
+                <pre><code>l = [1, 3, 2, 4, 5]
+
+l.remove(5)   # Removes the number 5 -> [1, 3, 2, 4]
+l.pop(1)      # Removes element at index 1 (the number 3) -> [1, 2, 4]
+l[1] = 99     # Updates index 1 to 99 -> [1, 99, 4]
+
+print(l)      # Output: [1, 99, 4]</code></pre>
+
+                <div class="tip-box">
+                    ⚠️ <b>Performance Tip (Important for CCC!):</b><br>
+                    Inserting (<code>l.insert(index, val)</code>) or Removing (<code>l.remove(val)</code>) at the beginning/middle of a list can be <b>slow ($O(N)$ time)</b>. Think of a list as a line of people: if someone steps out from the middle, everyone behind them must shift forward one by one!
+                </div>
+
+                <h4>Indexing, Slicing & Searching</h4>
+                <p>Just like strings, list indexing starts at <code>0</code>, and slicing upper bounds are excluded:</p>
+
+                <pre><code>l = [10, 20, 30, 40, 50]
+
+print(l[0])       # 10 (First item)
+print(l[-1])      # 50 (Last item)
+print(l[1:4])     # [20, 30, 40] (Sublist from index 1 to 3)
+print(len(l))     # 5 (Total count of elements)
+
+# Membership checks & Search
+print(20 in l)         # True (Checks if element exists)
+print(l.index(30))     # 2 (Returns index of first occurrence)
+print(min(l), max(l))  # 10 50 (Finds minimum and maximum values)
+print(sum(l))          # 150 (Calculates the sum of all elements)</code></pre>
+
+                <h4>Sorting, Reversing & Multiplication</h4>
+                <pre><code>numbers = [5, 2, 8, 1, 9]
+
+numbers.sort()      # Sorts list in ascending order in-place
+print(numbers)      # Output: [1, 2, 5, 8, 9]
+
+numbers.reverse()   # Reverses list elements in-place
+print(numbers)      # Output: [9, 8, 5, 2, 1]
+
+# Fast Pre-allocation: Creates a list with eight zeros
+zeros = [0] * 8
+print(zeros)        # Output: [0, 0, 0, 0, 0, 0, 0, 0]</code></pre>
+
+                <h4>Reading Contest Inputs into Lists: <code>input().split()</code> & <code>map()</code></h4>
+                <p>In competitive programming (DMOJ/CCC), input lines often contain multiple space-separated numbers (e.g., <code>"8 9 1 2 1"</code>).</p>
+
+                <pre><code># 1. Reading two fixed variables on one line
+a, b = input().split()  # Returns strings. Convert using int(a), int(b)
+
+# 2. Converting an entire input line directly into an Integer List!
+# map(int, ...) applies int() conversion to every element in the split input
+l_int = list(map(int, input().split()))
+print(l_int)  # e.g., Input: "8 9 1 2 1" -> Output: [8, 9, 1, 2, 1]</code></pre>
+
+                <h4>Unpacking & Formatting Output: The Star Operator (<code>*</code>)</h4>
+                <p>To print list elements separated by spaces <b>without</b> square brackets or commas, use the unpacking operator <code>*</code>:</p>
+
+                <pre><code>l = [1, 2, 3, 4, 5]
+
+print(l)               # [1, 2, 3, 4, 5] (Default representation)
+print(*l)              # 1 2 3 4 5 (Unpacked with default spaces)
+print(*l, sep=", ")    # 1, 2, 3, 4, 5 (Custom separator)</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 6: Interactive List Operations & Re-average</h4>
+                    <p>Write a Python program that performs the following multi-step list manipulation tasks:</p>
+                    <ol>
+                        <li>Ask the user to enter <b>5 space-separated integers</b> on a single line (e.g., <code>10 20 30 40 50</code>). Store them in a list as integers using <code>list(map(int, input().split()))</code>.</li>
+                        <li>Calculate and print the <b>average</b> of the list (Hint: <code>sum(l) / len(l)</code>).</li>
+                        <li>Sort the list in <b>ascending order</b> and print it.</li>
+                        <li>Replace the <b>second element</b> (index <code>1</code>) with <code>99</code>.</li>
+                        <li>Reverse the list. Print the modified list and display the <b>index of the first occurrence</b> of its maximum value.</li>
+                        <li>Ask the user for <b>one additional integer input</b> and <code>.append()</code> it to the back of the list.</li>
+                        <li>Recalculate the new average. Compare it with the previous average:
+                            <ul>
+                                <li>If the new average is strictly greater, print: <code>"New average is larger!"</code></li>
+                                <li>Otherwise, print: <code>"New average is smaller or equal than the previous average."</code></li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </section>
             <section id="l1-m7"><h3>Module 7: Debug Practice</h3><p>Coming up next...</p></section>
             <section id="l1-m8"><h3>Module 8: L1 Test</h3><p>Coming up next...</p></section>
 
