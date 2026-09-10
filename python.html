@@ -1092,7 +1092,75 @@ if 90 <= score <= 100:
             </section>
 
             <!-- Placeholder sections for upcoming modules -->
-            <section id="l2-m3"><h3>Module 3: While Loop</h3><p>Coming up next...</p></section>
+            <!-- Module 3 (Level 2) -->
+            <section id="l2-m3">
+                <h3>Module 3: While Loop & Counter Pattern</h3>
+                <p><b>Concept:</b> A <b>loop</b> is one of the most fundamental concepts in programming. It allows you to automate repetition and run a block of code multiple times without rewriting it.</p>
+
+                <h4>1. Basic <code>while</code> Loop Structure</h4>
+                <p>A <code>while</code> loop continuously executes code <b>as long as</b> its condition remains <code>True</code>:</p>
+
+                <pre><code>i = 0
+while i < 100:
+    print(i)
+    i = i + 1   # Can also be written using the shortcut: i += 1</code></pre>
+
+                <div class="tip-box">
+                    🚨 <b>The Infinite Loop Trap!</b><br>
+                    Don't forget to update your loop variable (e.g., <code>i += 1</code>)! If you forget to increment <code>i</code>, the condition <code>i < 100</code> will stay <code>True</code> forever, resulting in a program freeze known as an <b>Infinite Loop</b>.
+                </div>
+
+                <h4>2. The <code>while True</code> Pattern with <code>break</code></h4>
+                <p>Instead of placing a condition at the start, you can write an intentionally infinite loop <code>while True</code> and use a <code>break</code> statement inside an <code>if</code> check to exit when a specific condition is met:</p>
+
+                <pre><code>i = 0
+while True:
+    if i == 99:
+        break   # Exit the loop immediately
+    print(i)
+    i += 1</code></pre>
+
+                <div class="tip-box">
+                    💡 <b>Rule:</b> When using <code>while True</code>, ALWAYS make sure you have a valid <code>break</code> condition to safely exit the loop!
+                </div>
+
+                <h4>3. The Counter Pattern</h4>
+                <p>A <b>Counter</b> is not a specific keyword or built-in function in Python—it is a core programming design pattern! We initialize a variable to <code>0</code> before the loop and increment it (<code>counter += 1</code>) whenever a target item is found as we iterate using a <code>while</code> loop.</p>
+
+                <pre><code>s = "aasgasgsaagfdsaga"
+i = 0
+counter = 0
+
+while i < len(s):
+    if s[i] == "a":
+        counter += 1
+    i += 1
+
+print(f"Total count of 'a': {counter}")</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge: Official CCC Practice Questions (While Loops)</h4>
+                    <p>Apply your <code>while</code> loop, condition checking, and counter skills to solve these official Canadian Computing Competition (CCC) problems on DMOJ:</p>
+
+                    <ol>
+                        <li>
+                            <b>CCC '04 J2 - Terms of Office:</b> 
+                            <a href="https://dmoj.ca/problem/ccc04j2" target="_blank">https://dmoj.ca/problem/ccc04j2</a><br>
+                            <i>Hint: Find future years where Mayor (4 yrs), Treasurer (2 yrs), Chief (3 yrs), and Dog Catcher (5 yrs) positions all change in the same year!</i>
+                        </li>
+                        <li>
+                            <b>CCC '24 J2 - Dusa And The Yobi:</b> 
+                            <a href="https://dmoj.ca/problem/ccc24j2" target="_blank">https://dmoj.ca/problem/ccc24j2</a><br>
+                            <i>Hint: Use a <code>while True</code> loop to continuously read incoming Yobi sizes. Dusa eats Yobis smaller than itself and grows; stop when a Yobi is equal to or larger!</i>
+                        </li>
+                        <li>
+                            <b>CCC '14 J2 - Vote Count:</b> 
+                            <a href="https://dmoj.ca/problem/ccc14j2" target="_blank">https://dmoj.ca/problem/ccc14j2</a><br>
+                            <i>Hint: Iterate through the vote string with a <code>while</code> loop and count total 'A's vs. 'B's to determine who won or if it's a Tie.</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
             <section id="l2-m4"><h3>Module 4: For Loop</h3><p>Coming up next...</p></section>
             <section id="l2-m5"><h3>Module 5: CCC J2 Simple Loop</h3><p>Coming up next...</p></section>
             <section id="l2-m6"><h3>Module 6: Hashset</h3><p>Coming up next...</p></section>
