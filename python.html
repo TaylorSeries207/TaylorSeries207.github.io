@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Curriculum | Michael's Coding Academy</title>
+    
+    <!-- MathJax for rendering Math LaTeX syntax like \text{BMI} -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
     <style>
         :root {
             --primary-color: #7A003C; /* McMaster Maroon */
@@ -1044,8 +1055,43 @@ if 90 <= score <= 100:
                 </div>
             </section>
 
+            <!-- Module 2 (Level 2) -->
+            <section id="l2-m2">
+                <h3>Module 2: CCC J1 Practice Problem Set</h3>
+                <p><b>Concept:</b> Practice makes perfect! In this module, apply your knowledge of standard inputs, basic math, conditionals, and range checks to solve 4 official CCC Junior 1 contest problems.</p>
+
+                <div class="tip-box">
+                    💡 <b>Contest Strategy Tip:</b> Read the problem input specifications carefully to see if variables come on single or separate lines, and test edge cases before submitting!
+                </div>
+
+                <div class="challenge-box">
+                    <h4>📝 CCC J1 Practice Questions</h4>
+                    <ol>
+                        <li>
+                            <b>CCC '12 J1 - Speed fine are not fine!:</b> 
+                            <a href="https://dmoj.ca/problem/ccc12j1" target="_blank">https://dmoj.ca/problem/ccc12j1</a><br>
+                            <i>Hint: Compare recorded speed against speed limit and output corresponding fine amounts ($100, $200, or $500).</i>
+                        </li>
+                        <li>
+                            <b>CCC '14 J1 - Triangle Times:</b> 
+                            <a href="https://dmoj.ca/problem/ccc14j1" target="_blank">https://dmoj.ca/problem/ccc14j1</a><br>
+                            <i>Hint: Read 3 angles. Verify if sum is 180 degrees first, then classify as Equilateral, Isosceles, or Scalene.</i>
+                        </li>
+                        <li>
+                            <b>CCC '15 J1 - Special Day:</b> 
+                            <a href="https://dmoj.ca/problem/ccc15j1" target="_blank">https://dmoj.ca/problem/ccc15j1</a><br>
+                            <i>Hint: Compare input month and day with February 18th (Month 2, Day 18) to output "Before", "After", or "Special".</i>
+                        </li>
+                        <li>
+                            <b>CCC '18 J1 - Telemarketer or not?:</b> 
+                            <a href="https://dmoj.ca/problem/ccc18j1" target="_blank">https://dmoj.ca/problem/ccc18j1</a><br>
+                            <i>Hint: Read 4 digits. Check if 1st and 4th digits are 8 or 9 AND 2nd and 3rd digits are equal.</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
             <!-- Placeholder sections for upcoming modules -->
-            <section id="l2-m2"><h3>Module 2: CCC J1 Practice</h3><p>Coming up next...</p></section>
             <section id="l2-m3"><h3>Module 3: While Loop</h3><p>Coming up next...</p></section>
             <section id="l2-m4"><h3>Module 4: For Loop</h3><p>Coming up next...</p></section>
             <section id="l2-m5"><h3>Module 5: CCC J2 Simple Loop</h3><p>Coming up next...</p></section>
