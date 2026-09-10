@@ -845,8 +845,125 @@ print(*l, sep=", ")    # 1, 2, 3, 4, 5 (Custom separator)</code></pre>
                     </ol>
                 </div>
             </section>
-            <section id="l1-m7"><h3>Module 7: Debug Practice</h3><p>Coming up next...</p></section>
-            <section id="l1-m8"><h3>Module 8: L1 Test</h3><p>Coming up next...</p></section>
+            <!-- Module 7 -->
+            <section id="l1-m7">
+                <h3>Module 7: Debug Practice (Spot the Bugs!)</h3>
+                <p><b>Concept:</b> Debugging is an essential skill for every programmer and competitive contestant. Below are <b>5 broken code snippets</b> containing classic Python bugs—including assignment vs. equality confusion, missing type conversions, string immutability violations, and index errors.</p>
+
+                <div class="tip-box">
+                    🕵️‍♂️ <b>Your Mission:</b> Read each code block carefully, copy it into your IDE or Python environment, identify all hidden bugs, and fix them so the programs run flawlessly! <b>(No answers provided—test your own skills!)</b>
+                </div>
+
+                <!-- Bug 1 -->
+                <div class="challenge-box">
+                    <h4>🐛 Bug Snippet 1: The Ticket Counter</h4>
+                    <p><b>Intended Behavior:</b> Ask the user for their age, calculate their ticket price, and display a discount message if their age is exactly 18.</p>
+                    <pre><code>age = input("Enter your age: ")
+
+# Check if user is eligible for student discount
+if age = 18:
+    print("You get an 18-year-old special discount!")
+
+ticket_price = 20 - age
+print(f"Your final ticket price is ${ticket_price}")</code></pre>
+                </div>
+
+                <!-- Bug 2 -->
+                <div class="challenge-box">
+                    <h4>🐛 Bug Snippet 2: The Typo Corrector</h4>
+                    <p><b>Intended Behavior:</b> Take a misspelled string <code>"python"</code>, capitalize the first letter, replace the character at index 2 with <code>"Z"</code>, and print its full length.</p>
+                    <pre><code>word = "python"
+
+# Capitalize the string
+word.upper()
+
+# Try to modify the 3rd letter to 'Z'
+word[2] = "Z"
+
+print(f"Fixed word: {word}, Length: {len(word)}")</code></pre>
+                </div>
+
+                <!-- Bug 3 -->
+                <div class="challenge-box">
+                    <h4>🐛 Bug Snippet 3: Grocery List Inserter</h4>
+                    <p><b>Intended Behavior:</b> Take a list of 3 items, try to insert <code>"Milk"</code> at index 10, remove the item <code>"Juice"</code>, and print the resulting list.</p>
+                    <pre><code>items = ["Apple", "Banana", "Bread"]
+
+# Insert Milk at index 10
+items.insert(10, "Milk")
+
+# Remove Juice from the list
+items.remove("Juice")
+
+print(f"Updated items: {items}")</code></pre>
+                </div>
+
+                <!-- Bug 4 -->
+                <div class="challenge-box">
+                    <h4>🐛 Bug Snippet 4: Score Sum & Grade Checker</h4>
+                    <p><b>Intended Behavior:</b> Read two test scores entered on the same line, calculate their sum, and check if the student passed (sum $\ge 100$).</p>
+                    <pre><code># User inputs two scores separated by space, e.g., "50 60"
+score1, score2 = input().split()
+
+total_score = score1 + score2
+
+if total_score >= 100
+    print(f"Passed! Total score is {total_score}")
+else:
+    print("Failed!")</code></pre>
+                </div>
+
+                <!-- Bug 5 -->
+                <div class="challenge-box">
+                    <h4>🐛 Bug Snippet 5: List Unpacker & Average Calculator</h4>
+                    <p><b>Intended Behavior:</b> Read 3 numbers into a list, print the unpacked elements separated by hyphens, and print the average rounded to 2 decimal places.</p>
+                    <pre><code>numbers = list(map(int, input("Enter 3 numbers: ").split()))
+
+# Print numbers separated by hyphens (e.g., 10-20-30)
+print(*numbers, sep = "-")
+
+# Calculate average
+avg = sum(numbers) / len(numbers)
+rounded_avg = round(avg, 2)
+
+print("Average is: " + rounded_avg)</code></pre>
+                </div>
+            </section>
+            <!-- Module 8 -->
+            <section id="l1-m8">
+                <h3>Module 8: Level 1 Assessment Test</h3>
+                <p><b>Congratulations on completing Python Level 1!</b> It is time to test your foundational skills on official Canadian Computing Competition (CCC) problems. Solve all 5 problems below on DMOJ to pass Level 1.</p>
+
+                <div class="tip-box">
+                    🏆 <b>Test Rules:</b> Read the problem specifications carefully, write your solutions independently without hints, and submit them directly to DMOJ for automated testing.
+                </div>
+
+                <div class="challenge-box">
+                    <h4>📝 CCC Level 1 Test Problem Set</h4>
+                    <ol>
+                        <li>
+                            <b>CCC '26 J1:</b> 
+                            <a href="https://dmoj.ca/problem/ccc26j1" target="_blank">https://dmoj.ca/problem/ccc26j1</a>
+                        </li>
+                        <li>
+                            <b>CCC '11 J1 - Which Alien?:</b> 
+                            <a href="https://dmoj.ca/problem/ccc11j1" target="_blank">https://dmoj.ca/problem/ccc11j1</a>
+                        </li>
+                        <li>
+                            <b>CCC '07 J1 - Who is in the Middle?:</b> 
+                            <a href="https://dmoj.ca/problem/ccc07j1" target="_blank">https://dmoj.ca/problem/ccc07j1</a>
+                        </li>
+                        <li>
+                            <b>CCC '16 J1 - Tournament Selection:</b> 
+                            <a href="https://dmoj.ca/problem/ccc16j1" target="_blank">https://dmoj.ca/problem/ccc16j1</a>
+                        </li>
+                        <li>
+                            <b>CCC '25 J1:</b> 
+                            <a href="https://dmoj.ca/problem/ccc25j1" target="_blank">https://dmoj.ca/problem/ccc25j1</a>
+                        </li>
+                    </ol>
+                </div>
+            </section>
 
         </main>
     </div>
