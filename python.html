@@ -733,7 +733,6 @@ else:
                 </div>
             </section>
 
-            <!-- Placeholder sections for upcoming modules -->
             <!-- Module 6 -->
             <section id="l1-m6">
                 <h3>Module 6: Python Lists (Arrays)</h3>
@@ -845,6 +844,7 @@ print(*l, sep=", ")    # 1, 2, 3, 4, 5 (Custom separator)</code></pre>
                     </ol>
                 </div>
             </section>
+
             <!-- Module 7 -->
             <section id="l1-m7">
                 <h3>Module 7: Debug Practice (Spot the Bugs!)</h3>
@@ -929,6 +929,7 @@ rounded_avg = round(avg, 2)
 print("Average is: " + rounded_avg)</code></pre>
                 </div>
             </section>
+
             <!-- Module 8 -->
             <section id="l1-m8">
                 <h3>Module 8: Level 1 Assessment Test</h3>
@@ -964,6 +965,93 @@ print("Average is: " + rounded_avg)</code></pre>
                     </ol>
                 </div>
             </section>
+
+            <!-- ================= LEVEL 2 ================= -->
+            <h2 class="level-header" style="margin-top: 80px;">Python Level 2: Control & Loops</h2>
+
+            <!-- Module 1 (Level 2) -->
+            <section id="l2-m1">
+                <h3>Module 1: Elif Statement & Logical Operators</h3>
+                <p><b>Concept:</b> In Level 1, we learned how basic <code>if</code> and <code>else</code> statements work. As programs grow more complex, checking multiple mutual conditions using just <code>if</code> and <code>else</code> becomes messy. That's where the <code>elif</code> (short for <i>else if</i>) statement comes in!</p>
+
+                <h4>The Structure of <code>if-elif-else</code></h4>
+                <p>An <code>elif</code> statement MUST follow an initial <code>if</code> statement and appear BEFORE the final <code>else</code> block. You can chain as many <code>elif</code> blocks as you need between them:</p>
+
+                <pre><code>grades = int(input("Enter your score: "))
+
+if grades > 100:
+    print("Invalid input!")
+elif grades >= 90:
+    print("Grade: A")
+elif grades >= 80:
+    print("Grade: B")
+elif grades >= 70:
+    print("Grade: C")
+elif grades >= 60:
+    print("Grade: D")
+else:
+    print("Fail - Keep working hard!")</code></pre>
+
+                <div class="tip-box">
+                    💡 <b>Logic Flow: Top-to-Bottom Execution</b><br>
+                    An <code>elif</code> block evaluates <b>if and only if</b> the preceding <code>if</code> or <code>elif</code> conditions evaluated to <code>False</code>. Once Python finds a condition that evaluates to <code>True</code>, it executes that block and <b>skips all remaining <code>elif</code> / <code>else</code> blocks</b>!
+                </div>
+
+                <h4>Logical Operators: <code>and</code> vs. <code>or</code></h4>
+                <p>When forming complex conditions, we combine Boolean expressions using <code>and</code> and <code>or</code>:</p>
+                <ul>
+                    <li><b><code>and</code>:</b> ALL conditions must be <code>True</code> for the entire expression to be <code>True</code>.</li>
+                    <li><b><code>or</code>:</b> If AT LEAST ONE condition is <code>True</code>, the entire expression becomes <code>True</code>.</li>
+                </ul>
+
+                <div class="tip-box">
+                    🍉 <b>The Superstore Watermelon Analogy:</b><br>
+                    Imagine you are buying watermelons at Superstore:
+                    <ul>
+                        <li><b><code>and</code> (The Combo Deal):</b> You are buying a combo package of 2 watermelons. If even ONE watermelon is rotten, you are unhappy (<code>False</code>). Both watermelons MUST be good for you to be happy (<code>True</code>)!</li>
+                        <li><b><code>or</code> (Individual Selection):</b> You need to buy just 1 good watermelon out of a pile of 2. If ANY of them is good, you are happy (<code>True</code>)! You are only unhappy (<code>False</code>) if both are completely bad.</li>
+                    </ul>
+                </div>
+
+                <h4>Chaining Boundaries in Python vs. <code>and</code></h4>
+                <p>In Python, you can write clean boundary checks using either explicit <code>and</code> operators or chained inequality expressions:</p>
+
+                <pre><code>score = int(input("Enter score: "))
+
+# Approach 1: Using 'and'
+if score >= 90 and score <= 100:
+    print("Grade A")
+
+# Approach 2: Pythonic Chained Range (Shorter & Cleaner!)
+if 90 <= score <= 100:
+    print("Grade A")</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 1: Official CCC Practice (Body Mass Index)</h4>
+                    <p>Put your new <code>if-elif-else</code> conditional knowledge to work on this classic CCC problem:</p>
+
+                    <p><b>CCC '08 J1 - Body Mass Index:</b> 
+                    <a href="https://dmoj.ca/problem/ccc08j1" target="_blank">https://dmoj.ca/problem/ccc08j1</a></p>
+                    
+                    <p><i>Problem Brief:</i> Calculate BMI using the formula $\text{BMI} = \text{weight} / (\text{height} \times \text{height})$.
+                    Output one of three messages based on the calculated value:
+                    <ul>
+                        <li>If $\text{BMI} > 25$, print: <code>"Overweight"</code></li>
+                        <li>If $18.5 \le \text{BMI} \le 25$, print: <code>"Normal weight"</code></li>
+                        <li>If $\text{BMI} < 18.5$, print: <code>"Underweight"</code></li>
+                    </ul>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Placeholder sections for upcoming modules -->
+            <section id="l2-m2"><h3>Module 2: CCC J1 Practice</h3><p>Coming up next...</p></section>
+            <section id="l2-m3"><h3>Module 3: While Loop</h3><p>Coming up next...</p></section>
+            <section id="l2-m4"><h3>Module 4: For Loop</h3><p>Coming up next...</p></section>
+            <section id="l2-m5"><h3>Module 5: CCC J2 Simple Loop</h3><p>Coming up next...</p></section>
+            <section id="l2-m6"><h3>Module 6: Hashset</h3><p>Coming up next...</p></section>
+            <section id="l2-m7"><h3>Module 7: CCC J2 Complex J2s</h3><p>Coming up next...</p></section>
+            <section id="l2-m8"><h3>Module 8: L2 Test</h3><p>Coming up next...</p></section>
 
         </main>
     </div>
