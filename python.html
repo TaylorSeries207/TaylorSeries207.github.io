@@ -1161,11 +1161,268 @@ print(f"Total count of 'a': {counter}")</code></pre>
                     </ol>
                 </div>
             </section>
-            <section id="l2-m4"><h3>Module 4: For Loop</h3><p>Coming up next...</p></section>
-            <section id="l2-m5"><h3>Module 5: CCC J2 Simple Loop</h3><p>Coming up next...</p></section>
-            <section id="l2-m6"><h3>Module 6: Hashset</h3><p>Coming up next...</p></section>
-            <section id="l2-m7"><h3>Module 7: CCC J2 Complex J2s</h3><p>Coming up next...</p></section>
-            <section id="l2-m8"><h3>Module 8: L2 Test</h3><p>Coming up next...</p></section>
+            <!-- Module 4 (Level 2) -->
+            <section id="l2-m4">
+                <h3>Module 4: For Loop & Range Function</h3>
+                <p><b>Concept:</b> Compared to <code>while</code> loops, <b><code>for</code> loops</b> provide a much cleaner and easier syntax when you know in advance how many times you need to repeat a block of code.</p>
+
+                <h4>1. The Anatomy of <code>range(start, end, step)</code></h4>
+                <p>The <code>range()</code> function generates a sequence of numbers. Its formal structure is <code>range(start, end, step)</code>:</p>
+
+                <ul>
+                    <li><b><code>start</code>:</b> The starting integer (inclusive). Default is <code>0</code> if omitted.</li>
+                    <li><b><code>end</code>:</b> The upper boundary (<b>EXCLUDED</b> - the loop stops right before this number!).</li>
+                    <li><b><code>step</code>:</b> How much the loop variable increments each step (similar to <code>i += step</code> in a <code>while</code> loop). Default is <code>1</code> if omitted.</li>
+                </ul>
+
+                <pre><code># 1. Single argument: range(end) -> starts at 0, steps by 1
+for i in range(5):
+    print(i)  # Outputs: 0, 1, 2, 3, 4
+
+# 2. Two arguments: range(start, end) -> steps by 1
+for i in range(1, 5):
+    print(i)  # Outputs: 1, 2, 3, 4
+
+# 3. Three arguments: range(start, end, step)
+for i in range(0, 10, 2):
+    print(i)  # Outputs: 0, 2, 4, 6, 8</code></pre>
+
+                <div class="tip-box">
+                    💡 <b>CCC Contest Pattern — Handling $N$ Lines of Input:</b><br>
+                    In CCC problems, you are often given a number $N$ followed by $N$ separate inputs. A <code>for</code> loop is the ideal tool for this pattern:
+                    <pre><code>n = int(input("How many numbers? "))
+l = []
+
+for i in range(n):
+    x = int(input())
+    l.append(x)</code></pre>
+                </div>
+
+                <h4>2. Directly Iterating Over Strings & Lists</h4>
+                <p>Python allows you to loop directly through sequence elements (iterables) using <code>for element in sequence:</code> without needing manual index tracking!</p>
+
+                <pre><code>s = "abcde"
+
+# Elegant shortcut for iterating over characters
+for char in s:
+    print(char)  # Prints each character on a new line</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge: Hands-On For Loop Exercises</h4>
+                    <p>Complete the following 3 tasks to master the <code>for</code> loop:</p>
+
+                    <ol>
+                        <li>
+                            <b>Filtered List Input:</b><br>
+                            Create an empty list. Write a <code>for</code> loop to take <b>10 integer inputs</b> from the user. Only <code>.append()</code> numbers that are strictly <b>greater than 5</b> into your list. Finally, sort the list in ascending order and print it out.
+                        </li>
+                        <li>
+                            <b>Uppercase "S" Character Converter:</b><br>
+                            Given the string: <code>text = "Stealth snake moves silently in the shadows"</code><br>
+                            Create a new empty string variable <code>result = ""</code>. Use a <code>for</code> loop to iterate through each character in <code>text</code>. If the character is a lowercase <code>'s'</code>, concatenate an uppercase <code>'S'</code> to <code>result</code>; otherwise, append the original character. Print the final modified string.
+                        </li>
+                        <li>
+                            <b>CCC Refactoring Challenge:</b><br>
+                            Re-solve <b>CCC '04 J2 (Terms of Office)</b> and <b>CCC '14 J2 (Vote Count)</b> from Module 3 using <code>for</code> loops and <code>range()</code> instead of <code>while</code> loops!
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <!-- Module 5 (Level 2) -->
+            <section id="l2-m5">
+                <h3>Module 5: CCC J2 Simple Loop Practice</h3>
+                <p><b>Concept:</b> In Module 3 and Module 4, we mastered both <code>while</code> and <code>for</code> loops. Now it's time to tackle official CCC Junior 2 problems! You have the freedom to choose whichever loop structure feels most natural and comfortable for each specific problem.</p>
+
+                <div class="tip-box">
+                    💡 <b>How to Choose Your Loop:</b>
+                    <ul>
+                        <li>Use a <b><code>for</code> loop</b> when you know the exact number of iterations in advance (e.g., repeating $N$ times using <code>range(N)</code>).</li>
+                        <li>Use a <b><code>while</code> loop</b> when iterating until a condition changes or when reading input until a specific stopping signal.</li>
+                    </ul>
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge: CCC J2 Simple Loop Problem Set</h4>
+                    <p>Solve the following 4 official CCC J2 problems on DMOJ to build your loop problem-solving confidence:</p>
+
+                    <ol>
+                        <li>
+                            <b>CCC '23 J2 - Chili Peppers:</b> 
+                            <a href="https://dmoj.ca/problem/ccc23j2" target="_blank">https://dmoj.ca/problem/ccc23j2</a><br>
+                            <i>Hint: Read integer $N$, then run a loop $N$ times to take pepper names as input. Use <code>if-elif</code> inside the loop to accumulate total SHU (spiciness) points!</i>
+                        </li>
+                        <li>
+                            <b>CCC '13 J2 - Un-rotate Un-translate Un-whatever:</b> 
+                            <a href="https://dmoj.ca/problem/ccc13j2" target="_blank">https://dmoj.ca/problem/ccc13j2</a><br>
+                            <i>Hint: Only letters <code>I, O, S, H, Z, X, N</code> remain the same when rotated 180 degrees. Iterate through the input string character by character—if any character is NOT in this allowed group, print <code>NO</code>; otherwise print <code>YES</code>.</i>
+                        </li>
+                        <li>
+                            <b>CCC '22 J2 - Fergusonball Ratings:</b> 
+                            <a href="https://dmoj.ca/problem/ccc22j2" target="_blank">https://dmoj.ca/problem/ccc22j2</a><br>
+                            <i>Hint: Read total players $N$. For each player, read points and fouls, calculate their star rating ($5 \times \text{points} - 3 \times \text{fouls}$). Count how many players score $> 40$. Check if ALL players are star players (add a gold star <code>+</code> to output if count equals $N$)!</i>
+                        </li>
+                        <li>
+                            <b>CCC '17 J2 - Shifty Sum:</b> 
+                            <a href="https://dmoj.ca/problem/ccc17j2" target="_blank">https://dmoj.ca/problem/ccc17j2</a><br>
+                            <i>Hint: Read base number $N$ and shift count $k$. A shift multiplies $N$ by 10 each step. Use a loop running $k$ times to continuously add shifted values to your total sum!</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <!-- Module 6 (Level 2) -->
+            <section id="l2-m6">
+                <h3>Module 6: Hashset (Sets in Python)</h3>
+                <p><b>Concept:</b> A <b>Set</b> (often called a <i>Hashset</i> in computer science) is a built-in Python data structure designed for storing unique items and performing lightning-fast membership checks.</p>
+
+                <h4>1. Automatic Deduplication (Removing Duplicates)</h4>
+                <p>In Level 1, if we wanted to remove duplicate items from a list, we had to write a manual <code>for</code> loop with an <code>if x not in ls:</code> check:</p>
+
+                <pre><code># Old Manual Way (Slower & Wordy)
+l = [1, 1, 2, 1, 12, 31, 1]
+ls = []
+for x in l:
+    if x not in ls:
+        ls.append(x)
+print(ls)  # [1, 2, 12, 31]</code></pre>
+
+                <p>With a <b>Set</b>, Python handles deduplication automatically in one single line:</p>
+
+                <pre><code># The Pythonic Set Way (Fast & Clean!)
+l = [1, 1, 2, 1, 12, 31, 1]
+ls = list(set(l))  # Convert list -> set (deduplicate) -> list
+print(ls)  # [1, 2, 12, 31]</code></pre>
+
+                <h4>2. The 3 Core Properties of Sets</h4>
+                <ul>
+                    <li><b>No Duplicates:</b> A set can never contain duplicate elements. Adding an existing item does nothing.</li>
+                    <li><b>$O(1)$ Ultra-Fast Search Speed:</b> Checking <code>if x in my_set</code> takes constant time ($O(1)$), regardless of whether the set has 10 items or 10,000,000 items!</li>
+                    <li><b>Unordered & Unindexed:</b> Sets do not keep items in any specific positional sequence. Therefore, <b>you CANNOT use index brackets like <code>my_set[0]</code></b> (this will trigger a <code>TypeError</code>).</li>
+                </ul>
+
+                <div class="tip-box">
+                    🏫 <b>The School Sign-In Sheet Analogy (List vs. Set Lookup):</b><br>
+                    Imagine searching for a friend at school:
+                    <ul>
+                        <li><b>List (<code>x in my_list</code>):</b> Like walking classroom by classroom, checking every student one by one until you find your friend. If there are 1,000 classrooms, it takes a long time! ($O(N)$ time complexity)</li>
+                        <li><b>Set (<code>x in my_set</code>):</b> Like looking at the front desk's Master Sign-In Sheet. You look up their name instantly to confirm whether they are in school today! ($O(1)$ time complexity)</li>
+                    </ul>
+                </div>
+
+                <h4>3. Common Set Operations</h4>
+                <pre><code># 1. Creating an empty set (Must use set(), NOT {} which creates a dictionary!)
+s = set()
+
+# 2. Adding elements (.add)
+s.add(10)
+s.add(20)
+s.add(10)  # Duplicate 10 is automatically ignored!
+
+# 3. Removing elements (.remove)
+s.remove(20)
+
+# 4. Fast Membership Check
+if 10 in s:
+    print("10 exists in the set!")
+
+# 5. Convert back to List if indexing/sorting is needed
+sorted_unique_list = sorted(list(s))</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge: Official CCC Practice (Bronze Count)</h4>
+                    <p>Apply your new <code>set()</code> deduplication and sorting skills to solve this CCC Junior 3 problem on DMOJ:</p>
+
+                    <p><b>CCC '24 J3 - Bronze Count:</b> 
+                    <a href="https://dmoj.ca/problem/ccc24j3" target="_blank">https://dmoj.ca/problem/ccc24j3</a></p>
+
+                    <p><i>Problem Brief:</i> Given $N$ participant scores, gold goes to the highest score, silver to the 2nd highest unique score, and bronze to the 3rd highest unique score. Output the 3rd highest score and how many participants achieved that exact score!</p>
+
+                    <p><i>Hint:</i> 
+                    <ol>
+                        <li>Read all scores into a list.</li>
+                        <li>Convert the score list into a <code>set()</code> to remove duplicate scores, then convert it back to a list and sort it in descending order!</li>
+                        <li>The 3rd highest unique score will be at index <code>2</code> of your sorted unique list (e.g., <code>bronze_score = unique_scores[2]</code>).</li>
+                        <li>Use <code>list.count(bronze_score)</code> on your original score list to count how many contestants earned the bronze medal!</li>
+                    </ol>
+                    </p>
+                </div>
+            </section>
+            <!-- Module 7 (Level 2) -->
+            <section id="l2-m7">
+                <h3>Module 7: Complex CCC J2 Contest Problems</h3>
+                <p><b>Concept:</b> Congratulations on solving your very first J3 problem! Before moving on to Level 3 data structures and algorithms, keep in mind that official CCC contests often feature <b>"Hard J2"</b> problems that test edge cases, multi-step conditionals, and loop simulations.</p>
+
+                <div class="tip-box">
+                    🧠 <b>Contest Mindset:</b> Read each specification twice, plan your variables on paper before coding, and test edge cases (such as zero bounds or string lengths) carefully!
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge: Hard J2 Problem Set</h4>
+                    <p>Work through these 4 official CCC J2 problems on DMOJ to solidify your loop and string manipulation mastery:</p>
+
+                    <ol>
+                        <li>
+                            <b>CCC '25 J2:</b> 
+                            <a href="https://dmoj.ca/problem/ccc25j2" target="_blank">https://dmoj.ca/problem/ccc25j2</a><br>
+                            <i>Hint: Carefully track initial state values and update them step-by-step inside a loop based on the given conditional rules.</i>
+                        </li>
+                        <li>
+                            <b>CCC '20 J2 - Epidemiology:</b> 
+                            <a href="https://dmoj.ca/problem/ccc20j2" target="_blank">https://dmoj.ca/problem/ccc20j2</a><br>
+                            <i>Hint: Use a <code>while</code> loop to simulate day-by-day infection growth. Track both daily new infections ($N \times R^\text{day}$) and cumulative total infections until total exceeds target $P$.</i>
+                        </li>
+                        <li>
+                            <b>CCC '11 J2 - Who Has Seen The Wind:</b> 
+                            <a href="https://dmoj.ca/problem/ccc11j2" target="_blank">https://dmoj.ca/problem/ccc11j2</a><br>
+                            <i>Hint: Loop hour $t$ from $1$ up to limit $M$. Calculate altitude $A = -6t^4 + ht^3 + 2t^2 + t$. If $A \le 0$, stop immediately and output the hour $t$; if the loop finishes without reaching $0$, output the negative warning message.</i>
+                        </li>
+                        <li>
+                            <b>CCC '02 J2 - AmeriCanadian:</b> 
+                            <a href="https://dmoj.ca/problem/ccc02j2" target="_blank">https://dmoj.ca/problem/ccc02j2</a><br>
+                            <i>Hint: Continuously read string input using <code>while True</code> until <code>"quit!"</code> is entered. For each word, check if length $> 4$, ends with <code>"or"</code>, and the character right before <code>"or"</code> is a consonant (not a vowel like a, e, i, o, u, y). If so, replace <code>"or"</code> with <code>"our"</code> using string slicing!</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <!-- Module 8 (Level 2) -->
+            <section id="l2-m8">
+                <h3>Module 8: Level 2 Assessment Test (Welcome to J3!)</h3>
+                <p><b>Congratulations on mastering Level 2 control structures and loops!</b> You have proven your skills on J1 and J2 problems. In this final assessment, you are ready to tackle official <b>CCC Junior 3 (J3)</b> competition questions!</p>
+
+                <div class="tip-box">
+                    🏆 <b>Test Rules & Guidance:</b> Solve all 5 problems on DMOJ to pass Level 2. Review the provided hints below if you get stuck on input parsing or mathematical boundary checks!
+                </div>
+
+                <div class="challenge-box">
+                    <h4>📝 CCC Level 2 Test Problem Set (J3 Challenge)</h4>
+                    <ol>
+                        <li>
+                            <b>CCC '05 J3 - Returning Home:</b> 
+                            <a href="https://dmoj.ca/problem/ccc05j3" target="_blank">https://dmoj.ca/problem/ccc05j3</a><br>
+                            <i>Hint: Use a loop to read directions ("R"/"L") and locations until "SCHOOL" is entered. Store them in lists and process them in REVERSE order to print the return route!</i>
+                        </li>
+                        <li>
+                            <b>CCC '11 J3 - Sumac Sequences:</b> 
+                            <a href="https://dmoj.ca/problem/ccc11j3" target="_blank">https://dmoj.ca/problem/ccc11j3</a><br>
+                            <i>Hint: Start with term 1 and term 2. Use a <code>while</code> loop to generate next terms ($t_n = t_{n-2} - t_{n-1}$) and increment a length counter until $t_{n-1} < t_n$.</i>
+                        </li>
+                        <li>
+                            <b>CCC '14 J3 - Double Dice:</b> 
+                            <a href="https://dmoj.ca/problem/ccc14j3" target="_blank">https://dmoj.ca/problem/ccc14j3</a><br>
+                            <i>Hint: Both players start with 100 points. For each round, unpack two integers on the same line using <code>a, b = map(int, input().split())</code>. Subtract points from the loser!</i>
+                        </li>
+                        <li>
+                            <b>CCC '17 J3 - Exactly Electrical:</b> 
+                            <a href="https://dmoj.ca/problem/ccc17j3" target="_blank">https://dmoj.ca/problem/ccc17j3</a><br>
+                            <i>Hint: Calculate Manhattan Distance $d = |x_1 - x_2| + |y_1 - y_2|$. You can reach the destination if charge $t \ge d$ AND the difference $(t - d)$ is an EVEN number (i.e., <code>(t - d) % 2 == 0</code>).</i>
+                        </li>
+                        <li>
+                            <b>CCC '20 J3 - Art:</b> 
+                            <a href="https://dmoj.ca/problem/ccc20j3" target="_blank">https://dmoj.ca/problem/ccc20j3</a><br>
+                            <i>Hint: Coordinate inputs contain commas (e.g., <code>"44,62"</code>). Separate them using <code>x, y = map(int, input().split(","))</code>! Find $\min(X)$, $\max(X)$, $\min(Y)$, $\max(Y)$, and pad by $1$ unit for the bounding box.</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
 
         </main>
     </div>
