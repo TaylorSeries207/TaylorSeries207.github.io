@@ -1502,8 +1502,155 @@ for row in range(4):
             </section>
 
             <!-- Placeholder sections for Level 3 upcoming modules -->
-            <section id="l3-m2"><h3>Module 2: CCC J3 Practices</h3><p>Coming up next...</p></section>
-            <section id="l3-m3"><h3>Module 3: Hashmap / Dictionary</h3><p>Coming up next...</p></section>
+            <!-- Module 2 (Level 3) -->
+            <section id="l3-m2">
+                <h3>Module 2: CCC J3 Indexing & String Parsing Practices</h3>
+                <p><b>Concept:</b> In basic loops, we often write <code>for char in s:</code> to inspect elements directly. However, when solving complex CCC J3 problems, you often need to compare current elements with adjacent neighbors (e.g., checking if <code>s[i] == s[i+1]</code>). Using <b>Index-Based Iteration</b> with <code>for i in range(len(s))</code> is a far superior choice for index manipulation!</p>
+
+                <div class="tip-box">
+                    🚨 <b>The Out-of-Bounds (IndexError) Warning!</b><br>
+                    When accessing neighboring indices like <code>s[i+1]</code>, always ensure your loop bound stops at <code>range(len(s) - 1)</code>! Otherwise, accessing <code>s[i+1]</code> on the final character will crash your code with an <code>IndexError</code>.
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge: Harder CCC J3 Problem Set</h4>
+                    <p>Put your index tracking and string parsing logic to the test with these 5 official competition problems:</p>
+
+                    <ol>
+                        <li>
+                            <b>CCC '21 J3 - Secret Instructions:</b> 
+                            <a href="https://dmoj.ca/problem/ccc21j3" target="_blank">https://dmoj.ca/problem/ccc21j3</a><br>
+                            <i>Hint: Read 5-digit strings until <code>99999</code>. Sum the first 2 digits to determine direction (Odd &rarr; left, Even &rarr; right, Zero &rarr; keep previous direction). The last 3 digits represent the number of steps!</i>
+                        </li>
+                        <li>
+                            <b>CCC '19 J3 - Cold Compress:</b> 
+                            <a href="https://dmoj.ca/problem/ccc19j3" target="_blank">https://dmoj.ca/problem/ccc19j3</a><br>
+                            <i>Hint: A classic Run-Length Encoding (RLE) problem! Iterate through the string using index <code>i</code>. Count consecutive identical characters using <code>s[i] == s[i+1]</code> checks, and print <code>count character</code> blocks.</i>
+                        </li>
+                        <li>
+                            <b>CCC '22 J3 - Secret Instructions (Harp Tuning):</b> 
+                            <a href="https://dmoj.ca/problem/ccc22j3" target="_blank">https://dmoj.ca/problem/ccc22j3</a><br>
+                            <i>Hint: Parse long string sequences where tuning instructions switch between uppercase letters, operators (<code>+</code> for tighten, <code>-</code> for loosen), and numbers.</i>
+                        </li>
+                        <li>
+                            <b>CCC '26 J3:</b> 
+                            <a href="https://dmoj.ca/problem/ccc26j3" target="_blank">https://dmoj.ca/problem/ccc26j3</a><br>
+                            <i>Hint: Analyze character frequency or sequential state shifts. Keep track of continuous streak lengths using index offset comparisons!</i>
+                        </li>
+                    </ol>
+
+                    <h4 style="color: var(--primary-color); margin-top: 18px;">🔥 Ultimate Challenge Problem!</h4>
+                    <ol start="5">
+                        <li>
+                            <b>CCC '25 J3:</b> 
+                            <a href="https://dmoj.ca/problem/ccc25j3" target="_blank">https://dmoj.ca/problem/ccc25j3</a><br>
+                            <i>Hint: Read specification requirements carefully! Break strings into substrings, track dynamic counters, and manage string slicing edge cases smoothly.</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <!-- Module 3 (Level 3) -->
+            <section id="l3-m3">
+                <h3>Module 3: Hashmap (Dictionaries in Python)</h3>
+                <p><b>Concept:</b> In Level 1, we learned that elements in a list are bound to numeric indices (e.g., <code>l[0]</code>, <code>l[1]</code>). However, positional indices aren't always ideal for representing paired real-world data. A <b>Hashmap</b> (known as a <code>dict</code> or <i>Dictionary</i> in Python) solves this by mapping custom <b>Keys</b> to <b>Values</b>.</p>
+
+                <h4>1. Key-Value Structure & Syntax</h4>
+                <p>A dictionary is enclosed in curly brackets <code>{}</code> with entries written as <code>key: value</code>:</p>
+
+                <pre><code># Grade table dictionary mapping Student Name (Key) -> Score (Value)
+grades = {
+    "Alice": 80,
+    "Bob": 90,
+    "Charlie": 75
+}
+
+# Accessing a value using its key
+print(grades["Alice"])  # Output: 80</code></pre>
+
+                <div class="tip-box">
+                    ⚠️ <b>Crucial Rules for Keys & Values:</b>
+                    <ul>
+                        <li><b>Keys MUST be Unique:</b> Duplicate keys are NOT allowed. Re-assigning an existing key will overwrite its old value.</li>
+                        <li><b>Values CAN be Duplicated:</b> Multiple different keys can map to the exact same value.</li>
+                        <li><b>Strict Data Types:</b> Be careful with key data types! Key <code>1</code> (integer) and key <code>"1"</code> (string) are completely different keys.</li>
+                    </ul>
+                </div>
+
+                <h4>2. Basic Dictionary Operations</h4>
+                <pre><code># 1. Initialize an empty dictionary
+hm = {}
+
+# 2. Add or Update Key-Value pairs
+hm["A"] = 100       # Adds "A": 100
+hm["B"] = 200       # Adds "B": 200
+hm["A"] = 999       # Updates "A" to 999
+
+# 3. Remove a Key-Value pair using del
+del hm["B"]
+
+# 4. Fast O(1) Key Membership Check
+if "A" in hm:
+    print("'A' exists in the dictionary!")
+
+# 5. Iterating through a dictionary
+for key in hm:
+    print(key, hm[key])
+
+# 6. Converting Keys, Values, and Items to Lists
+key_list = list(hm.keys())     # e.g., ['A']
+value_list = list(hm.values()) # e.g., [999]
+item_tuples = list(hm.items()) # e.g., [('A', 999)]</code></pre>
+
+                <div class="tip-box">
+                    ⚡ <b>No Positional Indices (Hash Property):</b><br>
+                    Like Hashsets, Hashmaps rely on hashing algorithms for instant $O(1)$ speed. They do <b>NOT</b> have index positions. <b>Executing <code>hm[0]</code> will NOT access the first element</b>—it will search for a key named <code>0</code>!
+                </div>
+
+                <h4>3. Core Design Pattern: Frequency Table</h4>
+                <p>One of the most important applications of Hashmaps in competitive programming is building a <b>Frequency Table</b> to count occurrences of items (characters, numbers, or words):</p>
+
+                <pre><code>s = "12112311231231"
+freq = {}
+
+for char in s:
+    if char in freq:
+        freq[char] += 1
+    else:
+        freq[char] = 1
+
+print(freq)  # Output: {'1': 7, '2': 4, '3': 3}
+
+# Pythonic Shortcut using .get(key, default_value):
+# freq[char] = freq.get(char, 0) + 1</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge: Hashmap CCC & Competition Problems</h4>
+                    <p>Apply your Hashmap skills to solve these official contest problems on DMOJ:</p>
+
+                    <ol>
+                        <li>
+                            <b>DMOPC '15 Contest 4 P1 - Dictionary Primers:</b> 
+                            <a href="https://dmoj.ca/problem/dmopc15c4p1" target="_blank">https://dmoj.ca/problem/dmopc15c4p1</a><br>
+                            <i>Hint: Read $N$ words and group them into lists categorized by their first starting character using a dictionary! Sort and output each group.</i>
+                        </li>
+                        <li>
+                            <b>HKCCC '08 J3 - Phonebook:</b> 
+                            <a href="https://dmoj.ca/problem/hkccc08j3" target="_blank">https://dmoj.ca/problem/hkccc08j3</a><br>
+                            <i>Hint: Store phonebook contacts in a dictionary mapping Phone Number &rarr; Name. Build a call frequency counter to find the name with the maximum incoming calls!</i>
+                        </li>
+                        <li>
+                            <b>CCC '14 S2 - Assigning Partners:</b> 
+                            <a href="https://dmoj.ca/problem/ccc14s2" target="_blank">https://dmoj.ca/problem/ccc14s2</a><br>
+                            <i>Hint: Use a dictionary to store partner assignments <code>partner[person_A] = person_B</code>. Verify if symmetry holds (i.e., <code>partner[person_B] == person_A</code>) and ensure no one is paired with themselves!</i>
+                        </li>
+                        <li>
+                            <b>CCC '22 S2 - Good Groups:</b> 
+                            <a href="https://dmoj.ca/problem/ccc22s2" target="_blank">https://dmoj.ca/problem/ccc22s2</a><br>
+                            <i>Hint: Store each student's assigned group ID in a dictionary <code>group[student] = group_number</code>. For every mandatory constraint (must be together / cannot be together), perform instant $O(1)$ checks using your group dictionary to count violations!</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
             <section id="l3-m4"><h3>Module 4: 2D Array</h3><p>Coming up next...</p></section>
             <section id="l3-m5"><h3>Module 5: Prefix Sum & Difference Array</h3><p>Coming up next...</p></section>
             <section id="l3-m6"><h3>Module 6: Dynamic Programming</h3><p>Coming up next...</p></section>
