@@ -221,22 +221,24 @@
             font-size: 0.9rem;
         }
 
-        /* Floating Interactive Widgets Bar (Snake + Cat) */
-        .widgets-bar {
+        /* Common Styling for Floating Widgets */
+        .widget-item {
             position: fixed;
             bottom: 30px;
-            right: 30px;
-            display: flex;
-            align-items: flex-end;
-            gap: 15px;
-            z-index: 9999;
-        }
-
-        .widget-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
+            z-index: 9999;
+        }
+
+        /* 🐍 Left Side Screen Widget */
+        .snake-widget-container {
+            left: 30px;
+        }
+
+        /* 🐱 Right Side Screen Widget */
+        .cat-widget-container {
+            right: 30px;
         }
 
         .speech-bubble {
@@ -385,21 +387,16 @@
 
     </div>
 
-    <!-- Interactive Floating Bar (Snake Game + Cat) -->
-    <div class="widgets-bar">
-        
-        <!-- Floating Snake Game Widget (Left Side) -->
-        <div class="widget-item">
-            <div class="speech-bubble" id="snakeBubble">Tired of debugging? 🐛 Break the loop & chill here! 🎮</div>
-            <a href="Snake_EN.html" target="_blank" class="floating-icon" id="snakeBtn" title="Tired? Play Snake Game!">🐍</a>
-        </div>
+    <!-- 🐍 Floating Snake Game Widget (Fixed on Bottom Left Screen) -->
+    <div class="widget-item snake-widget-container">
+        <div class="speech-bubble" id="snakeBubble">Tired of debugging? 🐛 Break the loop & chill here! 🎮</div>
+        <a href="Snake_EN.html" target="_blank" class="floating-icon" id="snakeBtn" title="Tired? Play Snake Game!">🐍</a>
+    </div>
 
-        <!-- Floating Cat Widget (Right Side) -->
-        <div class="widget-item">
-            <div class="speech-bubble" id="speechBubble">DEBUGGGGGGGGGGGGG</div>
-            <div class="floating-icon" id="catBtn" title="Click me!">🐱</div>
-        </div>
-
+    <!-- 🐱 Floating Cat Widget (Fixed on Bottom Right Screen) -->
+    <div class="widget-item cat-widget-container">
+        <div class="speech-bubble" id="speechBubble">DEBUGGGGGGGGGGGGG</div>
+        <div class="floating-icon" id="catBtn" title="Click me!">🐱</div>
     </div>
 
     <script>
@@ -427,12 +424,11 @@
             }, 1500);
         });
 
-        // Snake Button Logic (Hover / Click trigger message)
+        // Snake Button Logic (Hover trigger message)
         const snakeBtn = document.getElementById('snakeBtn');
         const snakeBubble = document.getElementById('snakeBubble');
         let snakeTimer;
 
-        // Show humorous message on hover
         snakeBtn.addEventListener('mouseenter', () => {
             snakeBubble.classList.add('show');
             clearTimeout(snakeTimer);
