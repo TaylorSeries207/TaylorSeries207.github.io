@@ -1651,11 +1651,508 @@ print(freq)  # Output: {'1': 7, '2': 4, '3': 3}
                     </ol>
                 </div>
             </section>
-            <section id="l3-m4"><h3>Module 4: 2D Array</h3><p>Coming up next...</p></section>
-            <section id="l3-m5"><h3>Module 5: Prefix Sum & Difference Array</h3><p>Coming up next...</p></section>
-            <section id="l3-m6"><h3>Module 6: Dynamic Programming</h3><p>Coming up next...</p></section>
-            <section id="l3-m7"><h3>Module 7: BFS</h3><p>Coming up next...</p></section>
-            <section id="l3-m8"><h3>Module 8: DFS</h3><p>Coming up next...</p></section>
+            <!-- Module 4 (Level 3) -->
+            <section id="l3-m4">
+                <h3>Module 4: 2D Arrays (Matrices in Python)</h3>
+                <p><b>Concept:</b> In Python, a <b>2D Array</b> (or Matrix) is implemented as a <b>List of Sublists</b>. Think of it as a table or grid with <b>Rows</b> and <b>Columns</b>. To access any individual element, you must specify two indices: <code>grid[row_index][col_index]</code>.</p>
+
+                <h4>1. Understanding Row & Column Indexing</h4>
+                <p>Consider the following 3x3 matrix initialized as a list of lists:</p>
+
+                <pre><code>grid = [
+    [1, 2, 3],  # Row 0
+    [4, 5, 6],  # Row 1
+    [7, 8, 9]   # Row 2
+]</code></pre>
+
+                <p>Visualization of coordinates in zero-based indexing:</p>
+
+                <table class="menu-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Col 0</th>
+                            <th>Col 1</th>
+                            <th>Col 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Row 0</th>
+                            <td><code>grid[0][0]</code> &rarr; <b>1</b></td>
+                            <td><code>grid[0][1]</code> &rarr; <b>2</b></td>
+                            <td><code>grid[0][2]</code> &rarr; <b>3</b></td>
+                        </tr>
+                        <tr>
+                            <th>Row 1</th>
+                            <td><code>grid[1][0]</code> &rarr; <b>4</b></td>
+                            <td><code>grid[1][1]</code> &rarr; <b>5</b></td>
+                            <td><code>grid[1][2]</code> &rarr; <b>6</b></td>
+                        </tr>
+                        <tr>
+                            <th>Row 2</th>
+                            <td><code>grid[2][0]</code> &rarr; <b>7</b></td>
+                            <td><code>grid[2][1]</code> &rarr; <b>8</b> (Row 2, Col 1)</td>
+                            <td><code>grid[2][2]</code> &rarr; <b>9</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="tip-box">
+                    🚨 <b>THE BIG TRAP: How to Properly Initialize a 2D Array!</b><br>
+                    <b>NEVER initialize a 2D grid like this:</b>
+                    <pre><code># ❌ WRONG! Creates shallow copies sharing the exact same memory address!
+grid = [[0] * 3] * 3 
+grid[0][0] = 99  # Modifying row 0 will accidentally change grid[1][0] and grid[2][0] too!</code></pre>
+
+                    <b>ALWAYS use List Comprehension to build safe 2D grids:</b>
+                    <pre><code># ✅ CORRECT! Creates independent row lists in memory
+rows = 3
+cols = 4
+grid = [[0] * cols for _ in range(rows)]
+grid[0][0] = 99  # Safe! Only updates Row 0, Col 0.</code></pre>
+                </div>
+
+                <h4>2. Two Ways to Loop Through a 2D Array</h4>
+
+                <p><b>Approach A: Direct Element Iteration (For Pure Reading)</b></p>
+                <pre><code>for row in grid:
+    for item in row:
+        print(item, end=" ")
+    print()  # Newline after each row</code></pre>
+
+                <p><b>Approach B: Index-Based Traversal (Required for Modifying or Checking Neighbors)</b></p>
+                <pre><code>rows = len(grid)
+cols = len(grid[0])
+
+for r in range(rows):
+    for c in range(cols):
+        print(f"Element at ({r}, {c}) is {grid[r][c]}")</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge: 2D Grid & Matrix Practice Set</h4>
+                    <p>Master 2D array coordinates, grid traversals, and distance calculations with these contest problems:</p>
+
+                    <ol>
+                        <li>
+                            <b>CCC '18 J3 - Are we there yet?:</b> 
+                            <a href="https://dmoj.ca/problem/ccc18j3" target="_blank">https://dmoj.ca/problem/ccc18j3</a><br>
+                            <i>Hint: Given distances between 5 consecutive cities, build a $5 \times 5$ distance matrix where <code>grid[i][j]</code> stores the absolute distance between city $i$ and city $j$. Print the 2D grid!</i>
+                        </li>
+                        <li>
+                            <b>CCC '08 J3 - GPS Text Entry:</b> 
+                            <a href="https://dmoj.ca/problem/ccc08j3" target="_blank">https://dmoj.ca/problem/ccc08j3</a><br>
+                            <i>Hint: Map a virtual $5 \times 6$ keypad layout onto a 2D coordinate system. For each character transition, calculate Manhattan distance $|r_1 - r_2| + |c_1 - c_2|$!</i>
+                        </li>
+                        <li>
+                            <b>CCC '19 J3 - Cold Compress (Grid View):</b> 
+                            <a href="https://dmoj.ca/problem/ccc19j3" target="_blank">https://dmoj.ca/problem/ccc19j3</a><br>
+                            <i>Hint: Read lines into a 2D character list and iterate through each sublist using nested loops to output encoded block frequencies!</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <!-- Module 5 (Level 3) -->
+            <section id="l3-m5">
+                <h3>Module 5: Prefix Sum & Difference Array</h3>
+                <p><b>Concept:</b> As we move into advanced algorithms, we encounter problems where basic nested loops become too slow and result in <b>Time Limit Exceeded (TLE)</b>. In this module, we introduce two $O(1)$ range query optimization techniques: <b>Prefix Sum</b> (for fast range sum queries) and <b>Difference Array</b> (for fast range updates).</p>
+
+                <h4>1. Prefix Sum (Fast Range Sum Queries in $O(1)$)</h4>
+                <p>Imagine you have an array <code>arr = [1, 2, 3, 4, 5]</code>. If you are asked to sum the range from index 0 to 3 repeatedly, summing with a loop takes $O(N)$ time. With a <b>Prefix Sum Array</b>, we precalculate cumulative totals so any range sum takes only $O(1)$ time!</p>
+
+                <div class="tip-box">
+                    💡 <b>Rule: Always start a Prefix Sum Array with an initial <code>0</code>!</b><br>
+                    Original array <code>arr = [1, 2, 3, 4, 5]</code> &rarr; Prefix array <code>prefix = [0, 1, 3, 6, 10, 15]</code>.<br>
+                    To calculate the sum from index <code>L</code> to <code>R</code> (0-indexed inclusive), use the formula:<br>
+                    <b><code>Range Sum(L..R) = prefix[R + 1] - prefix[L]</code></b>
+                </div>
+
+                <pre><code># Standard Prefix Sum Implementation
+arr = [1, 2, 3, 4, 5]
+n = len(arr)
+
+# 1. Initialize prefix array with a leading 0
+prefix = [0] * (n + 1)
+for i in range(n):
+    prefix[i + 1] = prefix[i] + arr[i]
+
+# Example: Sum from index 0 to 3 (values: 1 + 2 + 3 + 4 = 10)
+L, R = 0, 3
+ans = prefix[R + 1] - prefix[L]
+print(f"Sum from index {L} to {R}: {ans}")  # Output: 10</code></pre>
+
+                <h4>2. Difference Array (Fast Range Updates in $O(1)$)</h4>
+                <p>What if a problem requires adding a constant value <code>k</code> to a contiguous range <code>[L, R]</code> thousands of times? Updating each element with a loop takes $O(N)$ time per update. A <b>Difference Array</b> allows us to perform range updates in <b>$O(1)$ time</b> by marking boundary changes!</p>
+
+                <div class="tip-box">
+                    ⚡ <b>Difference Array Range Update Algorithm:</b>
+                    <ol>
+                        <li>To add <code>val</code> to range <code>[L, R]</code>: Add <code>+val</code> to <code>diff[L]</code>, and subtract <code>-val</code> from <code>diff[R + 1]</code> (if <code>R + 1</code> is within bounds).</li>
+                        <li>After all updates are recorded, compute the <b>Prefix Sum of the Difference Array</b> to reconstruct the final values!</li>
+                    </ol>
+                </div>
+
+                <pre><code># Standard Difference Array Implementation
+n = 5
+diff = [0] * (n + 1)  # Extra space for R + 1 boundary offset
+
+# Update 1: Add +10 to range [1, 3] (inclusive)
+L, R, val = 1, 3, 10
+diff[L] += val
+if R + 1 < len(diff):
+    diff[R + 1] -= val
+
+# Reconstruct final array using Prefix Sum
+final_arr = [0] * n
+current = 0
+for i in range(n):
+    current += diff[i]
+    final_arr[i] = current
+
+print("Final array after update:", final_arr)  # Output: [0, 10, 10, 10, 0]</code></pre>
+
+                <div class="tip-box">
+                    🐍 <b>LeetCode vs. DMOJ Hint — Functions & Return Statements:</b><br>
+                    When solving LeetCode problems, you write code inside a class method function. Using <code>print()</code> will NOT pass the tests—you must use the <b><code>return</code></b> statement! Once Python executes a <code>return</code> line, the function immediately stops and yields the output.
+                    <pre><code>def solution(bookings, n):
+    # Your algorithm logic here...
+    return result_list  # Function finishes and returns final answer</code></pre>
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge: Prefix Sum & Difference Array Problem Set</h4>
+                    <p>Solve these classic competition and platform problems using your new $O(1)$ techniques:</p>
+
+                    <ol>
+                        <li>
+                            <b>DMOPC '14 Contest 2 P4 - Personal Nurse:</b> 
+                            <a href="https://dmoj.ca/problem/dmopc14c2p4" target="_blank">https://dmoj.ca/problem/dmopc14c2p4</a><br>
+                            <i>Hint: Fast $O(1)$ Prefix Sum query practice! Build a 1-indexed prefix sum array to answer multiple range sum queries without TLE.</i>
+                        </li>
+                        <li>
+                            <b>GFSSOC '17 J4 - Secret Code:</b> 
+                            <a href="https://dmoj.ca/problem/gfssoc2j4" target="_blank">https://dmoj.ca/problem/gfssoc2j4</a><br>
+                            <i>Hint: Precalculate total sum and prefix sums. Subtract range sum <code>prefix[R+1] - prefix[L]</code> from total sum!</i>
+                        </li>
+                        <li>
+                            <b>LeetCode 1109 - Corporate Flight Bookings:</b> 
+                            <a href="https://leetcode.com/problems/corporate-flight-bookings/" target="_blank">https://leetcode.com/problems/corporate-flight-bookings/</a><br>
+                            <i>Hint: Classic Difference Array problem! For each booking <code>[first, last, seats]</code>, perform boundary updates <code>diff[first-1] += seats</code> and <code>diff[last] -= seats</code>. Return the prefix sum array!</i>
+                        </li>
+                        <li>
+                            <b>LeetCode 1094 - Car Pooling:</b> 
+                            <a href="https://leetcode.com/problems/car-pooling/" target="_blank">https://leetcode.com/problems/car-pooling/</a><br>
+                            <i>Hint: Track passenger count changes at each stop using a difference array up to max distance. Compute prefix sum to check if total passengers ever exceed capacity!</i>
+                        </li>
+                        <li>
+                            <b>CCC '26 S2:</b> 
+                            <a href="https://dmoj.ca/problem/ccc26s2" target="_blank">https://dmoj.ca/problem/ccc26s2</a><br>
+                            <i>Hint: Combine prefix sums or difference arrays to handle multi-interval range modifications efficiently.</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <!-- Module 6 (Level 3) -->
+            <section id="l3-m6">
+                <h3>Module 6: Dynamic Programming (DP)</h3>
+                <p><b>Concept:</b> <b>Dynamic Programming (DP)</b> is one of the most powerful algorithmic techniques in competitive programming. Instead of recomputing subproblems repeatedly, DP stores solutions to subproblems in a table (memory) and reuses them as we build up to the final answer. "Dynamic" means we continuously update and record states as we move forward!</p>
+
+                <h4>1. The 4 Steps to Solve Any DP Problem</h4>
+                <div class="tip-box">
+                    🧠 <b>The Standard DP Framework:</b>
+                    <ol>
+                        <li><b>Define State:</b> What does <code>dp[i]</code> (or <code>dp[r][c]</code>) represent?</li>
+                        <li><b>Base Cases:</b> Set up the initial known values (e.g., <code>dp[0] = 1</code>).</li>
+                        <li><b>State Transition Equation:</b> How do previous states combine to form <code>dp[i]</code>?</li>
+                        <li><b>Computation Order:</b> Run loops forward (or backward) to fill the DP array.</li>
+                    </ol>
+                </div>
+
+                <h4>2. 1D DP Fundamentals (Climbing Stairs Pattern)</h4>
+                <p>Let's analyze <a href="https://leetcode.com/problems/climbing-stairs/" target="_blank">LeetCode 70 - Climbing Stairs</a>. You can climb 1 or 2 steps at a time. To reach stair <code>5</code>, you MUST have jumped either from stair <code>4</code> (1 step) or stair <code>3</code> (2 steps). Therefore, total ways to stair <code>5</code> = <code>dp[4] + dp[3]</code>!</p>
+
+                <p><b>State Transition Equation:</b> <code>dp[i] = dp[i-1] + dp[i-2]</code></p>
+
+                <pre><code>class Solution:
+    def climbStairs(self, n: int) -> int:
+        # Step 1: Initialize DP array of size n + 1 to match 1-based stair indices
+        dp = [0] * (n + 1)
+        
+        # Step 2: Base Cases
+        dp[0] = 1  # 1 way to be at ground level
+        dp[1] = 1  # 1 way to reach stair 1
+        
+        # Step 3 & 4: Transition & Loop Fill
+        for i in range(2, n + 1):
+            dp[i] = dp[i-1] + dp[i-2]
+            
+        return dp[n]</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Practice Set 1: 1D Sequence DP</h4>
+                    <ol>
+                        <li>
+                            <b>LeetCode 746 - Min Cost Climbing Stairs:</b> 
+                            <a href="https://leetcode.com/problems/min-cost-climbing-stairs/" target="_blank">https://leetcode.com/problems/min-cost-climbing-stairs/</a><br>
+                            <i>Hint: <code>dp[i] = cost[i] + min(dp[i-1], dp[i-2])</code>. Find the minimum total cost to reach the top!</i>
+                        </li>
+                        <li>
+                            <b>LeetCode 198 - House Robber:</b> 
+                            <a href="https://leetcode.com/problems/house-robber/" target="_blank">https://leetcode.com/problems/house-robber/</a><br>
+                            <i>Hint: You cannot rob two adjacent houses. At house <code>i</code>, choose max between robbing house <code>i</code> (<code>nums[i] + dp[i-2]</code>) or skipping it (<code>dp[i-1]</code>)!</i>
+                        </li>
+                    </ol>
+                </div>
+
+                <h4>3. 2D Grid DP (Grid Path Traversal)</h4>
+                <p>When moving on a 2D grid where you can only move <b>Right</b> or <b>Down</b>, the total ways to reach cell <code>(r, c)</code> is the sum of ways from the cell above <code>(r-1, c)</code> and the cell to the left <code>(r, c-1)</code>:</p>
+                <p><b>State Transition Equation:</b> <code>dp[r][c] = dp[r-1][c] + dp[r][c-1]</code></p>
+
+                <div class="challenge-box">
+                    <h4>🎯 Practice Set 2: 2D Grid DP Problems</h4>
+                    <ol>
+                        <li>
+                            <b>LeetCode 62 - Unique Paths:</b> 
+                            <a href="https://leetcode.com/problems/unique-paths/" target="_blank">https://leetcode.com/problems/unique-paths/</a><br>
+                            <i>Hint: Initialize row 0 and col 0 to <code>1</code>. Fill the 2D grid using nested loops!</i>
+                        </li>
+                        <li>
+                            <b>LeetCode 63 - Unique Paths II (With Obstacles):</b> 
+                            <a href="https://leetcode.com/problems/unique-paths-ii/" target="_blank">https://leetcode.com/problems/unique-paths-ii/</a><br>
+                            <i>Hint: If a cell has an obstacle, set its <code>dp[r][c] = 0</code> because no paths can pass through it!</i>
+                        </li>
+                        <li>
+                            <b>CCC '12 S5 - Mouse Journey:</b> 
+                            <a href="https://dmoj.ca/problem/ccc12s5" target="_blank">https://dmoj.ca/problem/ccc12s5</a><br>
+                            <i>Hint: Official CCC 2D Grid DP! Mark lab cages with cats as obstacles (0 ways) and count valid paths from <code>(1, 1)</code> to <code>(R, C)</code>.</i>
+                        </li>
+                    </ol>
+                </div>
+
+                <h4>4. Nested Loop DP (Transitions Depending on All Previous States)</h4>
+                <p>Sometimes, state <code>dp[i]</code> doesn't just depend on the immediate prior 1 or 2 steps—it depends on <b>all previous valid states <code>j < i</code></b>! In these cases, we use an inner <code>for j</code> loop nested inside our outer <code>for i</code> loop.</p>
+
+                <div class="challenge-box">
+                    <h4>🎯 Practice Set 3: Nested Loop DP</h4>
+                    <ol>
+                        <li>
+                            <b>CCC '07 S4 - Waterpark:</b> 
+                            <a href="https://dmoj.ca/problem/ccc07s4" target="_blank">https://dmoj.ca/problem/ccc07s4</a><br>
+                            <i>Hint: Store incoming slide connections for each point. For point <code>i</code>, sum up DP values of all points <code>j</code> that slide directly into <code>i</code>!</i>
+                        </li>
+                        <li>
+                            <b>Educational DP Contest - Frog 2:</b> 
+                            <a href="https://dmoj.ca/problem/dpb" target="_blank">https://dmoj.ca/problem/dpb</a><br>
+                            <i>Hint: The frog can jump up to $K$ steps forward! Use an inner loop <code>for j in range(1, K + 1)</code> to check all jump origins: <code>dp[i] = min(dp[i], dp[i-j] + abs(height[i] - height[i-j]))</code>.</i>
+                        </li>
+                        <li>
+                            <b>CCC '07 J5 - Keep on Truckin':</b> 
+                            <a href="https://dmoj.ca/problem/ccc07j5" target="_blank">https://dmoj.ca/problem/ccc07j5</a><br>
+                            <i>Hint: Iterate through motel distances. A motel at position <code>j</code> can reach motel <code>i</code> if distance falls within range <code>[min_dist, max_dist]</code>. Use nested loops to accumulate total paths!</i>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🔥 Ultimate Challenge: Unbounded Knapsack / Minimum Item DP</h4>
+                    <p>Master minimum cost / coin combination DP with these top-tier problems:</p>
+                    <ol>
+                        <li>
+                            <b>LeetCode 322 - Coin Change:</b> 
+                            <a href="https://leetcode.com/problems/coin-change/" target="_blank">https://leetcode.com/problems/coin-change/</a><br>
+                            <i>Hint: Initialize <code>dp = [float('inf')] * (amount + 1)</code> and <code>dp[0] = 0</code>. For each target amount <code>i</code>, iterate through available coin denominations: <code>dp[i] = min(dp[i], dp[i - coin] + 1)</code>!</i>
+                        </li>
+                        <li>
+                            <b>CCC '00 S4 - Golf:</b> 
+                            <a href="https://dmoj.ca/problem/ccc00s4" target="_blank">https://dmoj.ca/problem/ccc00s4</a><br>
+                            <i>Hint: Equivalent to Coin Change! Find the minimum number of club strokes to cover exact distance $D$. If reachable, print <code>"Roberta wins in X strokes."</code>, else print <code>"Roberta acknowledges defeat."</code>.</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <!-- Module 7 (Level 3) -->
+            <section id="l3-m7">
+                <h3>Module 7: BFS (Breadth-First Search)</h3>
+                <p><b>Concept:</b> <b>Breadth-First Search (BFS)</b> is a graph traversal algorithm that explores nodes <b>layer-by-layer</b>, expanding outward in concentric circles (like ripples in water). Because BFS visits all positions at distance $D$ before moving to distance $D+1$, it is guaranteed to find the <b>shortest path</b> in unweighted grids or graphs!</p>
+
+                <h4>1. Queue Data Structure: <code>collections.deque</code></h4>
+                <p>BFS requires a <b>First-In, First-Out (FIFO) Queue</b>. In Python, always use <code>deque</code> (Double-Ended Queue) from the <code>collections</code> module because <code>popleft()</code> runs in ultra-fast <b>$O(1)$ time</b> (unlike standard list <code>pop(0)</code> which takes slow $O(N)$ time)!</p>
+
+                <div class="tip-box">
+                    💡 <b>Essential <code>deque</code> Operations:</b>
+                    <ul>
+                        <li><code>from collections import deque</code></li>
+                        <li><code>q = deque()</code> &rarr; Initialize empty queue</li>
+                        <li><code>q.append((r, c))</code> &rarr; Push new coordinate into queue</li>
+                        <li><code>r, c = q.popleft()</code> &rarr; Pop oldest coordinate from front of queue</li>
+                        <li><code>while q:</code> &rarr; Loop until the queue is completely empty</li>
+                    </ul>
+                </div>
+
+                <h4>2. Standard BFS Template (Formula Code)</h4>
+                <p>Study and memorize this universal formula code for 2D Grid BFS traversals:</p>
+
+                <pre><code>from collections import deque
+
+def bfs_grid_template(grid, start_r, start_c):
+    rows, cols = len(grid), len(grid[0])
+    
+    # 1. Initialize Queue and Visited Set
+    q = deque([(start_r, start_c, 0)])  # (row, col, distance/steps)
+    visited = set([(start_r, start_c)])
+    
+    # 2. Define 4-Direction Movement Offsets (Up, Down, Left, Right)
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    
+    # 3. Layer-by-Layer Queue Loop
+    while q:
+        r, c, dist = q.popleft()
+        
+        # Target check (e.g., reached destination)
+        if r == rows - 1 and c == cols - 1:
+            return dist
+            
+        # Explore all 4 adjacent neighbors
+        for dr, dc in directions:
+            nr, nc = r + dr, c + dc
+            
+            # Boundary & Validity Check
+            if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] != 1:
+                if (nr, nc) not in visited:
+                    visited.add((nr, nc))  # Mark as visited IMMEDIATELY!
+                    q.append((nr, nc, dist + 1))
+                    
+    return -1  # Path not found</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge: BFS Problem Set</h4>
+                    <p>Apply your BFS template to solve these official competition and platform problems:</p>
+
+                    <ol>
+                        <li>
+                            <b>LeetCode 733 - Flood Fill:</b> 
+                            <a href="https://leetcode.com/problems/flood-fill/" target="_blank">https://leetcode.com/problems/flood-fill/</a><br>
+                            <i>Hint: Start BFS from <code>(sr, sc)</code>. Update adjacent cells of the original color to the new color layer-by-layer!</i>
+                        </li>
+                        <li>
+                            <b>LeetCode 1091 - Shortest Path in Binary Matrix:</b> 
+                            <a href="https://leetcode.com/problems/shortest-path-in-binary-matrix/" target="_blank">https://leetcode.com/problems/shortest-path-in-binary-matrix/</a><br>
+                            <i>Hint: 8-directional BFS traversal! Find the shortest clear path from top-left <code>(0,0)</code> to bottom-right <code>(N-1, N-1)</code>.</i>
+                        </li>
+                        <li>
+                            <b>CCC '24 J5 - Harvest Harvest:</b> 
+                            <a href="https://dmoj.ca/problem/ccc24j5" target="_blank">https://dmoj.ca/problem/ccc24j5</a><br>
+                            <i>Hint: Start BFS from the pumpkin patch coordinates. Traverse all reachable crop cells (Small $S=1$, Medium $M=5$, Large $L=10$) and sum up total harvest value!</i>
+                        </li>
+                        <li>
+                            <b>CCC '03 S3 - Floor Plan:</b> 
+                            <a href="https://dmoj.ca/problem/ccc03s3" target="_blank">https://dmoj.ca/problem/ccc03s3</a><br>
+                            <i>Hint: Use BFS to calculate the exact room size (total tile count) of each unvisited connected room component. Sort room sizes in descending order and greedily fit flooring tiles!</i>
+                        </li>
+                        <li>
+                            <b>CCC '10 J5 - Knight Hop:</b> 
+                            <a href="https://dmoj.ca/problem/ccc10j5" target="_blank">https://dmoj.ca/problem/ccc10j5</a><br>
+                            <i>Hint: A chess knight has 8 possible moves: <code>[(-2,-1), (-2,1), (-1,-2), (-1,2), (1,-2), (1,2), (2,-1), (2,1)]</code>. Use BFS to find the minimum knight moves to reach target square!</i>
+                        </li>
+                        <li>
+                            <b>CCC '07 S3 - Friends:</b> 
+                            <a href="https://dmoj.ca/problem/ccc07s3" target="_blank">https://dmoj.ca/problem/ccc07s3</a><br>
+                            <i>Hint: Directed graph BFS/Linked List traversal. Track separation distance between student A and student B!</i>
+                        </li>
+                        <li>
+                            <b>CCC '18 J5 - Choose Your Own Path:</b> 
+                            <a href="https://dmoj.ca/problem/ccc18j5" target="_blank">https://dmoj.ca/problem/ccc18j5</a><br>
+                            <i>Hint: Tree/Graph BFS traversal. Check if all pages are reachable from Page 1, and output the shortest path length to any ending page (page with 0 options).</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Module 8 (Level 3) -->
+            <section id="l3-m8">
+                <h3>Module 8: Recursion, DFS & Backtracking</h3>
+                <p><b>Concept:</b> <b>Depth-First Search (DFS)</b> explores a graph by going <b>as deep as possible</b> down a single path before backtracking to explore alternate branches. DFS is naturally implemented using <b>Recursion</b> (a function calling itself).</p>
+
+                <h4>1. Understanding Recursion First</h4>
+                <p>A recursive function breaks a problem down into smaller self-similar instances. Every recursive function MUST contain two parts:</p>
+                <ul>
+                    <li><b>Base Case:</b> The stopping condition that terminates recursion.</li>
+                    <li><b>Recursive Call:</b> Calling the function itself with modified arguments moving toward the base case.</li>
+                </ul>
+
+                <pre><code># Simple Recursion Example: Factorial Calculation n! = n * (n - 1)!
+def factorial(n):
+    # 1. Base Case
+    if n == 1 or n == 0:
+        return 1
+    # 2. Recursive Step
+    return n * factorial(n - 1)
+
+print(factorial(5))  # Output: 120 (5 * 4 * 3 * 2 * 1)</code></pre>
+
+                <h4>2. Standard DFS Grid Template (Formula Code)</h4>
+                <p>Below is the standard recursive DFS formula code for grid exploration (e.g., Flood Fill / Connected Components):</p>
+
+                <pre><code>def dfs_grid(r, c, grid, visited):
+    rows, cols = len(grid), len(grid[0])
+    
+    # 1. Base Case & Boundary Validation Check
+    if r < 0 or r >= rows or c < 0 or c >= cols:
+        return
+    if grid[r][c] == 1 or (r, c) in visited:  # Wall or already visited
+        return
+        
+    # 2. Mark current cell as visited
+    visited.add((r, c))
+    
+    # 3. Recursively explore all 4 directions (Deep Exploration!)
+    dfs_grid(r - 1, c, grid, visited)  # Up
+    dfs_grid(r + 1, c, grid, visited)  # Down
+    dfs_grid(r, c - 1, grid, visited)  # Left
+    dfs_grid(r, c + 1, grid, visited)  # Right</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Practice Set 1: Standard DFS Problems</h4>
+                    <p>Re-solve these grid problems using recursive DFS instead of BFS to compare both approaches:</p>
+                    <ol>
+                        <li><b>LeetCode 733 - Flood Fill:</b> Compare recursive call stack behavior against BFS queue traversal.</li>
+                        <li><b>CCC '03 S3 - Floor Plan:</b> Use recursive DFS to calculate connected room cell areas!</li>
+                    </ol>
+                </div>
+
+                <h4>3. Backtracking: Restoring State for Path Searching</h4>
+                <p>While standard DFS marks cells as permanently visited, <b>Backtracking</b> is used when searching for specific valid paths. After exploring a path recursively, we <b>undo/restore</b> the cell's state (unvisit it) so other paths can reuse that same cell!</p>
+
+                <div class="tip-box">
+                    🔄 <b>The Backtracking Pattern:</b><br>
+                    <pre><code># Mark state (Choose)
+visited.add((r, c))
+
+# Explore deeper recursively (Explore)
+dfs(r, c)
+
+# UNDO state after recursive call finishes! (Unchoose / Backtrack)
+visited.remove((r, c))</code></pre>
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🔥 Practice Set 2: Backtracking Path Challenges</h4>
+                    <p>Solve these classic path-finding and search problems using Backtracking:</p>
+
+                    <ol>
+                        <li>
+                            <b>LeetCode 1219 - Path with Maximum Gold:</b> 
+                            <a href="https://leetcode.com/problems/path-with-maximum-gold/" target="_blank">https://leetcode.com/problems/path-with-maximum-gold/</a><br>
+                            <i>Hint: Start DFS from every cell containing gold. Temporarily set <code>grid[r][c] = 0</code> to mark visited during recursion, and RESTORE original gold value <code>grid[r][c] = gold_val</code> when backtracking to find maximum path sum!</i>
+                        </li>
+                        <li>
+                            <b>LeetCode 79 - Word Search:</b> 
+                            <a href="https://leetcode.com/problems/word-search/" target="_blank">https://leetcode.com/problems/word-search/</a><br>
+                            <i>Hint: Match target word character-by-character along 2D grid paths. Use backtracking to temporarily mark visited characters (e.g., set to <code>'#'</code>) and unmark them upon return!</i>
+                        </li>
+                    </ol>
+                </div>
+            </section>
 
         </main>
     </div>
