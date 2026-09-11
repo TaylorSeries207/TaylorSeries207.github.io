@@ -221,15 +221,22 @@
             font-size: 0.9rem;
         }
 
-        /* Floating Cat Widget */
-        .cat-widget-container {
+        /* Floating Interactive Widgets Bar (Snake + Cat) */
+        .widgets-bar {
             position: fixed;
             bottom: 30px;
             right: 30px;
             display: flex;
+            align-items: flex-end;
+            gap: 15px;
+            z-index: 9999;
+        }
+
+        .widget-item {
+            display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 9999;
+            position: relative;
         }
 
         .speech-bubble {
@@ -238,7 +245,7 @@
             padding: 8px 16px;
             border-radius: 20px;
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             letter-spacing: 0.5px;
             margin-bottom: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
@@ -247,6 +254,8 @@
             transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             pointer-events: none;
             white-space: nowrap;
+            position: absolute;
+            bottom: 100%;
         }
 
         .speech-bubble.show {
@@ -267,16 +276,18 @@
             width: 0;
         }
 
-        .floating-cat {
+        .floating-icon {
             font-size: 3.2rem;
             cursor: pointer;
             user-select: none;
-            transition: transform 0.1s ease;
+            transition: transform 0.15s ease;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .floating-cat:hover {
-            transform: scale(1.1);
+        .floating-icon:hover {
+            transform: scale(1.15) rotate(-5deg);
         }
     </style>
 </head>
@@ -374,19 +385,30 @@
 
     </div>
 
-    <!-- Interactive Cat Widget -->
-    <div class="cat-widget-container">
-        <div class="speech-bubble" id="speechBubble">DEBUGGGGGGGGGGGGG</div>
-        <div class="floating-cat" id="catBtn" title="Click me!">🐱</div>
+    <!-- Interactive Floating Bar (Snake Game + Cat) -->
+    <div class="widgets-bar">
+        
+        <!-- Floating Snake Game Widget (Left Side) -->
+        <div class="widget-item">
+            <div class="speech-bubble" id="snakeBubble">Tired of debugging? 🐛 Break the loop & chill here! 🎮</div>
+            <a href="Snake_EN.html" target="_blank" class="floating-icon" id="snakeBtn" title="Tired? Play Snake Game!">🐍</a>
+        </div>
+
+        <!-- Floating Cat Widget (Right Side) -->
+        <div class="widget-item">
+            <div class="speech-bubble" id="speechBubble">DEBUGGGGGGGGGGGGG</div>
+            <div class="floating-icon" id="catBtn" title="Click me!">🐱</div>
+        </div>
+
     </div>
 
     <script>
+        // Cat Button Logic
         const catBtn = document.getElementById('catBtn');
         const bubble = document.getElementById('speechBubble');
         let hideTimer;
 
         catBtn.addEventListener('click', () => {
-            // Bounce animation
             catBtn.style.transform = 'scale(0.8) translateY(10px)';
             
             setTimeout(() => {
@@ -397,15 +419,29 @@
                 catBtn.style.transform = '';
             }, 150);
 
-            // Trigger speech bubble
             bubble.classList.add('show');
-
-            // Reset timer on consecutive clicks
             clearTimeout(hideTimer);
             
             hideTimer = setTimeout(() => {
                 bubble.classList.remove('show');
             }, 1500);
+        });
+
+        // Snake Button Logic (Hover / Click trigger message)
+        const snakeBtn = document.getElementById('snakeBtn');
+        const snakeBubble = document.getElementById('snakeBubble');
+        let snakeTimer;
+
+        // Show humorous message on hover
+        snakeBtn.addEventListener('mouseenter', () => {
+            snakeBubble.classList.add('show');
+            clearTimeout(snakeTimer);
+        });
+
+        snakeBtn.addEventListener('mouseleave', () => {
+            snakeTimer = setTimeout(() => {
+                snakeBubble.classList.remove('show');
+            }, 800);
         });
     </script>
 </body>
