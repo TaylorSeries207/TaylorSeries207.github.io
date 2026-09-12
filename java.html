@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Java Curriculum | Michael's Coding Academy</title>
+    
+    <!-- MathJax for rendering Math LaTeX syntax -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
     <style>
         :root {
             --primary-color: #7A003C; /* McMaster Maroon */
@@ -14,7 +25,9 @@
             --code-bg: #1e1e1e;
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -26,6 +39,7 @@
             scroll-behavior: smooth;
         }
 
+        /* Top Header Sticky Bar */
         header {
             background: linear-gradient(135deg, var(--primary-color), #4a0024);
             color: white;
@@ -62,6 +76,7 @@
             transform: translateY(-1px);
         }
 
+        /* Main Container with Sidebar Grid */
         .tutorial-container {
             max-width: 1280px;
             margin: 30px auto;
@@ -71,6 +86,7 @@
             gap: 30px;
         }
 
+        /* Sidebar Navigation */
         .sidebar {
             position: sticky;
             top: 95px;
@@ -83,7 +99,9 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.02);
         }
 
-        .level-group { margin-bottom: 22px; }
+        .level-group {
+            margin-bottom: 22px;
+        }
 
         .level-title {
             font-size: 0.9rem;
@@ -96,8 +114,15 @@
             border-bottom: 2px solid var(--secondary-color);
         }
 
-        .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar li { margin-bottom: 4px; }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
 
         .sidebar a {
             color: #555;
@@ -117,6 +142,7 @@
             padding-left: 14px;
         }
 
+        /* Main Content Area */
         .content {
             background: var(--card-bg);
             padding: 40px;
@@ -144,8 +170,17 @@
             color: var(--primary-color);
             margin-top: 35px;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
+        p {
+            color: #444;
+            font-size: 0.98rem;
+        }
+
+        /* Code Block Styling */
         pre {
             background-color: var(--code-bg);
             color: #f8f8f2;
@@ -167,8 +202,13 @@
             font-size: 0.9em;
         }
 
-        pre code { background-color: transparent; color: inherit; padding: 0; }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
 
+        /* Tip & Challenge Boxes */
         .tip-box {
             background-color: #fffdf7;
             border-left: 4px solid var(--secondary-color);
@@ -178,242 +218,886 @@
             font-size: 0.95rem;
         }
 
-        .sidebar::-webkit-scrollbar { width: 5px; }
-        .sidebar::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 4px; }
+        .challenge-box {
+            background-color: #fcf8f9;
+            border-left: 4px solid var(--primary-color);
+            padding: 18px 22px;
+            border-radius: 0 8px 8px 0;
+            margin: 25px 0;
+        }
 
+        .challenge-box h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.05rem;
+        }
+
+        /* Tables */
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        .menu-table th, .menu-table td {
+            border: 1px solid #e2e8f0;
+            padding: 10px 15px;
+            text-align: center;
+        }
+
+        .menu-table th {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Custom Scrollbar */
+        .sidebar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #e0e0e0;
+            border-radius: 4px;
+        }
+
+        /* Mobile Layout */
         @media (max-width: 900px) {
-            .tutorial-container { grid-template-columns: 1fr; }
-            .sidebar { position: static; height: auto; }
+            .tutorial-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+                height: auto;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
         <h1>☕ Java Curriculum & CCC Prep</h1>
         <a href="index.html" class="back-btn">&larr; Back to Home</a>
     </header>
 
+    <!-- Main Container -->
     <div class="tutorial-container">
         
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             
+            <!-- LEVEL 1 -->
             <div class="level-group">
                 <div class="level-title">Level 1: Foundations</div>
                 <ul>
-                    <li><a href="#j1-m1">Module 1: Main Method & Output</a></li>
-                    <li><a href="#j1-m2">Module 2: Primitive Types & Arithmetic</a></li>
-                    <li><a href="#j1-m3">Module 3: String Operations</a></li>
-                    <li><a href="#j1-m4">Module 4: Scanner Input & If-Else</a></li>
-                    <li><a href="#j1-m5">Module 5: Fixed Arrays (int[])</a></li>
-                    <li><a href="#j1-m6">Module 6: Methods & Scope</a></li>
-                    <li><a href="#j1-m7">Module 7: Debugging & NullPointer</a></li>
-                    <li><a href="#j1-m8">Module 8: L1 Assessment Test</a></li>
+                    <li><a href="#l1-m1">Module 1: Main Method & Output</a></li>
+                    <li><a href="#l1-m2">Module 2: Primitive Types & Math</a></li>
+                    <li><a href="#l1-m3">Module 3: String Operations</a></li>
+                    <li><a href="#l1-m4">Module 4: Scanner Input & If-Else</a></li>
+                    <li><a href="#l1-m5">Module 5: Fixed Arrays (int[])</a></li>
+                    <li><a href="#l1-m6">Module 6: Methods & Scope</a></li>
+                    <li><a href="#l1-m7">Module 7: Debug & NullPointer</a></li>
+                    <li><a href="#l1-m8">Module 8: L1 Assessment Test</a></li>
                 </ul>
             </div>
 
+            <!-- LEVEL 2 -->
             <div class="level-group">
                 <div class="level-title">Level 2: Control & Collections</div>
                 <ul>
-                    <li><a href="#j2-m1">Module 1: Switch & Ternary Operator</a></li>
-                    <li><a href="#j2-m2">Module 2: CCC J1 Practice</a></li>
-                    <li><a href="#j2-m3">Module 3: While & Do-While Loops</a></li>
-                    <li><a href="#j2-m4">Module 4: For Loop & Enhanced For</a></li>
-                    <li><a href="#j2-m5">Module 5: Dynamic Arrays (ArrayList)</a></li>
-                    <li><a href="#j2-m6">Module 6: HashSet & Unique Sets</a></li>
-                    <li><a href="#j2-m7">Module 7: CCC J2 Problem Solving</a></li>
-                    <li><a href="#j2-m8">Module 8: L2 Assessment Test</a></li>
+                    <li><a href="#l2-m1">Module 1: Switch & Ternary</a></li>
+                    <li><a href="#l2-m2">Module 2: CCC J1 Practice</a></li>
+                    <li><a href="#l2-m3">Module 3: While & Do-While</a></li>
+                    <li><a href="#l2-m4">Module 4: For & Enhanced For</a></li>
+                    <li><a href="#l2-m5">Module 5: Dynamic Arrays (ArrayList)</a></li>
+                    <li><a href="#l2-m6">Module 6: HashSet & Unique Sets</a></li>
+                    <li><a href="#l2-m7">Module 7: CCC J2 Problem Solving</a></li>
+                    <li><a href="#l2-m8">Module 8: L2 Assessment Test</a></li>
                 </ul>
             </div>
 
+            <!-- LEVEL 3 -->
             <div class="level-group">
                 <div class="level-title">Level 3: OOP & Algorithms</div>
                 <ul>
-                    <li><a href="#j3-m1">Module 1: Classes & Objects</a></li>
-                    <li><a href="#j3-m2">Module 2: HashMap (Key-Value)</a></li>
-                    <li><a href="#j3-m3">Module 3: 2D Arrays & Grid Traversal</a></li>
-                    <li><a href="#j3-m4">Module 4: Fast I/O (BufferedReader)</a></li>
-                    <li><a href="#j3-m5">Module 5: Prefix Sum Arrays</a></li>
-                    <li><a href="#j3-m6">Module 6: Stack, Queue & PriorityQueue</a></li>
-                    <li><a href="#j3-m7">Module 7: Graph Traversal (BFS)</a></li>
-                    <li><a href="#j3-m8">Module 8: Recursion & DFS</a></li>
+                    <li><a href="#l3-m1">Module 1: Classes & Objects</a></li>
+                    <li><a href="#l3-m2">Module 2: HashMap (Key-Value)</a></li>
+                    <li><a href="#l3-m3">Module 3: 2D Arrays & Grids</a></li>
+                    <li><a href="#l3-m4">Module 4: Fast I/O (BufferedReader)</a></li>
+                    <li><a href="#l3-m5">Module 5: Prefix Sum Arrays</a></li>
+                    <li><a href="#l3-m6">Module 6: Stack, Queue & PQ</a></li>
+                    <li><a href="#l3-m7">Module 7: Graph Traversal (BFS)</a></li>
+                    <li><a href="#l3-m8">Module 8: Recursion & DFS</a></li>
                 </ul>
             </div>
 
+            <!-- LEVEL 4 -->
             <div class="level-group">
                 <div class="level-title">Level 4: Competition</div>
                 <ul>
-                    <li><a href="#j4-m1">CCC Practical Questions</a></li>
+                    <li><a href="#l4-m1">CCC Practical Questions</a></li>
                 </ul>
             </div>
 
         </nav>
 
-        <!-- Main Content -->
+        <!-- Main Content Area -->
         <main class="content">
 
+            <!-- ================= LEVEL 1 ================= -->
             <h2 class="level-header">Java Level 1: Foundations</h2>
 
-            <section id="j1-m1">
+            <!-- Module 1 -->
+            <section id="l1-m1">
                 <h3>Module 1: Main Method & Output</h3>
-                <p>Every standalone Java program requires a <code>main</code> method inside a class structure.</p>
+                <p><b>Concept:</b> Welcome to Java! If you are transitioning from Python, the first thing you will notice is that Java requires more structure. In Python, a single line like <code>print("Hello")</code> works instantly. In Java, however, every line of executable code <b>must live inside a Class</b>, and execution always begins at one exact entry point: the <code>main</code> method.</p>
+                
+                <h4>1. Deconstructing the Java Boilerplate</h4>
+                <p>Let's break down every single keyword in your very first Java program so it never feels like magic again:</p>
+
                 <pre><code>public class Main {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
+        System.out.print("Welcome to Java Coding ");
+        System.out.println("Class!");
+    }
+}</code></pre>
+
+                <ul>
+                    <li><code>public class Main</code>: Declares a public container named <code>Main</code>. In Java, <b>the file name MUST match the class name exactly</b> (e.g., <code>Main.java</code>). On competitive programming platforms like DMOJ or CCC, your submission class MUST be named <code>Main</code>.</li>
+                    <li><code>public</code>: Means this method can be accessed from outside the file (by the Java Virtual Machine).</li>
+                    <li><code>static</code>: Means this method belongs to the class itself—it can run immediately without needing to create an object first.</li>
+                    <li><code>void</code>: Indicates that this function performs an action but returns no final value back.</li>
+                    <li><code>main(String[] args)</code>: The standardized function name that Java looks for to start your program. <code>String[] args</code> accepts optional command-line text inputs.</li>
+                </ul>
+
+                <h4>2. Printing Text: <code>println</code> vs <code>print</code></h4>
+                <p>Java provides two primary methods to output text to the screen:</p>
+                <ul>
+                    <li><code>System.out.println()</code>: Prints the given text and then <b>automatically jumps to a new line</b>.</li>
+                    <li><code>System.out.print()</code>: Prints the text but <b>keeps the cursor on the same line</b>.</li>
+                </ul>
+
+                <div class="tip-box">
+                    📌 <b>Escape Characters in Strings:</b><br>
+                    Use <code>\n</code> inside a string to manually insert a line break, and <code>\t</code> for a tab space.<br>
+                    <code>System.out.println("Line 1\nLine 2");</code> &rarr; Prints two separate lines!
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 1: Your First DMOJ Java Submission</h4>
+                    <p><b>Task:</b> Write a complete Java program in a class named <code>Main</code> that prints out the exact 3 lines below using escape characters or <code>System.out.println()</code>:</p>
+                    <pre><code>Hello!
+My name is Johnny!
+I am learning Java!</code></pre>
+
+                    <p>Submit your code on DMOJ: 👉 <a href="https://dmoj.ca/problem/helloworld" target="_blank">https://dmoj.ca/problem/helloworld</a></p>
+                </div>
+            </section>
+
+            <!-- Module 2 -->
+            <section id="l1-m2">
+                <h3>Module 2: Primitive Types & Arithmetic Operations</h3>
+                <p><b>Concept: Static Typing vs. Dynamic Typing.</b> Python is dynamically typed (a variable can hold an integer, and later be assigned a text string). Java is <b>statically typed</b>: you MUST explicitly declare the type of a variable before assigning a value to it. This allows Java to catch bugs during compilation before the program even runs!</p>
+
+                <h4>1. Java's Core Primitive Data Types</h4>
+                <p>Java stores simple raw values using <b>Primitive Types</b>:</p>
+
+                <table class="menu-table">
+                    <thead>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                            <th>Memory Size</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>int</code></td>
+                            <td>Standard whole numbers ($-2 \times 10^9$ to $+2 \times 10^9$)</td>
+                            <td>32-bit</td>
+                            <td><code>int age = 15;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>long</code></td>
+                            <td>Huge whole numbers (Up to $9 \times 10^{18}$). Crucial for CCC!</td>
+                            <td>64-bit</td>
+                            <td><code>long population = 8000000000L;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>double</code></td>
+                            <td>Decimal floating-point numbers</td>
+                            <td>64-bit</td>
+                            <td><code>double pi = 3.14159;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>boolean</code></td>
+                            <td>Logical truth values (<code>true</code> or <code>false</code> only)</td>
+                            <td>1-bit</td>
+                            <td><code>boolean isPassed = true;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>char</code></td>
+                            <td>A single character enclosed in <b>single quotes</b></td>
+                            <td>16-bit</td>
+                            <td><code>char grade = 'A';</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>2. The Integer Division Trap & Type Casting</h4>
+                <p>Pay close attention when dividing numbers in Java! Dividing two integers results in <b>Integer Division</b>, which truncates (cuts off) all decimal places completely!</p>
+
+                <pre><code>public class Main {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 3;
+        
+        // 🚨 INTEGER DIVISION TRAP!
+        System.out.println(a / b);           // Output: 3 (Decimals are lost!)
+        
+        // ✅ FIX: Explicit Type Casting to double forces decimal division
+        System.out.println((double)a / b);    // Output: 3.3333333333333335
+        
+        // MODULUS (Modulo): Remainder of integer division
+        System.out.println(a % b);           // Output: 1 (10 divided by 3 has remainder 1)
+    }
+}</code></pre>
+
+                <div class="tip-box">
+                    💡 <b>Math Library Helpers:</b><br>
+                    Java provides built-in math functions inside the <code>Math</code> class:<br>
+                    • <code>Math.max(x, y)</code> & <code>Math.min(x, y)</code> &rarr; Returns largest / smallest value.<br>
+                    • <code>Math.abs(x)</code> &rarr; Returns absolute value $|x|$.<br>
+                    • <code>Math.pow(base, exp)</code> &rarr; Calculates power (e.g., $2^3 = 8.0$, returns <code>double</code>).<br>
+                    • <code>Math.round(x)</code> &rarr; Rounds a float/double to the nearest integer.
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 2: Bubble Tea Store Bill Calculator</h4>
+                    <p>Calculate the total cost for 2 Medium Fruit Teas ($8.99 each) and 1 Small Milk Tea ($6.59). Add <b>13% Ontario HST tax</b>. Use <code>Math.round(total * 100.0) / 100.0</code> to round to 2 decimal places and output the exact change from a $100 bill!</p>
+                </div>
+            </section>
+
+            <!-- Module 3 -->
+            <section id="l1-m3">
+                <h3>Module 3: String Operations & The Immutability Rule</h3>
+                <p><b>Concept: Objects vs. Primitives.</b> Unlike <code>int</code> or <code>char</code>, a <code>String</code> in Java is an <b>Object</b> (a reference type). Strings represent sequences of text enclosed in <b>double quotes</b> (e.g., <code>"Hello"</code>).</p>
+
+                <h4>1. Essential String Manipulation Methods</h4>
+                <p>Because Strings are objects, we interact with them by calling built-in methods:</p>
+
+                <pre><code>String msg = "Hello Java!";
+
+// 1. Length of String (Notice: .length() is a METHOD with parentheses!)
+System.out.println(msg.length());         // Output: 11
+
+// 2. Access character at index (Zero-based indexing!)
+System.out.println(msg.charAt(0));        // Output: 'H'
+System.out.println(msg.charAt(6));        // Output: 'J'
+
+// 3. Substring extraction: .substring(startIndex, endIndex)
+// CRITICAL: startIndex is INCLUSIVE, endIndex is EXCLUSIVE!
+System.out.println(msg.substring(0, 5));  // Output: "Hello" (Indices 0, 1, 2, 3, 4)
+
+// 4. Case Conversion
+System.out.println(msg.toUpperCase());    // Output: "HELLO JAVA!"
+System.out.println(msg.toLowerCase());    // Output: "hello java!"</code></pre>
+
+                <div class="tip-box">
+                    🚨 <b>THE BIG TRAP: Comparing Strings in Java!</b><br>
+                    <b>NEVER use <code>==</code> to compare String contents in Java!</b><br>
+                    In Java, <code>==</code> checks if two variables point to the exact same <b>memory address location</b>, NOT whether their text contents match!<br>
+                    <b>ALWAYS use <code>.equals()</code> or <code>.equalsIgnoreCase()</code>!</b>
+                    <pre><code>String s1 = new String("cat");
+String s2 = "cat";
+
+System.out.println(s1 == s2);        // ❌ false! (Different memory references)
+System.out.println(s1.equals(s2));   // ✅ true! (Compares character by character content)</code></pre>
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 3: String Inspector</h4>
+                    <p>Store a text variable in Java. Print its total length, display its first and last characters using <code>.charAt()</code>, and check if it equals <code>"Java"</code> ignoring uppercase/lowercase using <code>.equalsIgnoreCase()</code>.</p>
+                </div>
+            </section>
+
+            <!-- Module 4 -->
+            <section id="l1-m4">
+                <h3>Module 4: Scanner Input & Conditional Logic</h3>
+                <p><b>Concept:</b> Interactive programs need to take input from users or contest test files. In Java, we use the <code>Scanner</code> class from <code>java.util.Scanner</code> to read data from <code>System.in</code>.</p>
+
+                <h4>1. Reading Console Input with Scanner</h4>
+                <pre><code>import java.util.Scanner;  // Import Scanner tool
+
+public class Main {
+    public static void main(String[] args) {
+        // Create Scanner object reading from standard input
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter your exam score: ");
+        int score = sc.nextInt();  // Reads the next integer
+        
+        // Multi-Branch If - Else If - Else Logic
+        if (score >= 90) {
+            System.out.println("Grade: A+");
+        } else if (score >= 80) {
+            System.out.println("Grade: A");
+        } else if (score >= 50) {
+            System.out.println("Grade: Pass");
+        } else {
+            System.out.println("Needs Review!");
+        }
+        
+        sc.close();  // Good practice: close Scanner when done
+    }
+}</code></pre>
+
+                <div class="tip-box">
+                    ⚠️ <b>The Dreaded Scanner Trailing Newline Bug!</b><br>
+                    When you call <code>sc.nextInt()</code> or <code>sc.nextDouble()</code>, Scanner reads the number but <b>leaves the trailing <code>\n</code> (Enter key press) sitting in the input buffer</b>!<br>
+                    If you call <code>sc.nextLine()</code> immediately afterward to read a text line, it will consume that leftover <code>\n</code> instantly and return an empty string!<br>
+                    <b>Fix:</b> Insert a dummy <code>sc.nextLine();</code> right after reading numbers to flush the newline out of the buffer!
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 4: Official CCC Practice Questions</h4>
+                    <p>Solve these foundational conditional logic problems on DMOJ:</p>
+                    <ol>
+                        <li><b>CCC '24 J1 - Conveyor Belt Sushi:</b> <a href="https://dmoj.ca/problem/ccc24j1" target="_blank">https://dmoj.ca/problem/ccc24j1</a></li>
+                        <li><b>CCC '20 J1 - Dog Treats:</b> <a href="https://dmoj.ca/problem/ccc20j1" target="_blank">https://dmoj.ca/problem/ccc20j1</a></li>
+                        <li><b>CCC '23 J1 - Deliv-e-droid:</b> <a href="https://dmoj.ca/problem/ccc23j1" target="_blank">https://dmoj.ca/problem/ccc23j1</a></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Module 5 -->
+            <section id="l1-m5">
+                <h3>Module 5: Fixed Arrays (int[])</h3>
+                <p><b>Concept: Fixed Memory Allocation.</b> An array in Java is a contiguous block of memory designed to store multiple items of the same data type. Unlike Python lists, standard Java arrays have a <b>FIXED length</b> created at initialization that can never shrink or grow.</p>
+
+                <h4>1. Initializing and Indexing Arrays</h4>
+                <pre><code>import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        // Method 1: Declare array with fixed size 5 (Default values populated as 0)
+        int[] scores = new int[5];
+        scores[0] = 95;  // Index 0: First element
+        scores[1] = 88;  // Index 1: Second element
+        
+        // Array Length Property (Notice: .length has NO parentheses for arrays!)
+        System.out.println("Array Capacity: " + scores.length);  // Output: 5
+        
+        // Method 2: Literal Allocation (Directly assigning values)
+        int[] nums = {45, 12, 89, 3, 27};
+        
+        // Built-in Sorting: Arrays.sort() sorts the array in-place in O(N log N) time!
+        Arrays.sort(nums);
+        
+        // Utility Printing: Arrays.toString() turns array into a readable string
+        System.out.println(Arrays.toString(nums));  // Output: [3, 12, 27, 45, 89]
+    }
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 5: Array Min, Max & Average Calculator</h4>
+                    <p>Read 5 numbers from user input using <code>Scanner</code> into an array <code>int[] arr</code>. Loop through the array to calculate and display the sum, exact average (as a double), minimum value, and maximum value.</p>
+                </div>
+            </section>
+
+            <!-- Module 6 -->
+            <section id="l1-m6">
+                <h3>Module 6: Methods & Variable Scope</h3>
+                <p><b>Concept: Modular Code.</b> A <b>method</b> (or function) is a reusable block of code that performs a specific task. Writing methods keeps your code clean, readable, and DRY (Don't Repeat Yourself).</p>
+
+                <h4>1. Structure of a Static Method</h4>
+                <p>In competitive Java programming, since our main entry point is <code>public static void main</code>, any helper method declared in the same file and called directly from <code>main</code> MUST also be marked with <code>static</code>:</p>
+
+                <pre><code>public class Main {
+    
+    // Custom static method: Accepts two int parameters, returns an int
+    public static int calculateArea(int width, int height) {
+        int area = width * height;
+        return area;  // Returns calculated result
+    }
+
+    public static void main(String[] args) {
+        // Call helper method
+        int result = calculateArea(10, 20);
+        System.out.println("Rectangle Area: " + result);  // Output: 200
+    }
+}</code></pre>
+
+                <div class="tip-box">
+                    🔒 <b>Variable Scope & Pass-by-Value:</b><br>
+                    Variables declared inside a method exist ONLY within that method's curly braces <code>{}</code>.<br>
+                    Java passes primitive arguments by value—modifying a parameter variable inside a helper method will NOT change the original variable back in <code>main()</code>!
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 6: IsPrime Helper Method</h4>
+                    <p>Write a static method <code>public static boolean isPrime(int n)</code> that returns <code>true</code> if $n$ is prime, and <code>false</code> otherwise. Test it inside <code>main()</code> with multiple numbers!</p>
+                </div>
+            </section>
+
+            <!-- Module 7 -->
+            <section id="l1-m7">
+                <h3>Module 7: Debugging & NullPointerException (NPE)</h3>
+                <p><b>Concept: Understanding Null.</b> In Java, primitive variables (like <code>int</code>) directly store values (defaulting to 0). Object reference variables (like <code>String</code> or arrays) store memory reference pointers. If an object reference variable points to no memory location, its value is <b><code>null</code></b>.</p>
+
+                <p>Attempting to call a method or property on a variable that holds <code>null</code> causes Java to crash with a <b><code>NullPointerException</code> (NPE)</b>!</p>
+
+                <pre><code>public class Main {
+    public static void main(String[] args) {
+        String username = null;
+        
+        // ❌ CRASH! Throws NullPointerException because username has no object!
+        // System.out.println(username.length());
+        
+        // ✅ SAFE GUARD: Always check if object is null first!
+        if (username != null && username.length() > 0) {
+            System.out.println("User length: " + username.length());
+        } else {
+            System.out.println("Username is null or uninitialized!");
+        }
+    }
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🐛 Debugging Lab: Spot the Java Runtime Crashes!</h4>
+                    <p>Analyze these common beginner exceptions:</p>
+                    <pre><code>// Scenario A: Out of Bounds
+int[] arr = new int[3];
+arr[3] = 100;  // 🔴 Bug: ArrayIndexOutOfBoundsException! (Valid indices are 0, 1, 2)
+
+// Scenario B: Bad Number Conversion
+String input = "abc";
+int num = Integer.parseInt(input);  // 🔴 Bug: NumberFormatException!</code></pre>
+                </div>
+            </section>
+
+            <!-- Module 8 -->
+            <section id="l1-m8">
+                <h3>Module 8: Level 1 Assessment Test</h3>
+                <p>Demonstrate your Java mastery by solving all 5 official CCC Junior 1 contest problems on DMOJ:</p>
+
+                <div class="challenge-box">
+                    <h4>📝 Level 1 Official CCC Problem Set</h4>
+                    <ol>
+                        <li><b>CCC '11 J1 - Which Alien?:</b> <a href="https://dmoj.ca/problem/ccc11j1" target="_blank">https://dmoj.ca/problem/ccc11j1</a></li>
+                        <li><b>CCC '07 J1 - Who is in the Middle?:</b> <a href="https://dmoj.ca/problem/ccc07j1" target="_blank">https://dmoj.ca/problem/ccc07j1</a></li>
+                        <li><b>CCC '16 J1 - Tournament Selection:</b> <a href="https://dmoj.ca/problem/ccc16j1" target="_blank">https://dmoj.ca/problem/ccc16j1</a></li>
+                        <li><b>CCC '22 J1 - Cupcake Party:</b> <a href="https://dmoj.ca/problem/ccc22j1" target="_blank">https://dmoj.ca/problem/ccc22j1</a></li>
+                        <li><b>CCC '25 J1:</b> <a href="https://dmoj.ca/problem/ccc25j1" target="_blank">https://dmoj.ca/problem/ccc25j1</a></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- ================= LEVEL 2 ================= -->
+            <h2 class="level-header" style="margin-top: 80px;">Java Level 2: Control Flow & Collections</h2>
+
+            <!-- Module 1 -->
+            <section id="l2-m1">
+                <h3>Module 1: Switch Statements & Ternary Operator</h3>
+                <p><b>Concept: Cleaning Up Conditional Code.</b> When matching a single variable against multiple discrete options, writing dozens of <code>else if</code> branches becomes messy. Java provides <code>switch</code> statements and concise inline <code>ternary</code> operators to streamline your code.</p>
+
+                <h4>1. Modern Switch Expressions & Ternary Syntax</h4>
+                <pre><code>int option = 2;
+
+// Modern Java Switch Expression (Arrow Syntax - Prevents accidental fall-through!)
+switch (option) {
+    case 1 -> System.out.println("Option 1 Selected");
+    case 2 -> System.out.println("Option 2 Selected");
+    case 3 -> System.out.println("Option 3 Selected");
+    default -> System.out.println("Invalid Choice");
+}
+
+// Ternary Operator Short-hand: (condition) ? valueIfTrue : valueIfFalse;
+int mark = 85;
+String result = (mark >= 50) ? "PASS" : "FAIL";
+System.out.println("Status: " + result);  // Output: Status: PASS</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 1: CCC '08 J1 - Body Mass Index</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc08j1" target="_blank">CCC '08 J1</a> on DMOJ using clean conditional formatting.</p>
+                </div>
+            </section>
+
+            <!-- Module 2 -->
+            <section id="l2-m2">
+                <h3>Module 2: CCC J1 Practice Problem Set</h3>
+                <div class="challenge-box">
+                    <h4>📝 CCC J1 Practice Questions</h4>
+                    <ol>
+                        <li><b>CCC '12 J1 - Speed fine are not fine!:</b> <a href="https://dmoj.ca/problem/ccc12j1" target="_blank">https://dmoj.ca/problem/ccc12j1</a></li>
+                        <li><b>CCC '14 J1 - Triangle Times:</b> <a href="https://dmoj.ca/problem/ccc14j1" target="_blank">https://dmoj.ca/problem/ccc14j1</a></li>
+                        <li><b>CCC '18 J1 - Telemarketer or not?:</b> <a href="https://dmoj.ca/problem/ccc18j1" target="_blank">https://dmoj.ca/problem/ccc18j1</a></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Module 3 -->
+            <section id="l2-m3">
+                <h3>Module 3: While & Do-While Loops</h3>
+                <p><b>Concept: Indefinite Iteration.</b> Use a <code>while</code> loop when you do not know in advance how many times an operation needs to run. A <code>do-while</code> loop guarantees that the code block executes <b>at least once</b> before checking its continuation condition.</p>
+
+                <pre><code>// Standard While Loop
+int energy = 100;
+while (energy > 0) {
+    System.out.println("Running... Energy left: " + energy);
+    energy -= 30;
+}
+
+// Do-While Loop (Executes block first, then evaluates condition!)
+int choice;
+do {
+    System.out.println("Processing transaction...");
+    choice = 0;
+} while (choice != 0);</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 3: CCC '24 J2 - Dusa And The Yobi</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc24j2" target="_blank">CCC '24 J2</a> using an infinite <code>while(true)</code> loop. Break out when Dusa encounters a Yobi equal to or larger than its current size!</p>
+                </div>
+            </section>
+
+            <!-- Module 4 -->
+            <section id="l2-m4">
+                <h3>Module 4: For Loop & Enhanced For-Each Loop</h3>
+                <p><b>Concept: Definite Iteration.</b> Use a standard index <code>for</code> loop when you know the exact iteration count or need to track element indices. Use an <b>Enhanced For-Each Loop</b> for clean, readable traversal over arrays or collections.</p>
+
+                <pre><code>// Standard Index-Based For Loop
+for (int i = 0; i < 5; i++) {
+    System.out.println("Index: " + i);
+}
+
+// Enhanced For-Each Loop (Clean traversal!)
+String[] names = {"Alice", "Bob", "Charlie"};
+for (String name : names) {
+    System.out.println("Student: " + name);
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 4: CCC '14 J2 - Vote Count</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc14j2" target="_blank">CCC '14 J2</a> by iterating over vote characters using a for loop and <code>.charAt(i)</code> to count total votes for Singer A vs Singer B!</p>
+                </div>
+            </section>
+
+            <!-- Module 5 -->
+            <section id="l2-m5">
+                <h3>Module 5: Dynamic Arrays (ArrayList & Wrapper Classes)</h3>
+                <p><b>Concept: Resizable Lists.</b> Standard Java arrays have fixed sizes. When you need a list that dynamically expands as elements are added, use <code>java.util.ArrayList</code>.</p>
+
+                <h4>1. Wrapper Classes (Primitives vs. Objects)</h4>
+                <p><code>ArrayList</code> can ONLY store Objects, not primitives! Java provides <b>Wrapper Classes</b> that wrap primitive values into reference objects:</p>
+                <ul>
+                    <li><code>int</code> &rarr; <code>Integer</code></li>
+                    <li><code>double</code> &rarr; <code>Double</code></li>
+                    <li><code>boolean</code> &rarr; <code>Boolean</code></li>
+                    <li><code>char</code> &rarr; <code>Character</code></li>
+                </ul>
+
+                <pre><code>import java.util.ArrayList;
+import java.util.Collections;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create dynamic list storing Integers
+        ArrayList<Integer> list = new ArrayList<>();
+        
+        // 1. Add elements (.add)
+        list.add(45);
+        list.add(12);
+        list.add(89);
+        
+        // 2. Get element at index (.get - DO NOT use square brackets [])
+        System.out.println("First element: " + list.get(0));
+        
+        // 3. Count total elements (.size() - DO NOT use .length)
+        System.out.println("List size: " + list.size());
+        
+        // 4. Sort dynamic list using Collections framework
+        Collections.sort(list);
+        System.out.println("Sorted ArrayList: " + list);
+    }
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 5: Dynamic Odd Number Filter</h4>
+                    <p>Read $N$ numbers into an <code>ArrayList&lt;Integer&gt;</code>, filter out all even numbers, sort the remaining odd numbers, and display the final list.</p>
+                </div>
+            </section>
+
+            <!-- Module 6 -->
+            <section id="l2-m6">
+                <h3>Module 6: HashSet & Unique Sets</h3>
+                <p><b>Concept: Fast Unique Collections.</b> A <code>HashSet</code> stores unique items and enforces <b>no duplicate elements</b>. Because it uses hashing algorithms internally, checking whether an element exists via <code>.contains()</code> takes ultra-fast <b>$O(1)$ constant time</b>!</p>
+
+                <pre><code>import java.util.HashSet;
+
+public class Main {
+    public static void main(String[] args) {
+        HashSet<String> set = new HashSet<>();
+        
+        set.add("Apple");
+        set.add("Banana");
+        set.add("Apple");  // Duplicate automatically rejected!
+        
+        System.out.println("Unique count: " + set.size());  // Output: 2
+        
+        // Instant O(1) Search
+        if (set.contains("Apple")) {
+            System.out.println("Apple is in the set!");
+        }
+    }
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 6: CCC '24 J3 - Bronze Count</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc24j3" target="_blank">CCC '24 J3</a> using <code>HashSet</code> to extract unique scores, sort them, and identify the 3rd highest score!</p>
+                </div>
+            </section>
+
+            <!-- Module 7 -->
+            <section id="l2-m7">
+                <h3>Module 7: CCC J2 Problem Solving</h3>
+                <div class="challenge-box">
+                    <h4>🎯 Harder J2 Problem Set</h4>
+                    <ol>
+                        <li><b>CCC '23 J2 - Chili Peppers:</b> <a href="https://dmoj.ca/problem/ccc23j2" target="_blank">https://dmoj.ca/problem/ccc23j2</a></li>
+                        <li><b>CCC '20 J2 - Epidemiology:</b> <a href="https://dmoj.ca/problem/ccc20j2" target="_blank">https://dmoj.ca/problem/ccc20j2</a></li>
+                        <li><b>CCC '17 J2 - Shifty Sum:</b> <a href="https://dmoj.ca/problem/ccc17j2" target="_blank">https://dmoj.ca/problem/ccc17j2</a></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Module 8 -->
+            <section id="l2-m8">
+                <h3>Module 8: Level 2 Assessment Test</h3>
+                <div class="challenge-box">
+                    <h4>📝 Java Level 2 Assessment Problems</h4>
+                    <ol>
+                        <li><b>CCC '05 J3 - Returning Home:</b> <a href="https://dmoj.ca/problem/ccc05j3" target="_blank">https://dmoj.ca/problem/ccc05j3</a></li>
+                        <li><b>CCC '11 J3 - Sumac Sequences:</b> <a href="https://dmoj.ca/problem/ccc11j3" target="_blank">https://dmoj.ca/problem/ccc11j3</a></li>
+                        <li><b>CCC '14 J3 - Double Dice:</b> <a href="https://dmoj.ca/problem/ccc14j3" target="_blank">https://dmoj.ca/problem/ccc14j3</a></li>
+                        <li><b>CCC '17 J3 - Exactly Electrical:</b> <a href="https://dmoj.ca/problem/ccc17j3" target="_blank">https://dmoj.ca/problem/ccc17j3</a></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- ================= LEVEL 3 ================= -->
+            <h2 class="level-header" style="margin-top: 80px;">Java Level 3: OOP & Advanced Algorithms</h2>
+
+            <!-- Module 1 -->
+            <section id="l3-m1">
+                <h3>Module 1: Classes & Objects (OOP Fundamentals)</h3>
+                <p><b>Concept: Blueprint for Real-World Objects.</b> Object-Oriented Programming (OOP) allows us to build custom data types. A <b>Class</b> is a blueprint, and an <b>Object</b> is an instance built from that blueprint.</p>
+                
+                <pre><code>class Student {
+    String name;
+    int score;
+
+    // Constructor: Method called when creating a new Student instance
+    public Student(String name, int score) {
+        this.name = name;
+        this.score = score;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student("Alice", 95);
+        System.out.println(s1.name + ": " + s1.score);
     }
 }</code></pre>
             </section>
 
-            <section id="j1-m2">
-                <h3>Module 2: Primitive Types & Arithmetic</h3>
-                <p>Learn strongly-typed primitives: <code>int</code>, <code>double</code>, <code>boolean</code>, and <code>char</code>.</p>
-            </section>
+            <!-- Module 2 -->
+            <section id="l3-m2">
+                <h3>Module 2: HashMap (Key-Value Mapping)</h3>
+                <p><b>Concept: Custom Key Lookups.</b> A <code>HashMap</code> maps unique <b>Keys</b> to <b>Values</b> (e.g., Student Name &rarr; Grade), providing instant $O(1)$ lookups and updates.</p>
 
-            <section id="j1-m3">
-                <h3>Module 3: String Operations</h3>
-                <p>Understanding <code>String</code> immutability, concatenation, and methods like <code>.length()</code> and <code>.substring()</code>.</p>
-            </section>
+                <pre><code>import java.util.HashMap;
 
-            <section id="j1-m4">
-                <h3>Module 4: Scanner Input & If-Else</h3>
-                <p>Reading standard input using <code>Scanner</code> and making decisions with conditional branching.</p>
-                <pre><code>import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        HashMap<String, Integer> map = new HashMap<>();
+        
+        map.put("Alice", 90);
+        map.put("Bob", 85);
 
-Scanner sc = new Scanner(System.in);
-int age = sc.nextInt();
-if (age >= 18) {
-    System.out.println("Eligible");
+        System.out.println("Alice's Score: " + map.get("Alice")); // Output: 90
+        
+        // .getOrDefault provides a fallback value if the key does not exist!
+        System.out.println("Charlie's Score: " + map.getOrDefault("Charlie", 0)); // Output: 0
+    }
 }</code></pre>
-            </section>
 
-            <section id="j1-m5">
-                <h3>Module 5: Fixed Arrays (int[])</h3>
-                <p>Declaration, initialization, and indexing of fixed-size arrays in Java.</p>
-            </section>
-
-            <section id="j1-m6">
-                <h3>Module 6: Methods & Scope</h3>
-                <p>Creating modular static helper methods with explicit parameter types and return types.</p>
-            </section>
-
-            <section id="j1-m7">
-                <h3>Module 7: Debugging & NullPointer</h3>
-                <p>Common exceptions including <code>NullPointerException</code> and <code>ArrayIndexOutOfBoundsException</code>.</p>
-            </section>
-
-            <section id="j1-m8">
-                <h3>Module 8: L1 Assessment Test</h3>
-                <p>Level 1 foundational problem set.</p>
-            </section>
-
-            <!-- LEVEL 2 -->
-            <h2 class="level-header" style="margin-top: 80px;">Java Level 2: Control & Collections</h2>
-
-            <section id="j2-m1">
-                <h3>Module 1: Switch & Ternary Operator</h3>
-                <p>Multi-way branching with <code>switch</code> and concise conditional assignments.</p>
-            </section>
-
-            <section id="j2-m2">
-                <h3>Module 2: CCC J1 Practice</h3>
-                <p>Solving CCC Junior 1 problems with standard Java I/O.</p>
-            </section>
-
-            <section id="j2-m3">
-                <h3>Module 3: While & Do-While Loops</h3>
-                <p>Iterative logic when loop count is dynamic.</p>
-            </section>
-
-            <section id="j2-m4">
-                <h3>Module 4: For Loop & Enhanced For</h3>
-                <p>Standard counter loops and <code>for (int x : arr)</code> element iteration.</p>
-            </section>
-
-            <section id="j2-m5">
-                <h3>Module 5: Dynamic Arrays (ArrayList)</h3>
-                <p>Using <code>ArrayList&lt;Integer&gt;</code> for dynamically resizable collections.</p>
-                <pre><code>import java.util.ArrayList;
-
-ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
-list.add(10);
-list.add(20);
-System.out.println(list.get(0)); // 10</code></pre>
-            </section>
-
-            <section id="j2-m6">
-                <h3>Module 6: HashSet & Unique Sets</h3>
-                <p>Fast $O(1)$ set lookups and deduplication with <code>HashSet</code>.</p>
-            </section>
-
-            <section id="j2-m7">
-                <h3>Module 7: CCC J2 Problem Solving</h3>
-                <p>Targeted solutions for CCC Junior 2 problems using Java collections.</p>
-            </section>
-
-            <section id="j2-m8">
-                <h3>Module 8: L2 Assessment Test</h3>
-                <p>Control structures and ArrayList comprehensive test.</p>
-            </section>
-
-            <!-- LEVEL 3 -->
-            <h2 class="level-header" style="margin-top: 80px;">Java Level 3: OOP & Algorithms</h2>
-
-            <section id="j3-m1">
-                <h3>Module 1: Classes & Objects</h3>
-                <p>Object-oriented concepts, custom state encapsulation, and constructors.</p>
-            </section>
-
-            <section id="j3-m2">
-                <h3>Module 2: HashMap (Key-Value)</h3>
-                <p>Frequency counting and dictionary lookup using <code>HashMap&lt;K, V&gt;</code> and <code>.getOrDefault()</code>.</p>
-                <div class="tip-box">
-                    💡 <b>Java Tip:</b> Use <code>map.getOrDefault(key, defaultValue)</code> to prevent unexpected null value exceptions.
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 2: CCC '14 S2 - Assigning Partners</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc14s2" target="_blank">CCC '14 S2</a> using <code>HashMap&lt;String, String&gt;</code> to store and verify symmetric partner pairings!</p>
                 </div>
             </section>
 
-            <section id="j3-m3">
+            <!-- Module 3 -->
+            <section id="l3-m3">
                 <h3>Module 3: 2D Arrays & Grid Traversal</h3>
-                <p>Matrices represented as <code>int[][] grid</code> for board and map simulations.</p>
+                <p><b>Concept: Matrix Grids.</b> Represent grids and tables using 2D arrays <code>int[][] grid = new int[rows][cols];</code>. Always use nested index loops <code>r</code> and <code>c</code> for precise grid coordinate control.</p>
+
+                <pre><code>public class Main {
+    public static void main(String[] args) {
+        int rows = 3, cols = 3;
+        int[][] grid = new int[rows][cols];
+        
+        grid[0][0] = 1;  // Row 0, Col 0
+
+        // Preferred Nested Index Loop Traversal
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[0].length; c++) {
+                System.out.print(grid[r][c] + " ");
+            }
+            System.out.println();
+        }
+    }
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 3: CCC '19 S1 - Flipper</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc19s1" target="_blank">CCC '19 S1</a> grid manipulation in Java.</p>
+                </div>
             </section>
 
-            <section id="j3-m4">
+            <!-- Module 4 -->
+            <section id="l3-m4">
                 <h3>Module 4: Fast I/O (BufferedReader & StringTokenizer)</h3>
-                <p>Optimizing Java I/O performance to avoid Time Limit Exceeded (TLE) errors in competitions.</p>
+                <p><b>Performance Optimization:</b> Standard <code>Scanner</code> is too slow for parsing large inputs ($N > 10^5$) within CCC 2-second time limits. Competitive Java programmers use <code>BufferedReader</code> and <code>StringTokenizer</code> for ultra-fast performance!</p>
+
                 <pre><code>import java.io.*;
 import java.util.*;
 
-BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-StringTokenizer st = new StringTokenizer(br.readLine());
-int n = Integer.parseInt(st.nextToken());</code></pre>
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+        
+        System.out.println(a + b);
+    }
+}</code></pre>
             </section>
 
-            <section id="j3-m5">
+            <!-- Module 5 -->
+            <section id="l3-m5">
                 <h3>Module 5: Prefix Sum Arrays</h3>
-                <p>Range sum query optimization techniques.</p>
+                <p><b>Concept: $O(1)$ Range Sum Queries.</b> Precalculate cumulative totals in a prefix array <code>prefix[i + 1] = prefix[i] + arr[i]</code> to answer any range sum query from $L$ to $R$ instantly via <code>prefix[R + 1] - prefix[L]</code>.</p>
+
+                <pre><code>int[] arr = {1, 2, 3, 4, 5};
+int[] prefix = new int[arr.length + 1];
+
+for (int i = 0; i < arr.length; i++) {
+    prefix[i + 1] = prefix[i] + arr[i];
+}
+
+// Sum from index L=1 to R=3 (values: 2 + 3 + 4 = 9)
+int L = 1, R = 3;
+int rangeSum = prefix[R + 1] - prefix[L];
+System.out.println("Range Sum: " + rangeSum);  // Output: 9</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 5: DMOPC '14 C2P4 - Personal Nurse</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/dmopc14c2p4" target="_blank">DMOPC '14 C2P4</a> using Fast I/O and Prefix Sums.</p>
+                </div>
             </section>
 
-            <section id="j3-m6">
+            <!-- Module 6 -->
+            <section id="l3-m6">
                 <h3>Module 6: Stack, Queue & PriorityQueue</h3>
-                <p>Linear data structures and min-heaps for competitive programming.</p>
+                <p><b>Concept: Linear & Heap Data Structures.</b></p>
+                <ul>
+                    <li><b>Stack (LIFO):</b> Last In, First Out (Use <code>ArrayDeque</code>).</li>
+                    <li><b>Queue (FIFO):</b> First In, First Out (Use <code>ArrayDeque</code>).</li>
+                    <li><b>PriorityQueue (Heap):</b> Pops smallest (or largest) element first in $O(\log N)$ time.</li>
+                </ul>
+
+                <pre><code>import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // Stack (LIFO)
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
+        stack.push(10);
+        int top = stack.pop();
+
+        // Queue (FIFO)
+        ArrayDeque<Integer> queue = new ArrayDeque<>();
+        queue.offer(10);
+        int front = queue.poll();
+
+        // Min-Heap PriorityQueue
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        pq.offer(30);
+        pq.offer(10);
+        System.out.println(pq.poll()); // Output: 10 (Smallest element pops first!)
+    }
+}</code></pre>
             </section>
 
-            <section id="j3-m7">
+            <!-- Module 7 -->
+            <section id="l3-m7">
                 <h3>Module 7: Graph Traversal (BFS)</h3>
-                <p>Breadth-First Search using <code>ArrayDeque&lt;Integer&gt;</code> for shortest paths.</p>
+                <p><b>Concept: Layer-by-Layer Search.</b> Breadth-First Search uses a Queue to explore grid positions layer by layer, guaranteeing the shortest path in unweighted graphs.</p>
+
+                <pre><code>ArrayDeque<int[]> q = new ArrayDeque<>();
+boolean[][] visited = new boolean[rows][cols];
+
+q.offer(new int[]{startR, startC});
+visited[startR][startC] = true;
+
+while (!q.isEmpty()) {
+    int[] curr = q.poll();
+    int r = curr[0], c = curr[1];
+    // Explore 4 adjacent neighbors...
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 7: CCC '10 J5 - Knight Hop</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc10j5" target="_blank">CCC '10 J5</a> using BFS in Java!</p>
+                </div>
             </section>
 
-            <section id="j3-m8">
+            <!-- Module 8 -->
+            <section id="l3-m8">
                 <h3>Module 8: Recursion & DFS</h3>
-                <p>Call stack recursion and Depth-First Search implementation.</p>
+                <p><b>Concept: Deep Exploration.</b> Depth-First Search goes as deep as possible down a path before backtracking, naturally implemented using recursion.</p>
+
+                <pre><code>public static void dfs(int r, int c, int[][] grid, boolean[][] visited) {
+    if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length) return;
+    if (visited[r][c] || grid[r][c] == 1) return;
+
+    visited[r][c] = true;
+
+    dfs(r + 1, c, grid, visited);
+    dfs(r - 1, c, grid, visited);
+    dfs(r, c + 1, grid, visited);
+    dfs(r, c - 1, grid, visited);
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 8: CCC '03 S3 - Floor Plan</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc03s3" target="_blank">CCC '03 S3</a> using recursive DFS.</p>
+                </div>
             </section>
 
-            <!-- LEVEL 4 -->
-            <h2 class="level-header" style="margin-top: 80px;">Java Level 4: Competition</h2>
-
-            <section id="j4-m1">
-                <h3>CCC Practical Questions</h3>
-                <p>Past CCC contest problem sets, memory optimization strategies, and full solution walkthroughs.</p>
+            <!-- ================= LEVEL 4 ================= -->
+            <h2 class="level-header" style="margin-top: 80px;">Level 4: Competition Practice</h2>
+            <section id="l4-m1">
+                <h3>CCC Practical Questions & Past Papers</h3>
+                <p>Apply your full Java algorithm toolkit to master past CCC Senior & Junior competition papers under timed conditions!</p>
             </section>
 
         </main>
