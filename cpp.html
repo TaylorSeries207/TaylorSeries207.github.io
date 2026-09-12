@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C++ Curriculum | Michael's Coding Academy</title>
+    
+    <!-- MathJax for rendering Math LaTeX syntax -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
     <style>
         :root {
             --primary-color: #7A003C; /* McMaster Maroon */
@@ -14,7 +25,9 @@
             --code-bg: #1e1e1e;
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -26,6 +39,7 @@
             scroll-behavior: smooth;
         }
 
+        /* Top Header Sticky Bar */
         header {
             background: linear-gradient(135deg, var(--primary-color), #4a0024);
             color: white;
@@ -62,6 +76,7 @@
             transform: translateY(-1px);
         }
 
+        /* Main Container with Sidebar Grid */
         .tutorial-container {
             max-width: 1280px;
             margin: 30px auto;
@@ -71,6 +86,7 @@
             gap: 30px;
         }
 
+        /* Sidebar Navigation */
         .sidebar {
             position: sticky;
             top: 95px;
@@ -83,7 +99,9 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.02);
         }
 
-        .level-group { margin-bottom: 22px; }
+        .level-group {
+            margin-bottom: 22px;
+        }
 
         .level-title {
             font-size: 0.9rem;
@@ -96,8 +114,15 @@
             border-bottom: 2px solid var(--secondary-color);
         }
 
-        .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar li { margin-bottom: 4px; }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 4px;
+        }
 
         .sidebar a {
             color: #555;
@@ -117,6 +142,7 @@
             padding-left: 14px;
         }
 
+        /* Main Content Area */
         .content {
             background: var(--card-bg);
             padding: 40px;
@@ -144,8 +170,17 @@
             color: var(--primary-color);
             margin-top: 35px;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
+        p {
+            color: #444;
+            font-size: 0.98rem;
+        }
+
+        /* Code Block Styling */
         pre {
             background-color: var(--code-bg);
             color: #f8f8f2;
@@ -167,8 +202,13 @@
             font-size: 0.9em;
         }
 
-        pre code { background-color: transparent; color: inherit; padding: 0; }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
 
+        /* Tip & Challenge Boxes */
         .tip-box {
             background-color: #fffdf7;
             border-left: 4px solid var(--secondary-color);
@@ -178,243 +218,790 @@
             font-size: 0.95rem;
         }
 
-        .sidebar::-webkit-scrollbar { width: 5px; }
-        .sidebar::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 4px; }
+        .challenge-box {
+            background-color: #fcf8f9;
+            border-left: 4px solid var(--primary-color);
+            padding: 18px 22px;
+            border-radius: 0 8px 8px 0;
+            margin: 25px 0;
+        }
 
+        .challenge-box h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.05rem;
+        }
+
+        /* Tables */
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        .menu-table th, .menu-table td {
+            border: 1px solid #e2e8f0;
+            padding: 10px 15px;
+            text-align: center;
+        }
+
+        .menu-table th {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Custom Scrollbar */
+        .sidebar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #e0e0e0;
+            border-radius: 4px;
+        }
+
+        /* Mobile Layout */
         @media (max-width: 900px) {
-            .tutorial-container { grid-template-columns: 1fr; }
-            .sidebar { position: static; height: auto; }
+            .tutorial-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+                height: auto;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
         <h1>⚡ C++ Curriculum & CCC Prep</h1>
         <a href="index.html" class="back-btn">&larr; Back to Home</a>
     </header>
 
+    <!-- Main Container -->
     <div class="tutorial-container">
         
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             
+            <!-- LEVEL 1 -->
             <div class="level-group">
                 <div class="level-title">Level 1: Foundations</div>
                 <ul>
-                    <li><a href="#cpp1-m1">Module 1: Headers & std::cout</a></li>
-                    <li><a href="#cpp1-m2">Module 2: Variables & Arithmetic</a></li>
-                    <li><a href="#cpp1-m3">Module 3: std::string & Char</a></li>
-                    <li><a href="#cpp1-m4">Module 4: std::cin Input & If-Else</a></li>
-                    <li><a href="#cpp1-m5">Module 5: Static Arrays</a></li>
-                    <li><a href="#cpp1-m6">Module 6: Functions & Pass-by-Value</a></li>
-                    <li><a href="#cpp1-m7">Module 7: Compiler Errors & UB</a></li>
-                    <li><a href="#cpp1-m8">Module 8: L1 Assessment Test</a></li>
+                    <li><a href="#l1-m1">Module 1: Headers & std::cout</a></li>
+                    <li><a href="#l1-m2">Module 2: Variables & Arithmetic</a></li>
+                    <li><a href="#l1-m3">Module 3: std::string & Char</a></li>
+                    <li><a href="#l1-m4">Module 4: std::cin Input & If-Else</a></li>
+                    <li><a href="#l1-m5">Module 5: Static Arrays</a></li>
+                    <li><a href="#l1-m6">Module 6: Functions & Pass-by-Value</a></li>
+                    <li><a href="#l1-m7">Module 7: Compiler Errors & UB</a></li>
+                    <li><a href="#l1-m8">Module 8: L1 Assessment Test</a></li>
                 </ul>
             </div>
 
+            <!-- LEVEL 2 -->
             <div class="level-group">
                 <div class="level-title">Level 2: Loops & STL Vectors</div>
                 <ul>
-                    <li><a href="#cpp2-m1">Module 1: Switch & Conditional Logic</a></li>
-                    <li><a href="#cpp2-m2">Module 2: CCC J1 Practice</a></li>
-                    <li><a href="#cpp2-m3">Module 3: While & Do-While Loops</a></li>
-                    <li><a href="#cpp2-m4">Module 4: For Loops & Range-based For</a></li>
-                    <li><a href="#cpp2-m5">Module 5: Dynamic Arrays (std::vector)</a></li>
-                    <li><a href="#cpp2-m6">Module 6: std::unordered_set</a></li>
-                    <li><a href="#cpp2-m7">Module 7: CCC J2 Problem Solving</a></li>
-                    <li><a href="#cpp2-m8">Module 8: L2 Assessment Test</a></li>
+                    <li><a href="#l2-m1">Module 1: Switch & Logic</a></li>
+                    <li><a href="#l2-m2">Module 2: CCC J1 Practice</a></li>
+                    <li><a href="#l2-m3">Module 3: While & Do-While</a></li>
+                    <li><a href="#l2-m4">Module 4: For & Range-based For</a></li>
+                    <li><a href="#l2-m5">Module 5: Dynamic Arrays (std::vector)</a></li>
+                    <li><a href="#l2-m6">Module 6: std::unordered_set</a></li>
+                    <li><a href="#l2-m7">Module 7: CCC J2 Problem Solving</a></li>
+                    <li><a href="#l2-m8">Module 8: L2 Assessment Test</a></li>
                 </ul>
             </div>
 
+            <!-- LEVEL 3 -->
             <div class="level-group">
-                <div class="level-title">Level 3: STL Containers & Algorithms</div>
+                <div class="level-title">Level 3: STL & Algorithms</div>
                 <ul>
-                    <li><a href="#cpp3-m1">Module 1: Pass-by-Reference (&)</a></li>
-                    <li><a href="#cpp3-m2">Module 2: std::unordered_map & Map</a></li>
-                    <li><a href="#cpp3-m3">Module 3: 2D Vectors & Matrices</a></li>
-                    <li><a href="#cpp3-m4">Module 4: Fast I/O Optimization</a></li>
-                    <li><a href="#cpp3-m5">Module 5: Prefix Sum Arrays</a></li>
-                    <li><a href="#cpp3-m6">Module 6: STL Algorithms (std::sort)</a></li>
-                    <li><a href="#cpp3-m7">Module 7: Graph Traversal (BFS)</a></li>
-                    <li><a href="#cpp3-m8">Module 8: Recursion & DFS</a></li>
+                    <li><a href="#l3-m1">Module 1: Pass-by-Reference (&)</a></li>
+                    <li><a href="#l3-m2">Module 2: std::unordered_map & Map</a></li>
+                    <li><a href="#l3-m3">Module 3: 2D Vectors & Matrices</a></li>
+                    <li><a href="#l3-m4">Module 4: Fast I/O Optimization</a></li>
+                    <li><a href="#l3-m5">Module 5: Prefix Sum Arrays</a></li>
+                    <li><a href="#l3-m6">Module 6: STL Algorithms (std::sort)</a></li>
+                    <li><a href="#l3-m7">Module 7: Graph Traversal (BFS)</a></li>
+                    <li><a href="#l3-m8">Module 8: Recursion & DFS</a></li>
                 </ul>
             </div>
 
+            <!-- LEVEL 4 -->
             <div class="level-group">
                 <div class="level-title">Level 4: Competition</div>
                 <ul>
-                    <li><a href="#cpp4-m1">CCC Practical Questions</a></li>
+                    <li><a href="#l4-m1">CCC Practical Questions</a></li>
                 </ul>
             </div>
 
         </nav>
 
-        <!-- Main Content -->
+        <!-- Main Content Area -->
         <main class="content">
 
+            <!-- ================= LEVEL 1 ================= -->
             <h2 class="level-header">C++ Level 1: Foundations</h2>
 
-            <section id="cpp1-m1">
+            <!-- Module 1 -->
+            <section id="l1-m1">
                 <h3>Module 1: Headers & std::cout</h3>
-                <p>C++ programs begin with includes and the <code>main()</code> entry point function.</p>
-                <pre><code>#include &lt;iostream&gt;
+                <p><b>Why C++ is the Gold Standard for Competitions:</b> C++ is the most popular programming language in competitive programming (CCC, IOI, USACO) because of its raw execution speed and granular control over computer memory.</p>
+                
+                <h4>1. Deconstructing C++ Boilerplate Code</h4>
+                <p>Let's dissect the essential template required for every C++ program:</p>
+
+                <pre><code>#include <iostream>   // Header library for Input/Output stream
+using namespace std;  // Allows using cout, cin without std:: prefix
 
 int main() {
-    std::cout &lt;&lt; "Hello, World!" &lt;&lt; std::endl;
-    return 0;
+    // std::cout uses the insertion operator << to stream text
+    cout << "Hello, World!" << endl;
+    cout << "Welcome to C++ Coding Class!\n";
+    
+    return 0;  // Returns 0 to tell OS that program executed successfully
 }</code></pre>
-            </section>
 
-            <section id="cpp1-m2">
-                <h3>Module 2: Variables & Arithmetic</h3>
-                <p>Working with statically typed primitives: <code>int</code>, <code>double</code>, <code>long long</code>, and <code>bool</code>.</p>
-            </section>
+                <ul>
+                    <li><code>#include &lt;iostream&gt;</code>: Imports the standard Input/Output library containing <code>cout</code> and <code>cin</code>.</li>
+                    <li><code>using namespace std;</code>: Brings the Standard Namespace into global scope so you can type <code>cout</code> instead of <code>std::cout</code>.</li>
+                    <li><code>int main() { ... }</code>: The mandatory execution entry point of every C++ program.</li>
+                    <li><code>cout &lt;&lt;</code>: Streams data out to the console terminal screen.</li>
+                    <li><code>endl</code> vs <code>"\n"</code>: Both create a new line, but <code>endl</code> forces an extra buffer flush. In competitive programming, <b>always prefer <code>"\n"</code></b> for maximum execution speed!</li>
+                </ul>
 
-            <section id="cpp1-m3">
-                <h3>Module 3: std::string & Char</h3>
-                <p>Manipulating string objects, character access, and <code>std::getline</code> usage.</p>
-            </section>
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 1: Your First DMOJ C++ Submission</h4>
+                    <p><b>Task:</b> Write a C++ program that prints out the exact 3 lines below using <code>cout</code>:</p>
+                    <pre><code>Hello!
+My name is Johnny!
+I am learning C++!</code></pre>
 
-            <section id="cpp1-m4">
-                <h3>Module 4: std::cin Input & If-Else</h3>
-                <p>Reading standard input using <code>std::cin</code> and conditional logic execution.</p>
-                <pre><code>int age;
-std::cin >> age;
-if (age >= 18) {
-    std::cout &lt;&lt; "Eligible" &lt;&lt; std::endl;
-}</code></pre>
-            </section>
-
-            <section id="cpp1-m5">
-                <h3>Module 5: Static Arrays</h3>
-                <p>C-style fixed arrays (<code>int arr[100]</code>) and <code>std::array</code> initialization.</p>
-            </section>
-
-            <section id="cpp1-m6">
-                <h3>Module 6: Functions & Pass-by-Value</h3>
-                <p>Declaring function signatures, return types, and value parameter copy behavior.</p>
-            </section>
-
-            <section id="cpp1-m7">
-                <h3>Module 7: Compiler Errors & UB</h3>
-                <p>Understanding compilation errors, out-of-bounds access, and Undefined Behavior (UB).</p>
-            </section>
-
-            <section id="cpp1-m8">
-                <h3>Module 8: L1 Assessment Test</h3>
-                <p>Level 1 foundational problem set.</p>
-            </section>
-
-            <!-- LEVEL 2 -->
-            <h2 class="level-header" style="margin-top: 80px;">C++ Level 2: Loops & STL Vectors</h2>
-
-            <section id="cpp2-m1">
-                <h3>Module 1: Switch & Conditional Logic</h3>
-                <p>Control flow structures using <code>switch</code> statements and logical operators.</p>
-            </section>
-
-            <section id="cpp2-m2">
-                <h3>Module 2: CCC J1 Practice</h3>
-                <p>Solving CCC Junior 1 problems efficiently in C++.</p>
-            </section>
-
-            <section id="cpp2-m3">
-                <h3>Module 3: While & Do-While Loops</h3>
-                <p>Looping based on dynamic Boolean evaluation conditions.</p>
-            </section>
-
-            <section id="cpp2-m4">
-                <h3>Module 4: For Loops & Range-based For</h3>
-                <p>Standard index loops and modern <code>for (int x : vec)</code> syntax.</p>
-            </section>
-
-            <section id="cpp2-m5">
-                <h3>Module 5: Dynamic Arrays (std::vector)</h3>
-                <p>Resizing sequences dynamically using <code>std::vector&lt;int&gt;</code>.</p>
-                <pre><code>#include &lt;vector&gt;
-#include &lt;iostream&gt;
-
-std::vector&lt;int&gt; vec;
-vec.push_back(10);
-vec.push_back(20);
-std::cout &lt;&lt; vec[0]; // 10</code></pre>
-            </section>
-
-            <section id="cpp2-m6">
-                <h3>Module 6: std::unordered_set</h3>
-                <p>Hash-based set collections for $O(1)$ dynamic insertion and lookup.</p>
-            </section>
-
-            <section id="cpp2-m7">
-                <h3>Module 7: CCC J2 Problem Solving</h3>
-                <p>Applying C++ STL containers to solve CCC Junior 2 tasks.</p>
-            </section>
-
-            <section id="cpp2-m8">
-                <h3>Module 8: L2 Assessment Test</h3>
-                <p>Vectors, sets, and loop control assessment test.</p>
-            </section>
-
-            <!-- LEVEL 3 -->
-            <h2 class="level-header" style="margin-top: 80px;">C++ Level 3: STL Containers & Algorithms</h2>
-
-            <section id="cpp3-m1">
-                <h3>Module 1: Pass-by-Reference (&)</h3>
-                <p>Avoiding performance overhead by passing large containers by reference (<code>const std::vector&lt;int&gt;&amp; v</code>).</p>
-            </section>
-
-            <section id="cpp3-m2">
-                <h3>Module 2: std::unordered_map & Map</h3>
-                <p>Key-value associative containers and frequency counting.</p>
-                <div class="tip-box">
-                    💡 <b>C++ Tip:</b> Use <code>std::unordered_map</code> for $O(1)$ average lookups, or <code>std::map</code> when elements must remain sorted ($O(\log N)$).
+                    <p>Submit your code on DMOJ: 👉 <a href="https://dmoj.ca/problem/helloworld" target="_blank">https://dmoj.ca/problem/helloworld</a></p>
                 </div>
             </section>
 
-            <section id="cpp3-m3">
-                <h3>Module 3: 2D Vectors & Matrices</h3>
-                <p>Grids represented as <code>std::vector&lt;std::vector&lt;int&gt;&gt;</code>.</p>
-            </section>
+            <!-- Module 2 -->
+            <section id="l1-m2">
+                <h3>Module 2: Variables & Arithmetic Operations</h3>
+                <p><b>Concept: Static Typing.</b> Like Java, C++ requires explicit type declarations for all variables. This allows the compiler to convert your code directly into super-fast native machine CPU code!</p>
 
-            <section id="cpp3-m4">
-                <h3>Module 4: Fast I/O Optimization</h3>
-                <p>Disabling stream synchronization for maximum I/O performance in contest systems.</p>
-                <pre><code>#include &lt;iostream&gt;
+                <h4>1. Core C++ Primitive Types</h4>
+                <table class="menu-table">
+                    <thead>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                            <th>Range / Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>int</code></td>
+                            <td>32-bit Integer</td>
+                            <td>$-2 \times 10^9$ to $+2 \times 10^9$</td>
+                        </tr>
+                        <tr>
+                            <td><code>long long</code></td>
+                            <td>64-bit Big Integer</td>
+                            <td>Up to $\approx 9 \times 10^{18}$. Essential for CCC Senior!</td>
+                        </tr>
+                        <tr>
+                            <td><code>double</code></td>
+                            <td>64-bit Floating Decimal</td>
+                            <td>High precision decimal numbers</td>
+                        </tr>
+                        <tr>
+                            <td><code>bool</code></td>
+                            <td>Boolean</td>
+                            <td><code>true</code> (1) or <code>false</code> (0)</td>
+                        </tr>
+                        <tr>
+                            <td><code>char</code></td>
+                            <td>Single Character</td>
+                            <td>Enclosed in <b>single quotes</b> (e.g., <code>'A'</code>)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <pre><code>#include <iostream>
+using namespace std;
 
 int main() {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(NULL);
+    int a = 10;
+    int b = 3;
+    
+    // 🚨 INTEGER DIVISION: Drops decimal digits completely!
+    cout << a / b << "\n";          // Output: 3
+    
+    // ✅ FIX: Typecast one operand to double
+    cout << (double)a / b << "\n";  // Output: 3.33333
+    
+    // Modulus (Remainder)
+    cout << a % b << "\n";          // Output: 1
+    
+    return 0;
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 2: Bubble Tea Store Bill Calculator</h4>
+                    <p>Calculate total cost for 2 Medium Fruit Teas ($8.99 each) and 1 Small Milk Tea ($6.59). Add <b>13% Ontario HST tax</b>. Output total cost and calculate change from a $100 cash payment!</p>
+                </div>
+            </section>
+
+            <!-- Module 3 -->
+            <section id="l1-m3">
+                <h3>Module 3: std::string & Character Operations</h3>
+                <p><b>Concept:</b> In C++, <code>std::string</code> is a dynamic sequence of characters provided by <code>#include &lt;string&gt;</code>. Unlike Java, C++ strings are <b>mutable</b> (can be modified in-place) and can be compared directly using standard <code>==</code>!</p>
+
+                <pre><code>#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string msg = "Hello C++!";
+    
+    // 1. Length of string
+    cout << msg.length() << "\n";        // Output: 10
+    
+    // 2. Direct Index Access (Zero-based indexing!)
+    cout << msg[0] << "\n";               // Output: 'H'
+    
+    // 3. Modifying String In-Place (C++ Unique Feature!)
+    msg[0] = 'Y';
+    cout << msg << "\n";                  // Output: "Yello C++!"
+    
+    // 4. Content Comparison (In C++, == checks actual string content!)
+    string s1 = "cat", s2 = "cat";
+    if (s1 == s2) {
+        cout << "Strings match!\n";       // ✅ Valid and recommended in C++!
+    }
+    
+    return 0;
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 3: String Inspector</h4>
+                    <p>Read a string input, print its length, output its first and last characters using index brackets <code>[]</code>, and check if it equals <code>"CCC"</code>.</p>
+                </div>
+            </section>
+
+            <!-- Module 4 -->
+            <section id="l1-m4">
+                <h3>Module 4: std::cin Input & Conditional Logic</h3>
+                <p><b>Reading Console Input:</b> We use <code>cin &gt;&gt;</code> (extraction operator) to read input values into variables from the console.</p>
+
+                <pre><code>#include <iostream>
+using namespace std;
+
+int main() {
+    int mark;
+    cout << "Enter exam mark: ";
+    cin >> mark;  // Reads integer input
+    
+    // Conditional Branching
+    if (mark >= 90) {
+        cout << "Grade: A+\n";
+    } else if (mark >= 80) {
+        cout << "Grade: A\n";
+    } else if (mark >= 50) {
+        cout << "Grade: Pass\n";
+    } else {
+        cout << "Needs Review!\n";
+    }
+    
+    return 0;
+}</code></pre>
+
+                <div class="tip-box">
+                    ⚠️ <b>cin Trailing Newline Issue:</b><br>
+                    Using <code>cin &gt;&gt; var</code> leaves leftover <code>\n</code> in the buffer. If you plan to call <code>getline(cin, str)</code> right after, use <code>cin.ignore();</code> to clear the trailing newline first!
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 4: Official CCC Practice Questions</h4>
+                    <ol>
+                        <li><b>CCC '24 J1 - Conveyor Belt Sushi:</b> <a href="https://dmoj.ca/problem/ccc24j1" target="_blank">https://dmoj.ca/problem/ccc24j1</a></li>
+                        <li><b>CCC '20 J1 - Dog Treats:</b> <a href="https://dmoj.ca/problem/ccc20j1" target="_blank">https://dmoj.ca/problem/ccc20j1</a></li>
+                        <li><b>CCC '23 J1 - Deliv-e-droid:</b> <a href="https://dmoj.ca/problem/ccc23j1" target="_blank">https://dmoj.ca/problem/ccc23j1</a></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Module 5 -->
+            <section id="l1-m5">
+                <h3>Module 5: Static C-Style Arrays</h3>
+                <p><b>Concept: Fixed Array Allocation.</b> A static C-style array allocates a fixed chunk of contiguous memory.</p>
+
+                <pre><code>#include <iostream>
+#include <algorithm>  // For std::sort
+using namespace std;
+
+int main() {
+    // Array declaration with fixed capacity 5
+    int arr[5] = {45, 12, 89, 3, 27};
+    
+    // Modify element by index
+    arr[0] = 99;
+    
+    // Sort entire array in-place: std::sort(start_ptr, end_ptr)
+    sort(arr, arr + 5);
+    
+    // Loop print
+    for (int i = 0; i < 5; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << "\n";
+    
+    return 0;
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 5: Array Min, Max & Average</h4>
+                    <p>Read 5 integers into a C++ array. Compute and display sum, average, min, and max values using loops.</p>
+                </div>
+            </section>
+
+            <!-- Module 6 -->
+            <section id="l1-m6">
+                <h3>Module 6: Functions & Pass-by-Value</h3>
+                <p>Functions allow you to break down complex algorithms into clean, reusable modular components.</p>
+
+                <pre><code>#include <iostream>
+using namespace std;
+
+// Custom function definition
+int calculateArea(int width, int height) {
+    return width * height;
+}
+
+int main() {
+    int area = calculateArea(10, 20);
+    cout << "Area: " << area << "\n";  // Output: 200
+    return 0;
+}</code></pre>
+
+                <div class="tip-box">
+                    🔒 <b>Pass-by-Value Default:</b><br>
+                    By default, C++ creates a <b>copy</b> of arguments passed into functions. Modifying parameter values inside the function will NOT alter the original variable in <code>main()</code>.
+                </div>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 6: IsPrime Helper Function</h4>
+                    <p>Write a function <code>bool isPrime(int n)</code> that returns <code>true</code> if $n$ is prime, and test it in <code>main()</code>.</p>
+                </div>
+            </section>
+
+            <!-- Module 7 -->
+            <section id="l1-m7">
+                <h3>Module 7: Compiler Errors & Undefined Behavior (UB)</h3>
+                <p><b>Concept: Understanding Undefined Behavior (UB).</b> Unlike Python or Java which throw nice exception tracebacks, C++ allows you to do unsafe memory access. Accessing out-of-bounds indices or uninitialized variables causes <b>Undefined Behavior (UB)</b>, which might output random garbage values or produce a Segmentation Fault crash!</p>
+
+                <pre><code>#include <iostream>
+using namespace std;
+
+int main() {
+    int uninitializedVar;  // 🔴 DANGER: Contains unpredictable garbage value!
+    cout << uninitializedVar << "\n";
+    
+    int arr[3] = {10, 20, 30};
+    // 🔴 DANGER: Accessing index 5 causes Out-of-Bounds Memory Leak / Crash!
+    // cout << arr[5] << "\n";
+    
+    return 0;
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🐛 Debugging Lab: Fix the C++ Bugs!</h4>
+                    <p>Spot compilation and UB bugs in C++ code snippets.</p>
+                </div>
+            </section>
+
+            <!-- Module 8 -->
+            <section id="l1-m8">
+                <h3>Module 8: Level 1 Assessment Test</h3>
+                <div class="challenge-box">
+                    <h4>📝 Level 1 Official CCC Problem Set</h4>
+                    <ol>
+                        <li><b>CCC '11 J1 - Which Alien?:</b> <a href="https://dmoj.ca/problem/ccc11j1" target="_blank">https://dmoj.ca/problem/ccc11j1</a></li>
+                        <li><b>CCC '07 J1 - Who is in the Middle?:</b> <a href="https://dmoj.ca/problem/ccc07j1" target="_blank">https://dmoj.ca/problem/ccc07j1</a></li>
+                        <li><b>CCC '16 J1 - Tournament Selection:</b> <a href="https://dmoj.ca/problem/ccc16j1" target="_blank">https://dmoj.ca/problem/ccc16j1</a></li>
+                        <li><b>CCC '22 J1 - Cupcake Party:</b> <a href="https://dmoj.ca/problem/ccc22j1" target="_blank">https://dmoj.ca/problem/ccc22j1</a></li>
+                        <li><b>CCC '25 J1:</b> <a href="https://dmoj.ca/problem/ccc25j1" target="_blank">https://dmoj.ca/problem/ccc25j1</a></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- ================= LEVEL 2 ================= -->
+            <h2 class="level-header" style="margin-top: 80px;">C++ Level 2: Loops & STL Vectors</h2>
+
+            <!-- Module 1 -->
+            <section id="l2-m1">
+                <h3>Module 1: Switch Statements & Conditional Logic</h3>
+                <pre><code>int option = 2;
+
+switch (option) {
+    case 1:
+        cout << "Option 1\n";
+        break;
+    case 2:
+        cout << "Option 2\n";
+        break;
+    default:
+        cout << "Invalid\n";
+}
+
+// Inline Ternary
+string status = (mark >= 50) ? "PASS" : "FAIL";</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 1: CCC '08 J1 - Body Mass Index</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc08j1" target="_blank">CCC '08 J1</a> on DMOJ.</p>
+                </div>
+            </section>
+
+            <!-- Module 2 -->
+            <section id="l2-m2">
+                <h3>Module 2: CCC J1 Practice Problem Set</h3>
+                <div class="challenge-box">
+                    <h4>📝 CCC J1 Practice Questions</h4>
+                    <ol>
+                        <li><b>CCC '12 J1 - Speed fine are not fine!:</b> <a href="https://dmoj.ca/problem/ccc12j1" target="_blank">https://dmoj.ca/problem/ccc12j1</a></li>
+                        <li><b>CCC '14 J1 - Triangle Times:</b> <a href="https://dmoj.ca/problem/ccc14j1" target="_blank">https://dmoj.ca/problem/ccc14j1</a></li>
+                        <li><b>CCC '18 J1 - Telemarketer or not?:</b> <a href="https://dmoj.ca/problem/ccc18j1" target="_blank">https://dmoj.ca/problem/ccc18j1</a></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Module 3 -->
+            <section id="l2-m3">
+                <h3>Module 3: While & Do-While Loops</h3>
+                <pre><code>int energy = 100;
+while (energy > 0) {
+    energy -= 30;
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 3: CCC '24 J2 - Dusa And The Yobi</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc24j2" target="_blank">CCC '24 J2</a> using an infinite <code>while(true)</code> loop!</p>
+                </div>
+            </section>
+
+            <!-- Module 4 -->
+            <section id="l2-m4">
+                <h3>Module 4: For Loops & Range-Based For</h3>
+                <pre><code>// Standard For Loop
+for (int i = 0; i < 5; i++) {
+    cout << i << " ";
+}
+
+// Range-Based For Loop (Modern C++11 Feature!)
+int nums[] = {10, 20, 30};
+for (int num : nums) {
+    cout << num << "\n";
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 4: CCC '14 J2 - Vote Count</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc14j2" target="_blank">CCC '14 J2</a> using loops and <code>.length()</code>.</p>
+                </div>
+            </section>
+
+            <!-- Module 5 -->
+            <section id="l2-m5">
+                <h3>Module 5: Dynamic Arrays (std::vector)</h3>
+                <p><b>Concept: Dynamic Resizable Arrays.</b> <code>std::vector</code> is the most versatile standard template library (STL) container in C++. It automatically resizes itself dynamically when new elements are added!</p>
+
+                <pre><code>#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    vector<int> vec;  // Declare dynamic vector of integers
+    
+    // 1. Append elements to back in O(1) time
+    vec.push_back(45);
+    vec.push_back(12);
+    vec.push_back(89);
+    
+    // 2. Access elements using square brackets []
+    cout << "First item: " << vec[0] << "\n";
+    
+    // 3. Size of vector
+    cout << "Total items: " << vec.size() << "\n";
+    
+    // 4. Sort vector using STL sort: sort(vec.begin(), vec.end())
+    sort(vec.begin(), vec.end());
+    
+    for (int x : vec) {
+        cout << x << " ";  // Output: 12 45 89
+    }
+    cout << "\n";
+    
+    return 0;
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 5: Dynamic Filtered Vector</h4>
+                    <p>Read $N$ integers into a <code>std::vector&lt;int&gt;</code>, filter out numbers $\le 5$, sort, and print.</p>
+                </div>
+            </section>
+
+            <!-- Module 6 -->
+            <section id="l2-m6">
+                <h3>Module 6: std::unordered_set</h3>
+                <p><b>Fast Deduplication:</b> <code>std::unordered_set</code> enforces uniqueness and provides <b>$O(1)$ constant time lookup</b> via hashing algorithms.</p>
+
+                <pre><code>#include <iostream>
+#include <unordered_set>
+using namespace std;
+
+int main() {
+    unordered_set<string> set;
+    
+    set.insert("Apple");
+    set.insert("Banana");
+    set.insert("Apple");  // Duplicate rejected!
+    
+    cout << "Unique count: " << set.size() << "\n";  // Output: 2
+    
+    // O(1) Membership Check
+    if (set.count("Apple")) {
+        cout << "Apple found!\n";
+    }
+    
+    return 0;
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 6: CCC '24 J3 - Bronze Count</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc24j3" target="_blank">CCC '24 J3</a> using <code>unordered_set</code> and <code>vector</code> sorting!</p>
+                </div>
+            </section>
+
+            <!-- Module 7 -->
+            <section id="l2-m7">
+                <h3>Module 7: CCC J2 Problem Solving</h3>
+                <div class="challenge-box">
+                    <h4>🎯 Harder J2 Problem Set</h4>
+                    <ol>
+                        <li><b>CCC '23 J2 - Chili Peppers:</b> <a href="https://dmoj.ca/problem/ccc23j2" target="_blank">https://dmoj.ca/problem/ccc23j2</a></li>
+                        <li><b>CCC '20 J2 - Epidemiology:</b> <a href="https://dmoj.ca/problem/ccc20j2" target="_blank">https://dmoj.ca/problem/ccc20j2</a></li>
+                        <li><b>CCC '17 J2 - Shifty Sum:</b> <a href="https://dmoj.ca/problem/ccc17j2" target="_blank">https://dmoj.ca/problem/ccc17j2</a></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Module 8 -->
+            <section id="l2-m8">
+                <h3>Module 8: Level 2 Assessment Test</h3>
+                <div class="challenge-box">
+                    <h4>📝 C++ Level 2 Assessment Problems</h4>
+                    <ol>
+                        <li><b>CCC '05 J3 - Returning Home:</b> <a href="https://dmoj.ca/problem/ccc05j3" target="_blank">https://dmoj.ca/problem/ccc05j3</a></li>
+                        <li><b>CCC '11 J3 - Sumac Sequences:</b> <a href="https://dmoj.ca/problem/ccc11j3" target="_blank">https://dmoj.ca/problem/ccc11j3</a></li>
+                        <li><b>CCC '14 J3 - Double Dice:</b> <a href="https://dmoj.ca/problem/ccc14j3" target="_blank">https://dmoj.ca/problem/ccc14j3</a></li>
+                        <li><b>CCC '17 J3 - Exactly Electrical:</b> <a href="https://dmoj.ca/problem/ccc17j3" target="_blank">https://dmoj.ca/problem/ccc17j3</a></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- ================= LEVEL 3 ================= -->
+            <h2 class="level-header" style="margin-top: 80px;">C++ Level 3: STL Containers & Algorithms</h2>
+
+            <!-- Module 1 -->
+            <section id="l3-m1">
+                <h3>Module 1: Pass-by-Reference (&)</h3>
+                <p><b>CRITICAL PERFORMANCE RULE:</b> Passing large data structures (like <code>vector</code> or <code>string</code>) into functions without an ampersand <code>&</code> causes C++ to make a full deep copy, taking slow $O(N)$ time and causing TLE! Always use <b>Pass-by-Reference (<code>&</code>)</b>!</p>
+
+                <pre><code>#include <iostream>
+#include <vector>
+using namespace std;
+
+// ✅ Fast O(1) Pass-by-Reference! Modifies original vector directly!
+void processVector(vector<int> &vec) {
+    vec[0] = 999;
+}
+
+int main() {
+    vector<int> nums = {1, 2, 3};
+    processVector(nums);
+    cout << nums[0] << "\n";  // Output: 999
     return 0;
 }</code></pre>
             </section>
 
-            <section id="cpp3-m5">
+            <!-- Module 2 -->
+            <section id="l3-m2">
+                <h3>Module 2: std::unordered_map & std::map</h3>
+                <p><b>Hash Maps vs. Red-Black Tree Maps:</b></p>
+                <ul>
+                    <li><code>std::unordered_map</code>: $O(1)$ Hash Table (Unordered). Recommended for speed.</li>
+                    <li><code>std::map</code>: $O(\log N)$ Self-Balancing Red-Black BST (Keeps keys strictly sorted!).</li>
+                </ul>
+
+                <pre><code>#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+int main() {
+    unordered_map<string, int> scores;
+    scores["Alice"] = 90;
+    scores["Bob"] = 85;
+
+    cout << "Alice's score: " << scores["Alice"] << "\n";
+    return 0;
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 2: CCC '14 S2 - Assigning Partners</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc14s2" target="_blank">CCC '14 S2</a> using <code>unordered_map&lt;string, string&gt;</code>.</p>
+                </div>
+            </section>
+
+            <!-- Module 3 -->
+            <section id="l3-m3">
+                <h3>Module 3: 2D Vectors & Matrices</h3>
+                <pre><code>int rows = 3, cols = 3;
+// Initialize 3x3 2D vector populated with 0s
+vector<vector<int>> grid(rows, vector<int>(cols, 0));
+
+grid[0][0] = 1;
+
+for (int r = 0; r < rows; r++) {
+    for (int c = 0; c < cols; c++) {
+        cout << grid[r][c] << " ";
+    }
+    cout << "\n";
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 3: CCC '19 S1 - Flipper</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc19s1" target="_blank">CCC '19 S1</a> grid operations in C++.</p>
+                </div>
+            </section>
+
+            <!-- Module 4 -->
+            <section id="l3-m4">
+                <h3>Module 4: Fast I/O Optimization</h3>
+                <p><b>The 2-Line C++ Performance Booster:</b> By default, C++ syncs <code>cin/cout</code> with C's <code>stdio</code> stream, making standard input slow. Add these two lines at the start of <code>main()</code> to unlock maximum speed!</p>
+
+                <pre><code>#include <iostream>
+using namespace std;
+
+int main() {
+    // ⚡ UNLOCK MAXIMUM FAST I/O SPEED
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    int n;
+    cin >> n;
+    cout << n << "\n";
+    
+    return 0;
+}</code></pre>
+            </section>
+
+            <!-- Module 5 -->
+            <section id="l3-m5">
                 <h3>Module 5: Prefix Sum Arrays</h3>
-                <p>Range sum query optimizations for competitive algorithms.</p>
+                <pre><code>vector<int> arr = {1, 2, 3, 4, 5};
+vector<int> prefix(arr.size() + 1, 0);
+
+for (int i = 0; i < arr.size(); i++) {
+    prefix[i + 1] = prefix[i] + arr[i];
+}
+
+// Range sum from L to R: prefix[R + 1] - prefix[L]</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 5: DMOPC '14 C2P4 - Personal Nurse</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/dmopc14c2p4" target="_blank">DMOPC '14 C2P4</a> using Fast I/O and Prefix Sums.</p>
+                </div>
             </section>
 
-            <section id="cpp3-m6">
-                <h3>Module 6: STL Algorithms (std::sort)</h3>
-                <p>Sorting, binary search, and custom lambda comparators with <code>&lt;algorithm&gt;</code>.</p>
+            <!-- Module 6 -->
+            <section id="l3-m6">
+                <h3>Module 6: STL Algorithms (std::sort & Lambda Comparators)</h3>
+                <pre><code>#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    vector<int> nums = {4, 1, 9, 2};
+    
+    // Sort ascending
+    sort(nums.begin(), nums.end());
+    
+    // Custom Descending Sort using Lambda Expression
+    sort(nums.begin(), nums.end(), [](int a, int b) {
+        return a > b;  // Greater than for descending order
+    });
+    
+    return 0;
+}</code></pre>
             </section>
 
-            <section id="cpp3-m7">
+            <!-- Module 7 -->
+            <section id="l3-m7">
                 <h3>Module 7: Graph Traversal (BFS)</h3>
-                <p>Breadth-First Search implementation using <code>std::queue</code> and adjacency lists.</p>
+                <pre><code>#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+
+int main() {
+    queue<pair<int, int>> q;
+    q.push({0, 0});
+    
+    while (!q.empty()) {
+        auto [r, c] = q.front();
+        q.pop();
+        // Traverse 4 directions...
+    }
+    return 0;
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 7: CCC '10 J5 - Knight Hop</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc10j5" target="_blank">CCC '10 J5</a> using BFS in C++!</p>
+                </div>
             </section>
 
-            <section id="cpp3-m8">
+            <!-- Module 8 -->
+            <section id="l3-m8">
                 <h3>Module 8: Recursion & DFS</h3>
-                <p>Depth-First Search graph traversal and recursion stack management.</p>
+                <pre><code>void dfs(int r, int c, vector<vector<int>>& grid, vector<vector<bool>>& visited) {
+    int rows = grid.size(), cols = grid[0].size();
+    if (r < 0 || r >= rows || c < 0 || c >= cols) return;
+    if (visited[r][c] || grid[r][c] == 1) return;
+
+    visited[r][c] = true;
+
+    dfs(r + 1, c, grid, visited);
+    dfs(r - 1, c, grid, visited);
+    dfs(r, c + 1, grid, visited);
+    dfs(r, c - 1, grid, visited);
+}</code></pre>
+
+                <div class="challenge-box">
+                    <h4>🎯 Challenge 8: CCC '03 S3 - Floor Plan</h4>
+                    <p>Solve <a href="https://dmoj.ca/problem/ccc03s3" target="_blank">CCC '03 S3</a> using recursive DFS.</p>
+                </div>
             </section>
 
-            <!-- LEVEL 4 -->
-            <h2 class="level-header" style="margin-top: 80px;">C++ Level 4: Competition</h2>
-
-            <section id="cpp4-m1">
-                <h3>CCC Practical Questions</h3>
-                <p>Senior and Junior CCC problem archives, custom comparators, memory management, and competitive speed tricks.</p>
+            <!-- ================= LEVEL 4 ================= -->
+            <h2 class="level-header" style="margin-top: 80px;">Level 4: Competition Practice</h2>
+            <section id="l4-m1">
+                <h3>CCC Practical Questions & Past Papers</h3>
+                <p>Master official CCC Senior and Junior past papers under timed contest conditions using C++ STL!</p>
             </section>
 
         </main>
