@@ -25,7 +25,7 @@
         .container {
             max-width: 850px;
             margin: 40px auto;
-            padding: 0 20px;
+            padding: 0 20px 80px 20px; /* Extra bottom padding for floating widgets */
         }
 
         /* Profile Header Section */
@@ -224,15 +224,15 @@
         /* Common Styling for Floating Widgets */
         .widget-item {
             position: fixed;
-            bottom: 30px;
+            bottom: 25px;
             display: flex;
             flex-direction: column;
             align-items: center;
             z-index: 9999;
         }
 
-        /* 🐍 Left Side Screen Widget */
-        .snake-widget-container {
+        /* 🎮 Left Side Screen Widget */
+        .game-widget-container {
             left: 30px;
         }
 
@@ -244,34 +244,36 @@
         .speech-bubble {
             background-color: #2b2b2b;
             color: #ffffff;
-            padding: 8px 16px;
+            padding: 10px 18px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 0.88rem;
             letter-spacing: 0.5px;
-            margin-bottom: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
             opacity: 0;
-            transform: translateY(8px) scale(0.9);
-            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            visibility: hidden;
+            transform: translateY(10px) scale(0.9);
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             pointer-events: none;
             white-space: nowrap;
             position: absolute;
-            bottom: 100%;
+            bottom: 115%; /* Positioned clearly above the icon to avoid overlap */
+            z-index: 10000;
         }
 
         .speech-bubble.show {
             opacity: 1;
+            visibility: visible;
             transform: translateY(0) scale(1);
         }
 
         .speech-bubble::after {
             content: '';
             position: absolute;
-            bottom: -6px;
+            bottom: -7px;
             left: 50%;
             transform: translateX(-50%);
-            border-width: 6px 6px 0;
+            border-width: 7px 7px 0;
             border-style: solid;
             border-color: #2b2b2b transparent;
             display: block;
@@ -282,10 +284,11 @@
             font-size: 3.2rem;
             cursor: pointer;
             user-select: none;
-            transition: transform 0.15s ease;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            transition: transform 0.2s ease;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
             text-decoration: none;
             display: inline-block;
+            line-height: 1;
         }
 
         .floating-icon:hover {
@@ -387,10 +390,10 @@
 
     </div>
 
-    <!-- 🐍 Floating Snake Game Widget (Fixed on Bottom Left Screen) -->
-    <div class="widget-item snake-widget-container">
-        <div class="speech-bubble" id="snakeBubble">Tired of debugging? 🐛 Break the loop & chill here! 🎮</div>
-        <a href="Snake_EN.html" target="_blank" class="floating-icon" id="snakeBtn" title="Tired? Play Snake Game!">🐍</a>
+    <!-- 🎮 Floating Game Widget (Fixed on Bottom Left Screen) -->
+    <div class="widget-item game-widget-container">
+        <div class="speech-bubble" id="gameBubble">Tired of debugging? 🐛 Break the loop & chill here! 🎮</div>
+        <a href="Snake_EN.html" target="_blank" class="floating-icon" id="gameBtn" title="Tired? Play Arcade Game!">🎮</a>
     </div>
 
     <!-- 🐱 Floating Cat Widget (Fixed on Bottom Right Screen) -->
@@ -424,19 +427,19 @@
             }, 1500);
         });
 
-        // Snake Button Logic (Hover trigger message)
-        const snakeBtn = document.getElementById('snakeBtn');
-        const snakeBubble = document.getElementById('snakeBubble');
-        let snakeTimer;
+        // Game Controller Button Logic (Hover trigger message)
+        const gameBtn = document.getElementById('gameBtn');
+        const gameBubble = document.getElementById('gameBubble');
+        let gameTimer;
 
-        snakeBtn.addEventListener('mouseenter', () => {
-            snakeBubble.classList.add('show');
-            clearTimeout(snakeTimer);
+        gameBtn.addEventListener('mouseenter', () => {
+            gameBubble.classList.add('show');
+            clearTimeout(gameTimer);
         });
 
-        snakeBtn.addEventListener('mouseleave', () => {
-            snakeTimer = setTimeout(() => {
-                snakeBubble.classList.remove('show');
+        gameBtn.addEventListener('mouseleave', () => {
+            gameTimer = setTimeout(() => {
+                gameBubble.classList.remove('show');
             }, 800);
         });
     </script>
