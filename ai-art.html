@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My AI Art Analyzer</title>
+</head>
+
+<body>
+
+    <h1>My AI Art Analyzer</h1>
+
+    <input id="imageInput" type="file" accept="image/*">
+
+    <img id="preview" width="400">
+
+    <h2>AI Analysis</h2>
+    <div id="result">Upload an artwork...</div>
+
+    <script type="module">
+
+        import { pipeline }
+            from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0";
+
+        // Load a pretrained CLIP model
+        const classifier = await pipeline(
+            "zero-shot-image-classification",
+            "Xenova/clip-vit-base-patch32"
+        );
+
+        // YOUR understanding of the student's art
+        const myLabels = [
+            "dreamy",
+            "mysterious",
+            "peaceful",
+            "dramatic",
+            "fantasy",
+            "nature-inspired",
+            "character-focused",
+            "highly colorful"
+        ];
+
+        document
+            .getElementById("imageInput")
+            .addEventListener("change", async function(event) {
+
+                const file = event.target.files[0];
+
+                if (!file) return;
+
+                const imageURL = URL.createObjectURL(file);
+
+                document
+                    .getElementById("preview")
+                    .src = imageURL;
+
+                document
+                    .getElementById("result")
+                    .innerText = "AI is analyzing...";
+
+                const output = await classifier(
+                    imageURL,
+                    myLabels
+                );
+
+                console.log(output);
+
+                document
+                    .getElementById("result")
+                    .innerHTML = output
+                        .slice(0, 5)
+                        .map(item =>
+                            `<p>
+                                ${item.label}:
+                                ${(item.score * 100).toFixed(1)}%
+                            </p>`
+                        )
+                        .join("");
+            });
+
+    </script>
+
+</body>
+</html>
